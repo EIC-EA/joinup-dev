@@ -1,0 +1,36 @@
+# Copy this file in the project root directory, as docker-compose.override.yml, in order
+# to override configurations provided in docker-compose.yml.
+
+version: '2'
+services:
+
+  web:
+# macOS users should override this value by uncommenting the following
+# 'volumes:' block.
+#    volumes:
+#      - .:/var/www/html:delegated
+
+# Create an .env.local file, in the project root directory, and uncomment the
+# 'env_file:' block in order override values provided in .env file.
+#    env_file:
+#      - .env
+#      - .env.local
+
+  mysql:
+# macOS users should override this value by uncommenting the following
+# 'volumes:' block.
+#    volumes:
+#      - ./resources/docker/mysql/config:/etc/mysql/conf.d:cached
+
+  virtuoso:
+# macOS users should override this value by uncommenting the following
+# 'volumes:' block.
+#    volumes:
+#      - ./data/virtuoso:/data:delegated
+
+  solr:
+# macOS users should override this value by uncommenting the following
+# 'volumes:' block.
+#    volumes:
+#      - ./data/solr:/var/solr:delegated
+#      - ./web/modules/contrib/search_api_solr/solr-conf/6.x:/solr-conf:delegated

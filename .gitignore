@@ -46,7 +46,7 @@
 /tmp
 /VERSION
 
-# Ignore local docker-compose file.
-docker-compose.local.yml
-docker-compose.*.local.yml
-/resources/docker/local
+# Docker.
+/.env.local
+/docker-compose.override.yml
+/data/

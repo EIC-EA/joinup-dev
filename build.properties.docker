@@ -14,6 +14,3 @@ solr.core.unpublished.host = solr_unpublished
 
 # The base URL. This is used for doing functional tests in Behat and PHPUnit.
 drupal.base_url = http://web
-
-# The URL of the webdriver host (e.g. Selenium or PhantomJS).
-behat.webdriver_url = http://selenium:${behat.webdriver_port}/wd/hub

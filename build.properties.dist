@@ -65,6 +65,13 @@ website.themes.dir = ${website.drupal.dir}/themes
 drupal.private_files.dir = ${project.basedir}/private
 
 
+# Selenium configuration
+# ----------------------
+
+# The webdriver URL.
+selenium.url = http://localhost:4444/wd/hub
+
+
 # Behat configuration
 # -------------------
 
@@ -86,11 +93,8 @@ behat.base_url = ${drupal.base_url}
 # The browser to use for testing, either 'firefox' or 'chrome'.
 behat.browser_name = chrome
 
-# The port of the webdriver host (e.g. Selenium or PhantomJS).
-behat.webdriver_port = 4444
-
 # The URL of the webdriver host (e.g. Selenium or PhantomJS).
-behat.webdriver_url = http://localhost:${behat.webdriver_port}/wd/hub
+behat.webdriver_url = ${selenium.url}
 
 # The location to search for Behat subcontexts.
 behat.subcontexts.path = ${website.modules.dir}

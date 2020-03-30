@@ -2,6 +2,12 @@
 
 <project name="Joinup" default="help">
 
+    <echo msg="Turn environment variable into a phing property" />
+    <taskdef name="env2property" classname="\DrupalProject\Phing\EnvironmentVarAsProperty" />
+
+    <!-- Import build properties from environment variables. -->
+    <env2property />
+
     <!-- Import local Phing targets. -->
     <import file="${project.basedir}/build.local.xml" optional="true" />
 

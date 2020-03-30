@@ -14,42 +14,30 @@ class EnvironmentVarAsProperty extends \Task {
    *
    * @var string
    */
-  protected $prefix;
-
-  /**
-   * Phing property that ends up containing all properties.
-   *
-   * @var string
-   */
-  protected $phingProperty;
+  protected $prefix = '';
 
   /**
    * Converts prefixed environment variables in to prefixed phing properties.
    *
    * CPHP_EXPORTS_S3_SECRET -> cphp.exports.s3.secret.
    */
-  public function main() {
+  public function main(): void {
     $set = [];
     foreach ($this->project->getProperties() as $defined_property => $value) {
       // Environment variables can be composed of:
       // a-z, A-Z, _ and 0-9
       // but may NOT begin with a number.
       // @see http://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap08.html
-      if (!strstr($defined_property, 'env.' . strtoupper($this->prefix) . '_')) {
+      $prefix = !empty($this->prefix) ? strtoupper($this->prefix) . '_' : '';
+      if (strpos($defined_property, "env.{$prefix}") !== 0) {
         continue;
       }
-      $environment_var = preg_replace('/^env.' . strtoupper($this->prefix) . '_/', '', $defined_property);
+      $environment_var = substr($defined_property, strlen($prefix) + 4);
+
       // Convert to lowercase, and change underscores to dots.
-      $environment_var = strtolower($environment_var);
-      $property = str_replace('_', '.', $environment_var);
-      $set[$property] = $value;
-    }
-    $var = '';
-    foreach ($set as $key => $value) {
-      $var .= $key . ' = ' . $value . "\n";
-    }
-    if ($var) {
-      $this->project->setProperty($this->phingProperty, "\n" . $var);
+      $property = str_replace('_', '.', strtolower($environment_var));
+
+      $this->getProject()->setProperty($property, $value);
     }
   }
 
@@ -61,16 +49,6 @@ class EnvironmentVarAsProperty extends \Task {
    */
   public function setPrefix(string $prefix) {
     $this->prefix = $prefix;
-  }
-
-  /**
-   * Sets the prefix.
-   *
-   * @param string $prefix
-   *   The prefix for both the environment variable and phing property name.
-   */
-  public function setPhingProperty(string $prefix) {
-    $this->phingProperty = $prefix;
   }
 
 }

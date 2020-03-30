@@ -186,9 +186,7 @@
     </target>
 
     <!-- Set up development configuration, including on-screen error logging and debugging options. -->
-    <target name="enable-dev-settings">
-        <phingcall target="include-local-settings" />
-
+    <target name="enable-dev-settings" depends="include-local-settings">
         <if>
             <not>
                 <available file="${website.settings.local.php}"/>
