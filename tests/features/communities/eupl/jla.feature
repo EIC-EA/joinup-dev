@@ -370,6 +370,7 @@ Feature:
       | http://joinup.eu/spdx/0BSD       | 0BSD       | 0BSD       |
       | http://joinup.eu/spdx/UPL-1.0    | UPL-1.0    | UPL-1.0    |
       | http://joinup.eu/spdx/LGPL-2.1   | LGPL-2.1   | LGPL-2.1   |
+
     And licences:
       | uri                               | title             | spdx licence | legal type                                                            |
       | http://joinup.eu/licence/apache20 | Joinup Apache-2.0 | Apache-2.0   | Strong Community, Royalty free, Modify, Governments/EU, Use/reproduce |
@@ -425,3 +426,47 @@ Feature:
     And the "licence comparer" table should contain:
       | Can | LGPL-2.1 | Apache-2.0 | 0BSD | UPL-1.0 | GPL-2.0+ |
     And the url should match "/licence/compare/LGPL-2.1;Apache-2.0;0BSD;UPL-1.0;GPL-2.0\+"
+
+  @javascript
+  Scenario: The reset button should change everything to the default state.
+    Given SPDX licences:
+      | uri                              | title      | ID         |
+      | http://joinup.eu/spdx/Apache-2.0 | Apache-2.0 | Apache-2.0 |
+      | http://joinup.eu/spdx/GPL-2.0+   | GPL-2.0+   | GPL-2.0+   |
+      | http://joinup.eu/spdx/BSL-1.0    | BSL-1.0    | BSL-1.0    |
+    And licences:
+      | uri                               | title             | spdx licence | legal type                                                            |
+      | http://joinup.eu/licence/apache20 | Joinup Apache-2.0 | Apache-2.0   | Strong Community, Royalty free, Modify, Governments/EU, Use/reproduce |
+      | http://joinup.eu/licence/gpl2plus | Joinup GPL-2.0+   | GPL-2.0+     | Distribute                                                            |
+      | http://joinup.eu/licence/bsl1     | Joinup BSL-1.0    | BSL-1.0      | Distribute, Modify                                                    |
+
+    Given I am an anonymous user
+    When I visit the "JLA" custom page
+
+    When I click "Distribute" in the "Content" region
+    # The licence was hidden.
+    Then I should not see the text "Apache-2.0"
+    When I press "Reset"
+    Then I should see the text "Apache-2.0"
+
+    When I fill in "SPDX id" with "GPL"
+    # The licence was hidden.
+    Then I should not see the text "Apache-2.0"
+    When I press "Reset"
+    Then I should see the text "Apache-2.0"
+
+    When I add the "Apache-2.0" licence to the compare list
+    And I add the "GPL-2.0+" licence to the compare list
+    And I add the "BSL-1.0" licence to the compare list
+    Then the Compare buttons are enabled
+
+    When I press "Reset"
+    Then the "Apache-2.0" licence should be unchecked
+    Then the "GPL-2.0+" licence should be unchecked
+    And the "BSL-1.0" licence should be unchecked
+
+    # Test that the list is also cleared since it is stored in a different property.
+    When I add the "Apache-2.0" licence to the compare list
+    And I add the "GPL-2.0+" licence to the compare list
+    And I click "Compare"
+    Then the url should match "/licence/compare/Apache-2.0;GPL-2.0\+"
