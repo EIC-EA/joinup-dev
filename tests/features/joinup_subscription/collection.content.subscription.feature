@@ -1,4 +1,4 @@
-@api
+@api @group-a
 Feature: Subscribing to community content in collections
   As a member of a collection
   I want to receive a periodic digest listing newly published content
@@ -23,13 +23,13 @@ Feature: Subscribing to community content in collections
       | Cities of Bulgaria   | bisera |             |
       | Cities of Bulgaria   | kalin  | facilitator |
     And the following collection content subscriptions:
-      | collection           | user   | subscriptions              |
-      | Products of Bulgaria | hristo | discussion, event, news    |
-      | Products of Bulgaria | bisera | discussion, document, news |
-      | Products of Bulgaria | kalin  | document, event            |
-      | Cities of Bulgaria   | hristo | document, event            |
-      | Cities of Bulgaria   | bisera | discussion, event, news    |
-      | Cities of Bulgaria   | kalin  | discussion, document, news |
+      | collection           | user   | subscriptions                        |
+      | Products of Bulgaria | hristo | discussion, event, news, solution    |
+      | Products of Bulgaria | bisera | discussion, document, news           |
+      | Products of Bulgaria | kalin  | document, event                      |
+      | Cities of Bulgaria   | hristo | document, event, solution            |
+      | Cities of Bulgaria   | bisera | discussion, event, news              |
+      | Cities of Bulgaria   | kalin  | discussion, document, news, solution |
     And all message digests have been delivered
     And the mail collector cache is empty
 
@@ -91,19 +91,23 @@ Feature: Subscribing to community content in collections
     And the weekly digest for kalin should not contain any messages
 
     # The digest should not include news about content that is not published.
-    And the weekly digest for bisera should not contain the following message:
-      | mail_body | Ruse |
-    And the monthly digest for kalin should not contain the following message:
-      | mail_body | Ruse |
+    And the daily collection content subscription digest for hristo should not contain the following messages:
+      | Double seaming |
+      | Varna          |
+    And the weekly collection content subscription digest for bisera should not contain the following message:
+      | Ruse  |
+      | Varna |
+    And the monthly collection content subscription digest for kalin should not contain the following message:
+      | Ruse |
 
     # Publish an existing unpublished community content. It should be included
     # in the next digest.
     When the workflow state of the "Ruse" content is changed to "validated"
 
-    Then the weekly digest for bisera should contain the following message:
-      | mail_body | Ruse |
-    And the monthly digest for kalin should contain the following message:
-      | mail_body | Ruse |
+    Then the weekly collection content subscription digest for bisera should include the following message:
+      | Ruse |
+    And the monthly collection content subscription digest for kalin should include the following message:
+      | Ruse |
 
     # Check that the messages are formatted correctly.
     Given all message digests have been delivered
@@ -140,7 +144,7 @@ Feature: Subscribing to community content in collections
       | Products of Bulgaria |
       | Canned cherries      |
       | Sunflower seeds      |
-    And the collection content subscription digest email sent to kalin should have the subject "COVID-19 Challenge: Monthly digest message"
+    And the collection content subscription digest sent to kalin should have the subject "COVID-19 Challenge: Monthly digest message"
 
     # Clean out the message queue for the next test.
     And the mail collector cache is empty
@@ -148,12 +152,12 @@ Feature: Subscribing to community content in collections
     # Check that if community content is published a second time it is not
     # included in the next digest.
     When the workflow state of the "Ruse" content is changed to "draft"
-    Then the weekly digest for bisera should not contain the following message:
-      | mail_body | Ruse |
-    And the monthly digest for kalin should not contain the following message:
-      | mail_body | Ruse |
+    Then the weekly challenge content subscription digest for bisera should not contain the following message:
+      | Ruse |
+    And the monthly challenge content subscription digest for kalin should not contain the following message:
+      | Ruse |
     When the workflow state of the "Ruse" content is changed to "validated"
-    Then the weekly digest for bisera should not contain the following message:
-      | mail_body | Ruse |
-    And the monthly digest for kalin should not contain the following message:
-      | mail_body | Ruse |
+    Then the weekly challenge content subscription digest for bisera should not contain the following message:
+      | Ruse |
+    And the monthly challenge content subscription digest for kalin should not contain the following message:
+      | Ruse |

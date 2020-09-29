@@ -160,7 +160,7 @@ Feature: Collections Overview
     # Regression test to ensure that the facets are cached by user.
     # Subsequent page loads of the collections page would lead to cached facets
     # to be leaked to other users.
-    # @see https://webgate.ec.europa.eu/CITnet/jira/browse/ISAICP-3777
+    # @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-3777
     When I click "All challenges" in the "My challenges content" inline facet
     Then the "My challenges content" inline facet should allow selecting the following values "My challenges (3), Featured challenges (2)"
     And the page should be cacheable
