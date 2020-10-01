@@ -8,6 +8,7 @@ module:
   breakpoint: 0
   cached_computed_field: 0
   cas: 0
+  cas_account_link: 0
   cas_attributes: 0
   changed_fields: 0
   ckeditor: 0
@@ -39,10 +40,10 @@ module:
   entity_legal: 0
   entity_reference_revisions: 0
   error_page: 0
-  external_links_footer: 0
   facets: 0
   field: 0
   field_group: 0
+  field_permissions: 0
   file: 0
   file_url: 0
   filter: 0
