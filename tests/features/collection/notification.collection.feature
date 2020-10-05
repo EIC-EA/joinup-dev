@@ -4,7 +4,7 @@ Feature: Notification test for the collection transitions.
   As an user that is related to the collection
   I want to receive a notification an event occurs.
 
-  Scenario: Notifications should be sent whenever an event is occuring related to a collection.
+  Scenario: Notifications should be sent whenever an event is occurring related to a collection.
     Given the following owner:
       | name       | type                    |
       | NC for all | Non-Profit Organisation |
@@ -28,11 +28,10 @@ Feature: Notification test for the collection transitions.
       | NC to propose edit     | validated        | No one cares | No one cares. | Supplier exchange | NC for all | Notificationous absolutous |
       | NC to validate edit    | validated        | No one cares | No one cares. | Supplier exchange | NC for all | Notificationous absolutous |
       | NC to request archival | validated        | No one cares | No one cares. | Supplier exchange | NC for all | Notificationous absolutous |
-      | NC to request deletion | validated        | No one cares | No one cares. | Supplier exchange | NC for all | Notificationous absolutous |
       | NC to reject archival  | archival request | No one cares | No one cares. | Supplier exchange | NC for all | Notificationous absolutous |
-      | NC to reject deletion  | deletion request | No one cares | No one cares. | Supplier exchange | NC for all | Notificationous absolutous |
       | NC to archive          | archival request | No one cares | No one cares. | Supplier exchange | NC for all | Notificationous absolutous |
-      | NC to delete           | deletion request | No one cares | No one cares. | Supplier exchange | NC for all | Notificationous absolutous |
+      | NC to delete           | validated        | No one cares | No one cares. | Supplier exchange | NC for all | Notificationous absolutous |
+      | NC to delete by mod    | validated        | No one cares | No one cares. | Supplier exchange | NC for all | Notificationous absolutous |
     And the following solutions:
       | title        | collections                          | logo     | banner     | state     |
       # Has only one affiliate.
@@ -52,15 +51,16 @@ Feature: Notification test for the collection transitions.
       | NC to propose edit     | NC facilitator | facilitator        |
       | NC to validate edit    | NC owner       | owner, facilitator |
       | NC to request archival | NC owner       | owner, facilitator |
-      | NC to request deletion | NC owner       | owner, facilitator |
       | NC to reject archival  | NC owner       | owner, facilitator |
-      | NC to reject deletion  | NC owner       | owner, facilitator |
       | NC to archive          | NC owner       | owner, facilitator |
       | NC to archive          | NC member1     |                    |
       | NC to archive          | NC member2     |                    |
       | NC to delete           | NC owner       | owner, facilitator |
       | NC to delete           | NC member1     |                    |
       | NC to delete           | NC member2     |                    |
+      | NC to delete by mod    | NC owner       | owner, facilitator |
+      | NC to delete by mod    | NC member1     |                    |
+      | NC to delete by mod    | NC member2     |                    |
 
     # Test 'create' operation.
     When all e-mails have been sent
@@ -114,12 +114,17 @@ Feature: Notification test for the collection transitions.
     When all e-mails have been sent
     And I go to the homepage of the "NC to request deletion" collection
     And I click "Edit" in the "Entity actions" region
-    And I press "Request deletion"
-    Then the email sent to "NC moderator" with subject "User NC requested to delete challenge NC to request deletion" contains the following lines of text:
-      | text                                                                                        |
-      | NC Owner has requested to delete the challenge "NC to request deletion".                    |
-      | To approve or reject this request, please go to                                             |
-      | If you think this action is not clear or not due, please contact us at |
+    And I click "Delete"
+    And I press "Delete"
+    Then 2 e-mails should have been sent
+    Then the following email should have been sent:
+      | recipient | NC member1                                                                  |
+      | subject   | The challenge NC to delete was deleted.                                    |
+      | body      | The challenge "NC to delete", of which you are a member, has been deleted. |
+    And the following email should have been sent:
+      | recipient | NC member2                                                                  |
+      | subject   | The challenge NC to delete was deleted.                                    |
+      | body      | The challenge "NC to delete", of which you are a member, has been deleted. |
 
     # Test 'propose edit' operation.
     When all e-mails have been sent
@@ -168,23 +173,9 @@ Feature: Notification test for the collection transitions.
     When I fill in "Motivation" with "It will not be archived."
     And I press "Publish"
     Then the email sent to "NC owner" with subject "Your request to archive challenge NC to reject archival has been rejected" contains the following lines of text:
-      | text                                                                                     |
+      | text                                                                                      |
       | NC Moderator has rejected your request to archive the challenge "NC to reject archival". |
-      | The reason for rejection is: It will not be archived.                                    |
-
-    # Test the 'reject deletion' operation.
-    When all e-mails have been sent
-    And I go to the homepage of the "NC to reject deletion" collection
-    And I click "Edit" in the "Entity actions" region
-    # @todo: This should change into a separate transition.
-    And I press "Publish"
-    Then I should see the error message "This action requires you to fill in the motivation field"
-    When I fill in "Motivation" with "It will not be deleted."
-    And I press "Publish"
-    Then the email sent to "NC owner" with subject "Your request to delete challenge NC to reject deletion has been rejected" contains the following lines of text:
-      | text                                                                                    |
-      | NC Moderator has rejected your request to delete the challenge "NC to reject deletion". |
-      | The reason for rejection is: It will not be deleted.                                    |
+      | The reason for rejection is: It will not be archived.                                     |
 
     # Test the 'archive' operation.
     When all e-mails have been sent
@@ -215,21 +206,22 @@ Feature: Notification test for the collection transitions.
       | subject   | The challenge NC to archive was archived.                                                                                   |
       | body      | The challenge "NC to archive", of which you are a member, has been archived. The reason for being archived is: As you wish. |
 
-    # Test the 'delete' operation.
+    # Test the deletion of a challenge by a moderator. This should also inform
+    # the collection owner.
     When all e-mails have been sent
-    And I go to the homepage of the "NC to delete" collection
+    And I go to the homepage of the "NC to delete by mod" collection
     And I click "Edit" in the "Entity actions" region
     And I click "Delete"
     And I press "Delete"
     Then the following email should have been sent:
-      | recipient | NC owner                                                           |
-      | subject   | Your request to delete challenge NC to delete has been approved.   |
-      | body      | The challenge "NC to delete" has been deleted as per your request. |
+      | recipient | NC member1                                                                         |
+      | subject   | The challenge NC to delete by mod was deleted.                                    |
+      | body      | The challenge "NC to delete by mod", of which you are a member, has been deleted. |
     And the following email should have been sent:
-      | recipient | NC member1                                                                 |
-      | subject   | The challenge NC to delete was deleted.                                    |
-      | body      | The challenge "NC to delete", of which you are a member, has been deleted. |
+      | recipient | NC member2                                                                         |
+      | subject   | The challenge NC to delete by mod was deleted.                                    |
+      | body      | The challenge "NC to delete by mod", of which you are a member, has been deleted. |
     And the following email should have been sent:
-      | recipient | NC member2                                                                 |
-      | subject   | The challenge NC to delete was deleted.                                    |
-      | body      | The challenge "NC to delete", of which you are a member, has been deleted. |
+      | recipient | NC owner                                                              |
+      | subject   | Joinup: Your challenge has been deleted by the moderation team       |
+      | body      | The Joinup moderation team deleted the collection NC to delete by mod |
