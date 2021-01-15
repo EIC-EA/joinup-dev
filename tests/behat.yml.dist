@@ -68,7 +68,7 @@ default:
         - FeatureContext
         - LoversOfBehat\TableExtension\Context\TableContext
       filters:
-        tags: '~@wip'
+        tags: '~@wip&&~@joinup-exclusive'
   extensions:
     Drupal\MinkExtension:
       base_url: ${env.DRUPAL_BASE_URL}
