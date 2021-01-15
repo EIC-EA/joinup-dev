@@ -48,7 +48,6 @@ Feature: User authentication
       | node/add/glossary                           |
       | node/add/news                               |
       | propose/challenge                           |
-      | propose/solution                            |
       | rdf_entity/add                              |
       | rdf_entity/add/asset_distribution           |
       | rdf_entity/add/asset_release                |
@@ -104,7 +103,6 @@ Feature: User authentication
       | admin/structure                             |
       | admin/structure/views                       |
       | dashboard                                   |
-      | propose/solution                            |
       | licence                                     |
       | licence/add                                 |
       | node/add                                    |
@@ -169,7 +167,6 @@ Feature: User authentication
       | admin/content                      |
       | admin/structure                    |
       | admin/structure/views              |
-      | propose/solution                   |
       | node/add                           |
       | node/add/custom_page               |
       | node/add/discussion                |
