@@ -39,7 +39,6 @@ Feature: User authentication
       | admin/structure/views                       |
       | dashboard                                   |
       | licence                                     |
-      | licence/add                                 |
       | node/add                                    |
       | node/add/custom_page                        |
       | node/add/discussion                         |
@@ -104,7 +103,6 @@ Feature: User authentication
       | admin/structure/views                       |
       | dashboard                                   |
       | licence                                     |
-      | licence/add                                 |
       | node/add                                    |
       | node/add/custom_page                        |
       | node/add/discussion                         |
@@ -151,7 +149,6 @@ Feature: User authentication
       | admin/reporting/solutions-by-type           |
       | dashboard                                   |
       | licence                                     |
-      | licence/add                                 |
       | propose/challenge                           |
 
   Scenario Outline: Moderator cannot access restricted pages
