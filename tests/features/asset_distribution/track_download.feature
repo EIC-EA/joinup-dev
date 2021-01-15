@@ -1,4 +1,4 @@
-@api @group-a
+@api @group-a @joinup-exclusive
 Feature: Asset distribution editing.
   As a privileged user of the website
   I want to track downloads of distributions

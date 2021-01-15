@@ -1,4 +1,4 @@
-@api @group-a
+@api @group-a @joinup-exclusive
 Feature: Release API
   In order to manage solutions programmatically
   As a backend developer

@@ -1,4 +1,4 @@
-@api @group-a
+@api @group-a @joinup-exclusive
 Feature: "Edit" visibility options.
   In order to manage releases
   As a solution facilitator

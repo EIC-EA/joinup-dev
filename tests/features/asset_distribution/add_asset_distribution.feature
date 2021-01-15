@@ -1,4 +1,4 @@
-@api @group-a
+@api @group-a @joinup-exclusive
 Feature: Add distribution through the UI
   In order to manage distributions
   As a facilitator

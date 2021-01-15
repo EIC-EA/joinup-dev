@@ -1,4 +1,4 @@
-@api @group-a
+@api @group-a @joinup-exclusive
 Feature: Asset distribution editing.
   In order to manage asset distributions
   As a solution owner or solution facilitator
