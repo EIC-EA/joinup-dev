@@ -1,29 +1,29 @@
-uuid: d99df154-e61d-43ba-a6bb-f946991cb8f8
+uuid: 39ad2210-82f0-4617-ab18-ded44e7e247c
 langcode: en
 status: true
 dependencies:
   config:
-    - facets.facet.solution_topics
+    - facets.facet.category
   module:
     - facets
     - joinup_core
   theme:
     - joinup_theme
-id: topics
+id: category
 theme: joinup_theme
-region: sidebar_left
-weight: -11
+region: content
+weight: -27
 provider: null
-plugin: 'facet_block:solution_topics'
+plugin: 'facet_block:category'
 settings:
-  id: 'facet_block:solution_topics'
-  label: 'Solutions - Topics'
+  id: 'facet_block:category'
+  label: 'EIF category'
   provider: facets
   label_display: '0'
-  block_id: topics
+  block_id: category
 visibility:
   request_route:
     id: request_route
-    routes: view.solutions.page_1
+    routes: view.eif_recommendation.page
     negate: false
     context_mapping: {  }

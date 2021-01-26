@@ -1,25 +1,31 @@
-uuid: eab3b4d5-b6d4-411e-a881-3c4672c854b5
+uuid: 410deccd-14c4-4b2f-b68d-f47d3309e2fe
 langcode: en
 status: true
 dependencies:
   config:
     - search_api.index.published
-    - views.view.solutions
+    - views.view.eif_recommendation
   module:
     - search_api
-id: solution_topics
-name: Topics
-url_alias: solution_topics
+id: category
+name: Category
+url_alias: category
 weight: 0
 min_count: 1
 show_only_one_result: true
-field_identifier: field_topic
-facet_source_id: 'search_api:views_page__solutions__page_1'
+field_identifier: vid
+facet_source_id: 'search_api:views_page__eif_recommendation__page'
 widget:
-  type: dropdown
+  type: links
   config:
-    show_numbers: true
-    default_option_label: 'Any topic'
+    show_numbers: false
+    soft_limit: 0
+    soft_limit_settings:
+      show_less_label: 'Show less'
+      show_more_label: 'Show more'
+    show_reset_link: true
+    reset_text: All
+    hide_reset_when_no_selection: false
     arbitrary_facet_plugin: _none
 query_operator: or
 use_hierarchy: false
@@ -29,42 +35,23 @@ hard_limit: 0
 exclude: false
 only_visible_when_facet_source_is_visible: true
 processor_configs:
-  active_widget_order:
-    processor_id: active_widget_order
-    weights:
-      sort: 20
-    settings:
-      sort: DESC
-  count_limit:
-    processor_id: count_limit
-    weights:
-      build: 3
-    settings:
-      minimum_items: 1
-      maximum_items: null
-  count_widget_order:
-    processor_id: count_widget_order
-    weights:
-      sort: 30
-    settings:
-      sort: DESC
   display_value_widget_order:
     processor_id: display_value_widget_order
     weights:
       sort: 40
     settings:
-      sort: ASC
+      sort: DESC
   translate_entity:
     processor_id: translate_entity
     weights:
-      build: -7
+      build: 5
     settings: {  }
   url_processor_handler:
     processor_id: url_processor_handler
     weights:
       pre_query: 50
-      build: -8
+      build: 15
     settings: {  }
 empty_behavior:
   behavior: none
-show_title: true
+show_title: false

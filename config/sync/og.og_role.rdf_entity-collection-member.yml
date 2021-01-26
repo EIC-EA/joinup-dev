@@ -27,3 +27,4 @@ permissions:
   - unsubscribe
   - 'view own unpublished content'
 role_type: required
+
