@@ -28,7 +28,6 @@ dependencies:
     - field.storage.rdf_entity.field_is_solution_type
     - field.storage.rdf_entity.field_isr_description
     - field.storage.rdf_entity.field_isr_release_notes
-    - field.storage.rdf_entity.field_licence_description
     - field.storage.node.field_location
     - field.storage.node.field_news_headline
     - field.storage.node.field_organisation
@@ -210,22 +209,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.rdf_entity.field_isr_release_notes
-  field_licence_description:
-    label: 'Description » Processed text'
-    datasource_id: 'entity:rdf_entity'
-    property_path: 'field_licence_description:processed'
-    type: text
-    dependencies:
-      config:
-        - field.storage.rdf_entity.field_licence_description
-  field_licence_spdx_licence:
-    label: 'Corresponding SPDX licence'
-    datasource_id: 'entity:rdf_entity'
-    property_path: field_licence_spdx_licence
-    type: string
-    dependencies:
-      config:
-        - field.storage.rdf_entity.field_licence_spdx_licence
   field_location:
     label: Location
     datasource_id: 'entity:node'
@@ -600,7 +583,6 @@ processor_settings:
       - field_is_description
       - field_isr_description
       - field_isr_release_notes
-      - field_licence_description
     title: true
     alt: true
     tags:
@@ -623,7 +605,6 @@ processor_settings:
       - field_is_description
       - field_isr_description
       - field_isr_release_notes
-      - field_licence_description
       - field_location
       - field_news_headline
       - field_organisation
@@ -663,7 +644,6 @@ processor_settings:
       - field_is_description
       - field_isr_description
       - field_isr_release_notes
-      - field_licence_description
       - field_location
       - field_news_headline
       - field_scope
@@ -720,7 +700,6 @@ processor_settings:
       - field_is_description
       - field_isr_description
       - field_isr_release_notes
-      - field_licence_description
       - field_location
       - field_news_headline
       - field_organisation
@@ -752,7 +731,6 @@ processor_settings:
       - field_is_description
       - field_isr_description
       - field_isr_release_notes
-      - field_licence_description
       - field_location
       - field_news_headline
       - field_organisation

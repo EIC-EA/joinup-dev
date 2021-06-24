@@ -162,14 +162,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.rdf_entity.field_is_description
-  field_is_eif_recommendation:
-    label: 'EIF reference'
-    datasource_id: 'entity:rdf_entity'
-    property_path: field_is_eif_recommendation
-    type: string
-    dependencies:
-      config:
-        - field.storage.rdf_entity.field_is_eif_recommendation
   field_is_pinned_in:
     label: 'Pinned in'
     datasource_id: 'entity:rdf_entity'
@@ -202,14 +194,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.rdf_entity.field_isr_release_notes
-  field_licence_description:
-    label: 'Description » Processed text'
-    datasource_id: 'entity:rdf_entity'
-    property_path: 'field_licence_description:processed'
-    type: text
-    dependencies:
-      config:
-        - field.storage.rdf_entity.field_licence_description
   field_location:
     label: Location
     datasource_id: 'entity:node'
@@ -470,7 +454,7 @@ datasource_settings:
         - glossary
         - news
         - newsletter
-        - tallinn_report
+        - pledge
         - video
     languages:
       default: true
@@ -482,9 +466,7 @@ datasource_settings:
         - asset_distribution
         - asset_release
         - collection
-        - licence
         - solution
-        - spdx_licence
     languages:
       default: true
       selected: {  }
@@ -506,7 +488,6 @@ processor_settings:
       - field_is_description
       - field_isr_description
       - field_isr_release_notes
-      - field_licence_description
     title: true
     alt: true
     tags:
@@ -529,7 +510,6 @@ processor_settings:
       - field_is_description
       - field_isr_description
       - field_isr_release_notes
-      - field_licence_description
       - field_location
       - field_news_headline
       - field_organisation
@@ -568,7 +548,6 @@ processor_settings:
       - field_is_description
       - field_isr_description
       - field_isr_release_notes
-      - field_licence_description
       - field_location
       - field_news_headline
       - field_scope
@@ -626,7 +605,6 @@ processor_settings:
       - field_is_description
       - field_isr_description
       - field_isr_release_notes
-      - field_licence_description
       - field_location
       - field_news_headline
       - field_organisation
@@ -659,7 +637,6 @@ processor_settings:
       - field_is_description
       - field_isr_description
       - field_isr_release_notes
-      - field_licence_description
       - field_location
       - field_news_headline
       - field_organisation
