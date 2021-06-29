@@ -1,3 +1,93 @@
-main:
-  0: ''
-  6551d925-b453-4832-8664-85cf4f7c28ae: 'a:23:{s:4:"uuid";a:1:{s:5:"value";s:36:"6551d925-b453-4832-8664-85cf4f7c28ae";}s:11:"revision_id";a:1:{s:5:"value";s:3:"535";}s:8:"langcode";a:1:{s:5:"value";s:2:"en";}s:6:"bundle";a:1:{s:5:"value";s:17:"menu_link_content";}s:16:"revision_created";a:1:{s:5:"value";s:10:"1621505109";}s:13:"revision_user";b:0;s:20:"revision_log_message";b:0;s:7:"enabled";a:1:{s:5:"value";s:1:"1";}s:5:"title";a:1:{s:5:"value";s:9:"Community";}s:11:"description";b:0;s:9:"menu_name";a:1:{s:5:"value";s:4:"main";}s:4:"link";a:3:{s:3:"uri";s:36:"https://community-smei.easme-web.eu/";s:5:"title";s:0:"";s:7:"options";a:0:{}}s:8:"external";a:1:{s:5:"value";s:1:"0";}s:10:"rediscover";a:1:{s:5:"value";s:1:"0";}s:6:"weight";a:1:{s:5:"value";s:3:"-47";}s:8:"expanded";a:1:{s:5:"value";s:1:"0";}s:6:"parent";b:0;s:7:"changed";a:1:{s:5:"value";s:10:"1621505551";}s:16:"default_langcode";a:1:{s:5:"value";s:1:"1";}s:16:"revision_default";a:1:{s:5:"value";s:1:"1";}s:29:"revision_translation_affected";a:1:{s:5:"value";s:1:"1";}s:7:"metatag";b:0;s:9:"live_link";a:1:{s:5:"value";s:1:"0";}}'
+538:
+  id:
+    value: '538'
+  uuid:
+    value: 831b60ef-29ad-429a-9c3a-8279b93a0fbf
+  revision_id:
+    value: '538'
+  langcode:
+    value: en
+  bundle:
+    value: menu_link_content
+  revision_created:
+    value: '1624982568'
+  revision_user: false
+  revision_log_message: false
+  enabled:
+    value: '1'
+  title:
+    value: 'EIC Community'
+  description:
+    value: 'link to the community'
+  menu_name:
+    value: main
+  link:
+    uri: 'https://community-smei.easme-web.eu/'
+    title: ''
+    options: {  }
+  external:
+    value: '0'
+  rediscover:
+    value: '0'
+  weight:
+    value: '-47'
+  expanded:
+    value: '0'
+  parent: false
+  changed:
+    value: '1624984586'
+  default_langcode:
+    value: '1'
+  revision_default:
+    value: '1'
+  revision_translation_affected:
+    value: '1'
+  metatag: false
+  live_link:
+    value: '0'
+539:
+  id:
+    value: '539'
+  uuid:
+    value: 773ebaf3-7478-4762-86bc-af9b99b4ca8a
+  revision_id:
+    value: '539'
+  langcode:
+    value: en
+  bundle:
+    value: menu_link_content
+  revision_created:
+    value: '1624984557'
+  revision_user: false
+  revision_log_message: false
+  enabled:
+    value: '1'
+  title:
+    value: Home
+  description: false
+  menu_name:
+    value: main
+  link:
+    uri: 'internal:/homepage'
+    title: ''
+    options: {  }
+  external:
+    value: '0'
+  rediscover:
+    value: '1'
+  weight:
+    value: '-50'
+  expanded:
+    value: '0'
+  parent: false
+  changed:
+    value: '1624984586'
+  default_langcode:
+    value: '1'
+  revision_default:
+    value: '1'
+  revision_translation_affected:
+    value: '1'
+  metatag: false
+  live_link:
+    value: '0'
