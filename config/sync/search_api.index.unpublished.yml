@@ -42,7 +42,6 @@ dependencies:
     - field.storage.rdf_entity.field_is_description
     - field.storage.rdf_entity.field_isr_description
     - field.storage.rdf_entity.field_licence_description
-    - field.storage.rdf_entity.field_is_eif_recommendation
     - field.storage.rdf_entity.field_is_owner
     - field.storage.rdf_entity.field_owner_name
     - field.storage.rdf_entity.field_isr_contact_information

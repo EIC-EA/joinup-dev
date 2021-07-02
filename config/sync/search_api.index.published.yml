@@ -554,21 +554,6 @@ datasource_settings:
     languages:
       default: true
       selected: {  }
-  'entity:taxonomy_term':
-    bundles:
-      default: false
-      selected:
-        - eif_conceptual_model
-        - eif_interoperability_layer
-        - eif_principle
-        - eif_recommendation
-    languages:
-      default: true
-      selected: {  }
-  'entity:user':
-    languages:
-      default: true
-      selected: {  }
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
