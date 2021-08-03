@@ -141,6 +141,24 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   }
 
   /**
+   * Checks a material design checkbox.
+   *
+   * To be used for Javascript based tests.
+   *
+   * @param string $text
+   *   The checkbox text.
+   *
+   * @Given I check the :text material checkbox
+   */
+  public function checkMaterialCheckbox(string $text): void {
+    $checkbox = $this->getSession()->getPage()->findField($text);
+    if ($checkbox && $checkbox->isChecked()) {
+      throw new \Exception("Checkbox with text {$text} is already checked.");
+    }
+    $this->toggleMaterialDesignCheckbox('', $checkbox->getParent());
+  }
+
+  /**
    * Assert that certain fields are present and visible on the page.
    *
    * @param string $fields
