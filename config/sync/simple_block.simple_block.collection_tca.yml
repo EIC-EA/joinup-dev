@@ -1,0 +1,11 @@
+uuid: 875e4028-17b8-426e-b394-68cef7f24224
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.content_editor
+id: collection_tca
+title: 'Collection Terms of Agreement'
+content:
+  value: "<p>Challenges are spaces where you can collaborate with others sharing your same interests around a certain domain, and contain all the contents of any kind related to that domain (solutions, news, newsletters and announcements of events and documents of various kinds).</p> <h2>How Challenges work</h2> <p>Actions you can take as a Challenge owner:</p> <ul><li>Choose who can see and join your Challenge, if you create it with restricted membership conditions;</li><li>Add other people as moderators and owners of the Challenge;</li><li>Remove members from your Challenge;</li><li>Moderate posts and comments in your Challenge;</li><li>Delete your Challenge</li> </ul> What others can do when they join your Challenge: <ul><li>See what other people have posted to that Challenge</li><li>Comment on posts in that Challenge</li><li>Leave that Challenge at any time</li> </ul> Please note that the creation of Challenges is subject to moderation by the team, and the following criteria will be checked: <ul><li>If there are existing challenges pertaining to the same domains as yours;</li><li>If there is already a Challenge with content similar to that which you intend to include;</li> </ul> <h2>Do you want to create your own Challenge?</h2>"
+  format: content_editor

@@ -3,12 +3,16 @@
 # This route depends on the JoinupController, but Joinup already depends on the
 # Collection module.
 rdf_entity.propose_form:
-  path: '/propose/challenge'
+  path: '/propose/{rdf_type}'
   defaults:
     _controller: '\Drupal\joinup\Controller\JoinupController::proposeRdfEntity'
-    _title: 'Propose challenge'
+    _title: 'Propose an Rdf entity'
   requirements:
     _custom_access: '\Drupal\joinup\Controller\JoinupController::createAccess'
+  options:
+    parameters:
+      rdf_type:
+        type: entity:rdf_type
 
 joinup.collection_tca_form:
   path: '/eic/tca/challenge'
