@@ -74,7 +74,7 @@ Feature: Collection moderation
       # Person of Wizards has a published version so the facilitator can publish directly.
       # The facilitator can still save as draft or propose for internal checking between eligible users.
       # Note that the 'Delete' action is represented as a link rather than a button and has a dedicated test below.
-      | Person of Wizards   | Erika Reid      | Publish, Save as draft, Propose, Request archival |
+      | Person of Wizards   | Erika Reid      | Publish, Save as draft, Propose, Close |
       | The Shard's Hunter  | Erika Reid      |                                                   |
       | Luck in the Abyss   | Erika Reid      |                                                   |
 

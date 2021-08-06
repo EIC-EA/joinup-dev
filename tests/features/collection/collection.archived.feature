@@ -32,11 +32,7 @@ Feature: Creating content and commenting on archived collection
     Then the following fields should be present "Create comment"
     And I should see the button "Post comment"
 
-    When I am logged in as "Karl Fields"
-    And I go to the "The Willing Consort" collection
-    And I click "Edit"
-    And I press "Request archival"
-    And I am logged in as a moderator
+    When I am logged in as a moderator
     And I go to the "The Willing Consort" collection
     And I click "Edit"
     When I fill in "Motivation" with "As you wish."
@@ -64,7 +60,6 @@ Feature: Creating content and commenting on archived collection
     Then I should see the link "Pledge"
     When I go to the "The Willing Consort" collection
     Then I should see the link "Pledge"
-    When I am logged in as a moderator
     And I go to the "The Willing Consort" collection
     And I click "Edit"
     When I fill in "Motivation" with "As you wish."
