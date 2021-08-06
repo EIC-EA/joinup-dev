@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\solution\Controller;
 
+use Drupal\collection\Entity\Collection;
+use Drupal\collection\Entity\CollectionInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\og\Og;
@@ -51,7 +53,7 @@ class SolutionController extends ControllerBase {
    */
   public function createSolutionAccess(RdfInterface $rdf_entity) {
     // If the collection is archived, content creation is not allowed.
-    if ($rdf_entity->bundle() === 'collection' && $rdf_entity->field_ar_state->first()->value === 'archived') {
+    if ($rdf_entity instanceof CollectionInterface && $rdf_entity->isChallengeClosed()) {
       return AccessResult::forbidden();
     }
 

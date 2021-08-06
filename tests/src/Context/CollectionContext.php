@@ -50,28 +50,29 @@ class CollectionContext extends RawDrupalContext {
    * Mapping of human readable field labels to machine names.
    */
   protected const FIELD_ALIASES = [
-    'author' => 'uid',
-    'uri' => 'id',
-    'title' => 'label',
-    'short ID' => 'field_short_id',
     'abstract' => 'field_ar_abstract',
     'access url' => 'field_ar_access_url',
+    'author' => 'uid',
     'banner' => 'field_ar_banner',
     'closed' => 'field_ar_closed',
     'contact information' => 'field_ar_contact_information',
     'content creation' => 'field_ar_content_creation',
     'creation date' => 'created',
     'description' => 'field_ar_description',
+    'featured' => 'field_site_featured',
     'keywords' => 'field_keywords',
     'logo' => 'field_ar_logo',
     'moderation' => 'field_ar_moderation',
     'modification date' => 'changed',
     'owner' => 'field_ar_owner',
+    'pinned to front page' => 'field_site_pinned',
     'policy domain' => 'field_policy_domain',
+    'short ID' => 'field_short_id',
     'spatial coverage' => 'field_spatial_coverage',
     'state' => 'field_ar_state',
-    'featured' => 'field_site_featured',
-    'pinned to front page' => 'field_site_pinned',
+    'title' => 'label',
+    'topic' => 'field_topic',
+    'uri' => 'id',
   ];
 
   /**

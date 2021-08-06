@@ -17,8 +17,8 @@ Feature: Creating content and commenting on archived collection
       | name          |
       | April Hawkins |
     And the following collections:
-      | title               | description         | logo     | banner     | owner         | contact information | state     | policy domain           |
-      | The Willing Consort | The Willing Consort | logo.png | banner.jpg | April Hawkins | Jody Rodriquez      | validated | Statistics and Analysis |
+      | title               | description         | logo     | banner     | owner         | contact information | state     | topic                | policy domain           |
+      | The Willing Consort | The Willing Consort | logo.png | banner.jpg | April Hawkins | Jody Rodriquez      | validated | Business development | Statistics and Analysis |
     And the following collection user memberships:
       | collection          | user        | roles              |
       | The Willing Consort | Karl Fields | owner, facilitator |
@@ -40,7 +40,7 @@ Feature: Creating content and commenting on archived collection
     And I go to the "The Willing Consort" collection
     And I click "Edit"
     When I fill in "Motivation" with "As you wish."
-    And I press "Archive"
+    And I press "Close"
     And I go to the "The Weeping's Stars" discussion
     Then the following fields should not be present "Create comment"
     And I should not see the button "Post comment"
@@ -58,15 +58,17 @@ Feature: Creating content and commenting on archived collection
   Scenario: 'Add community content' menu items should not be visible in the archived connection.
     When I am logged in as "Karl Fields"
     And I go to the "The Willing Consort" collection
-    And I click "Edit"
+    Then I should see the link "Pledge"
+    When I click "Edit"
     And I press "Request archival"
     And I am logged in as a moderator
     And I go to the "The Willing Consort" collection
     And I click "Edit"
     When I fill in "Motivation" with "As you wish."
-    And I press "Archive"
+    And I press "Close"
 
     # We only need to check that privileged users do not have access anymore.
     And I am logged in as a facilitator of the "The Willing Consort" collection
     And I go to the "The Willing Consort" collection
     Then I should not see the plus button menu
+    And I should not see the link "Pledge"
