@@ -196,8 +196,8 @@ content:
     third_party_settings: {  }
     region: content
   field_challenge_status:
-    weight: 16
-    settings: { }
+    weight: 19
+    settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content

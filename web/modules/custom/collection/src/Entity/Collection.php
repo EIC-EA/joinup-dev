@@ -53,4 +53,14 @@ class Collection extends Rdf implements CollectionInterface {
     return 'field_ar_state';
   }
 
+  /**
+   * Returns whether the challenge is closed.
+   *
+   * @return bool
+   *   True if the challenge is closed. False if the challenge is ongoing.
+   */
+  public function isChallengedClosed(): bool {
+    return $this->get('field_challenge_status')->value === 'closed';
+  }
+
 }

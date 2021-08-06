@@ -28,6 +28,7 @@ dependencies:
     - rdf_entity.rdfentity.collection
   module:
     - field_group
+    - options
     - search_api_field
     - smart_trim
     - template_suggestion
@@ -104,10 +105,9 @@ content:
   field_challenge_status:
     weight: 6
     label: above
-    settings:
-      link: true
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_label
+    type: list_default
     region: content
   field_collection_content:
     weight: 4
