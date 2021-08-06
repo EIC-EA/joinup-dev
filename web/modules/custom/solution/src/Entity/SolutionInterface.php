@@ -15,4 +15,14 @@ use Drupal\rdf_entity\RdfInterface;
  */
 interface SolutionInterface extends RdfInterface, CollectionContentInterface, EntityWorkflowStateInterface, GroupInterface, ShortIdInterface {
 
+  /**
+   * Returns whether the challenge related to the solution is closed or ongoing.
+   *
+   * @return bool
+   *   True if the challenge is closed or false if the challenge is ongoing. The
+   *   status of the challenge must be 'archived' (Closed) in order to be
+   *   considered closed.
+   */
+  function isRelatedChallengeClosed(): bool;
+
 }

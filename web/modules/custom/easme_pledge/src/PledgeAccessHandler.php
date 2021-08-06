@@ -11,23 +11,31 @@ use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\joinup_community_content\CommunityContentWorkflowAccessControlHandler;
 use Drupal\joinup_community_content\Entity\CommunityContentInterface;
+use Drupal\solution\Entity\SolutionInterface;
 
 /**
  * Access handler for the Pledge content bundle.
  */
 class PledgeAccessHandler extends CommunityContentWorkflowAccessControlHandler {
 
-
-
   /**
    * {@inheritdoc}
    */
   protected function entityCreateAccess(CommunityContentInterface $content, AccountInterface $account): AccessResultInterface {
+    if ($account->isAnonymous()) {
+      return AccessResult::forbidden();
+    }
+
     $parent = $content->getGroup();
+    // The parent will never be empty because an exception would be thrown in
+    // that case.
     if (($parent instanceof CollectionInterface) && $parent->isChallengeClosed()) {
       return AccessResult::forbidden();
     }
-    return parent::entityCreateAccess($content, $account);
+    elseif ($parent instanceof SolutionInterface && $parent->isRelatedChallengeClosed()) {
+      return AccessResult::forbidden();
+    }
+    return AccessResult::allowed();
   }
 
   /**

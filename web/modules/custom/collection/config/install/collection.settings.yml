@@ -71,3 +71,5 @@ transitions:
   archived:
     archival_request:
       - moderator
+    validated:
+      - moderator

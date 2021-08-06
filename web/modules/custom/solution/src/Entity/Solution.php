@@ -62,4 +62,11 @@ class Solution extends Rdf implements SolutionInterface {
     return 'field_is_state';
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  function isRelatedChallengeClosed(): bool {
+    return $this->getCollection()->isChallengeClosed();
+  }
+
 }

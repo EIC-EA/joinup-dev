@@ -45,5 +45,5 @@ collection_workflow:
       to: archival_request
     archive:
       label: Close
-      from: [archival_request]
+      from: [validated, archival_request]
       to: archived

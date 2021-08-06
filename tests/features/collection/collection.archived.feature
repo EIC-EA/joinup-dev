@@ -56,19 +56,24 @@ Feature: Creating content and commenting on archived collection
     And I should not see the button "Post comment"
 
   Scenario: 'Add community content' menu items should not be visible in the archived connection.
+    Given solutions:
+      | title         | collection          | state     |
+      | Test solution | The Willing Consort | validated |
     When I am logged in as "Karl Fields"
-    And I go to the "The Willing Consort" collection
+    And I go to the "Test solution" solution
     Then I should see the link "Pledge"
-    When I click "Edit"
-    And I press "Request archival"
-    And I am logged in as a moderator
+    When I go to the "The Willing Consort" collection
+    Then I should see the link "Pledge"
+    When I am logged in as a moderator
     And I go to the "The Willing Consort" collection
     And I click "Edit"
     When I fill in "Motivation" with "As you wish."
     And I press "Close"
+    Then I should see the heading "The Willing Consort"
 
     # We only need to check that privileged users do not have access anymore.
     And I am logged in as a facilitator of the "The Willing Consort" collection
     And I go to the "The Willing Consort" collection
-    Then I should not see the plus button menu
     And I should not see the link "Pledge"
+    When I go to the "Test solution" solution
+    Then I should not see the link "Pledge"

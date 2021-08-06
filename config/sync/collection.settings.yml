@@ -45,5 +45,7 @@ transitions:
   archived:
     archival_request:
       - moderator
+    validated:
+      - moderator
 _core:
   default_config_hash: v1mBS7MDgxUW0g5iB4FJo9RWPILPSJq9Peni_bu8IY0
