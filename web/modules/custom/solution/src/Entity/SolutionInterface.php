@@ -23,6 +23,6 @@ interface SolutionInterface extends RdfInterface, CollectionContentInterface, En
    *   status of the challenge must be 'archived' (Closed) in order to be
    *   considered closed.
    */
-  function isRelatedChallengeClosed(): bool;
+  public function isRelatedChallengeClosed(): bool;
 
 }

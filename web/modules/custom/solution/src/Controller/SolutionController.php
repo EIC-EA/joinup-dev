@@ -4,10 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\solution\Controller;
 
-use Drupal\collection\Entity\Collection;
-use Drupal\collection\Entity\CollectionInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\collection\Entity\CollectionInterface;
 use Drupal\og\Og;
 use Drupal\rdf_entity\RdfInterface;
 

@@ -4,11 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\easme_pledge;
 
-use Drupal\collection\Entity\Collection;
-use Drupal\collection\Entity\CollectionInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\collection\Entity\CollectionInterface;
 use Drupal\joinup_community_content\CommunityContentWorkflowAccessControlHandler;
 use Drupal\joinup_community_content\Entity\CommunityContentInterface;
 use Drupal\solution\Entity\SolutionInterface;

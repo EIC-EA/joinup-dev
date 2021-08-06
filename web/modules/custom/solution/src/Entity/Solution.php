@@ -65,7 +65,7 @@ class Solution extends Rdf implements SolutionInterface {
   /**
    * {@inheritdoc}
    */
-  function isRelatedChallengeClosed(): bool {
+  public function isRelatedChallengeClosed(): bool {
     return $this->getCollection()->isChallengeClosed();
   }
 
