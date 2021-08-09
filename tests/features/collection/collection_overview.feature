@@ -7,7 +7,8 @@ Feature: Collections Overview
     Then I should see the link "Challenges"
     When I click "Challenges"
     Then I should see the heading "Challenges"
-    And I should see the text "Challenges are the main collaborative space where the content items are organised around a common topic or domain and where the users can share their content and engage their community."
+    And I should see the text "Discover all the challenges: take a look below and participate in the challenge that interests you most!"
+    And I should see the text "How can you contribute? Think big and submit your solution!"
     # Check that all logged in users can see and access the link as well.
     Given I am logged in as a user with the "authenticated user" role
     Then I should see the link "Challenges"
