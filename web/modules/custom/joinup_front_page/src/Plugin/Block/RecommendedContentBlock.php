@@ -126,7 +126,9 @@ class RecommendedContentBlock extends BlockBase implements ContainerFactoryPlugi
         '#type' => 'inline_template',
         // Warning: when changing this text, also update the metatags to match.
         // See `metatag.metatag_defaults.front.yml`.
-        '#template' => '<p>{% trans %}This platform is created by the EIC. The platform is a collaborative space where public and private procurers, local / regional / national organisations and agencies can setup challenges. Here innovators, companies, researchers can forward their solutions. Sponsors have the possibility to pledge their support. Funded by the European Union via the European Innovation Council (EIC) programme. It offers several services that aim at helping all relevant actors from the hackathon to continue and expand their collaboration with each other, reaching innovative and fast solutions to all relevant challenges. {% endtrans %}</p>',
+        '#template' => '<p>{% trans %}Are you an EIC thinker who likes to dig into science, research or technology to address new challenges? Do you believe your company has the right expertise to solve some of the biggest challenges from corporates, procurers or market leaders alike? Then our Challenge Platform is the right place for you.{% endtrans %}</p>
+                        <p>{% trans %}We gather in this virtual stage challengers from a diverse set of organisations with EIC-funded problem-solvers, eager to develop and implement innovations in different sorts of fields.{% endtrans %}</p>
+                        <p>{% trans %}If you think you can be our next challenge solver, don’t miss the opportunity to connect with this creative group and help solve pressing challenges with your innovative approaches. {% endtrans %}</p>',
       ],
     ];
 

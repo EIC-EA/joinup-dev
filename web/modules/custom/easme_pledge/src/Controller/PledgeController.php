@@ -8,6 +8,7 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\joinup_community_content\Controller\CommunityContentController;
+use Drupal\joinup_group\Entity\GroupInterface;
 use Drupal\node\NodeTypeInterface;
 use Drupal\rdf_entity\RdfInterface;
 
@@ -39,7 +40,7 @@ class PledgeController extends CommunityContentController {
    *   The access result object.
    */
   public function createAccess(RdfInterface $rdf_entity, NodeTypeInterface $node_type, AccountInterface $account): AccessResultInterface {
-    return AccessResult::allowedIf($rdf_entity->bundle() === 'solution' && $account->isAuthenticated());
+    return AccessResult::allowedIf(($rdf_entity instanceof GroupInterface) && $account->isAuthenticated());
   }
 
 }

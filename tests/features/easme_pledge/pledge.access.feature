@@ -39,31 +39,34 @@ Feature:
 
   Scenario Outline: Proper roles should have proper submit buttons in the pledge creation form.
     Given pledge content:
-      | title       | description           | solution                                 | author       |
-      | Some pledge | We would like to help | Possible solution to institute challenge | Pledge Owner |
+      | title       | description           | <group type>  | author       |
+      | Some pledge | We would like to help | <group title> | Pledge Owner |
 
     When I am logged in as a user with the "<role>" role
-    And I go to the "Possible solution to institute challenge" solution
+    And I go to the "<group title>" <group type>
     Then I should see the "Pledge" button in the "Header" region
 
     # Authenticated users can directly create a pledge.
     When I press "Pledge" in the "Header" region
-    Then I should see the heading "Create a pledge"
-    And the following fields should be present "Title, Type of contribution, Description, Contact information, Pledge owner"
+    Then I should see the heading "Add pledge"
+    And the following fields should be present "Title, Type of contribution, Description, Contact information"
+    And the following fields should not be present "Pledge owner"
 
     # The authenticated users can only save as draft and submit for approval.
     And the following buttons should be present "<buttons present>"
     But the following buttons should not be present "<buttons not present>"
 
     Examples:
-      | role          | buttons present                                           | buttons not present                     |
-      | authenticated | Save as draft, Submit for approval                        | Update, Set as under approval, Validate |
-      | moderator     | Save as draft, Submit for approval, Set as under approval | Update, Validate                        |
+      | group type | group title                              | role          | buttons present                                           | buttons not present                     |
+      | collection | Institute challenge                      | authenticated | Save as draft, Submit for approval                        | Update, Set as under approval, Validate |
+      | solution   | Possible solution to institute challenge | authenticated | Save as draft, Submit for approval                        | Update, Set as under approval, Validate |
+      | collection | Institute challenge                      | moderator     | Save as draft, Submit for approval, Set as under approval | Update, Validate                        |
+      | solution   | Possible solution to institute challenge | moderator     | Save as draft, Submit for approval, Set as under approval | Update, Validate                        |
 
   Scenario Outline: Only specific roles can see pledges in specific states.
     Given pledge content:
-      | title       | description           | solution                                 | author       | state   |
-      | Some pledge | We would like to help | Possible solution to institute challenge | Pledge Owner | <state> |
+      | title       | description           | <group type>  | author       | state   |
+      | Some pledge | We would like to help | <group title> | Pledge Owner | <state> |
 
     When I am logged in as "Pledge Owner"
     And I go to the "Some pledge" pledge
@@ -85,11 +88,15 @@ Feature:
     And I should see the link "Edit" in the "Entity actions" region
 
     Examples:
-      | state            | anonymous heading   | authenticated heading |
-      | draft            | Sign in to continue | Access denied         |
-      | proposed         | Sign in to continue | Access denied         |
-      | under_validation | Sign in to continue | Access denied         |
-      | validated        | Some pledge         | Some pledge           |
+      | group type | group title                              | state            | anonymous heading   | authenticated heading |
+      | collection | Institute challenge                      | draft            | Sign in to continue | Access denied         |
+      | collection | Institute challenge                      | proposed         | Sign in to continue | Access denied         |
+      | collection | Institute challenge                      | under_validation | Sign in to continue | Access denied         |
+      | collection | Institute challenge                      | validated        | Some pledge         | Some pledge           |
+      | solution   | Possible solution to institute challenge | draft            | Sign in to continue | Access denied         |
+      | solution   | Possible solution to institute challenge | proposed         | Sign in to continue | Access denied         |
+      | solution   | Possible solution to institute challenge | under_validation | Sign in to continue | Access denied         |
+      | solution   | Possible solution to institute challenge | validated        | Some pledge         | Some pledge           |
 
   Scenario: Owners can perform limited actions on a pledge and only when in draft.
     Given pledge content:

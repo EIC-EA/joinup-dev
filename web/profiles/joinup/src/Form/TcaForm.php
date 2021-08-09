@@ -27,6 +27,9 @@ class TcaForm extends TcaFormBase {
     return 'collection';
   }
 
+  /**
+   * {@inheritdoc}
+   */
   protected function getTcaBlockId(): string {
     return 'simple_block:collection_tca';
   }

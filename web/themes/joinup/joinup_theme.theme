@@ -532,7 +532,7 @@ function joinup_theme_preprocess_menu(&$variables) {
   $user = User::load($account->id(), TRUE);
   $photo = $user->get('field_user_photo');
 
-  $url_subpath = $variables['url_subpath'] ?? '';
+  $url_subpath = $variables['url_subpath'] ?? Settings::get('url_subpath', '/');
 
   $variables['profile_icon'] = $url_subpath . '/themes/joinup/images/user-profile-icon.png';
   if (!$photo->isEmpty()) {
@@ -1823,6 +1823,27 @@ function joinup_theme_preprocess_rdf_entity__solution__listing_item(&$variables)
     $parent = $rdf_entity->get('collection')->first()->entity;
     $variables['attributes']['data-drupal-parent-id'] = $parent->id();
     $variables['attributes']['data-drupal-parent-label'] = $parent->label();
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for rdf-entity--collection--group-header.html.twig.
+ */
+function joinup_theme_preprocess_rdf_entity__collection__group_header(&$variables) {
+  if (isset($variables['content']['pledge'])) {
+    $variables['content']['pledge']['#attributes'] = [
+      'role' => 'button',
+      'class' => [
+        'featured__form-button',
+        'button',
+        'button--blue-light',
+        'mdl-button',
+        'mdl-js-button',
+        'mdl-button--raised',
+        'mdl-js-ripple-effect',
+        'mdl-button--accent',
+      ],
+    ];
   }
 }
 

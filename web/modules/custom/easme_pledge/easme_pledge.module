@@ -12,11 +12,16 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
+use Drupal\collection\Entity\CollectionInterface;
 use Drupal\easme_pledge\Entity\Pledge;
 use Drupal\easme_pledge\EventSubscriber\NotificationSubscriber;
+use Drupal\joinup_group\Entity\GroupInterface;
+use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
+use Drupal\og\OgGroupAudienceHelper;
 use Drupal\rdf_entity\Entity\RdfEntityType;
 use Drupal\rdf_entity\RdfInterface;
+use Drupal\solution\Entity\SolutionInterface;
 
 /**
  * Implements hook_entity_bundle_info_alter().
@@ -33,14 +38,16 @@ function easme_pledge_entity_bundle_info_alter(&$bundles) {
 function easme_pledge_entity_extra_field_info() {
   $fields = [];
 
-  $solution = RdfEntityType::load('solution');
-  if ($solution) {
-    $display = &$fields['rdf_entity'][$solution->id()]['display'];
-    $display['pledge'] = [
-      'label' => t('Pledge'),
-      'description' => t('A link to the pledge creation page.'),
-      'visible' => FALSE,
-    ];
+  foreach (['collection', 'solution'] as $bundle) {
+    $rdf_type = RdfEntityType::load($bundle);
+    if ($rdf_type) {
+      $display = &$fields['rdf_entity'][$rdf_type->id()]['display'];
+      $display['pledge'] = [
+        'label' => t('Pledge'),
+        'description' => t('A link to the pledge creation page.'),
+        'visible' => FALSE,
+      ];
+    }
   }
 
   return $fields;
@@ -50,9 +57,23 @@ function easme_pledge_entity_extra_field_info() {
  * Implements hook_ENTITY_TYPE_view().
  */
 function easme_pledge_rdf_entity_view(array &$build, RdfInterface $entity, EntityViewDisplayInterface $display, string $view_mode): void {
-  if ($entity->bundle() != 'solution') {
+  if (!($entity instanceof GroupInterface)) {
     return;
   }
+
+  $tags = [];
+  if ($entity instanceof CollectionInterface) {
+    $tags = $entity->getCacheTags();
+  }
+  elseif ($entity instanceof SolutionInterface) {
+    $tags = $entity->getCollection()->getCacheTags();
+  }
+
+  $pledge = Node::create([
+    'type' => 'pledge',
+    OgGroupAudienceHelper::DEFAULT_FIELD => $entity->id(),
+  ]);
+  $current_user = \Drupal::getContainer()->get('current_user')->getAccount();
 
   /** @var \Drupal\rdf_entity\RdfInterface $entity */
   if ($display->getComponent('pledge')) {
@@ -63,6 +84,10 @@ function easme_pledge_rdf_entity_view(array &$build, RdfInterface $entity, Entit
         'rdf_entity' => $entity->id(),
         'node_type' => 'pledge',
       ]),
+      '#access' => \Drupal::getContainer()->get('easme_pledge.access_handler')->entityAccess($pledge, 'create', $current_user),
+      '#cache' => [
+        'tags' => $tags,
+      ],
     ];
   }
 }

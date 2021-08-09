@@ -30,4 +30,14 @@ interface CollectionInterface extends RdfInterface, EntityWorkflowStateInterface
    */
   public function getSolutionIds(): array;
 
+  /**
+   * Returns whether the challenge is closed or ongoing.
+   *
+   * @return bool
+   *   True if the challenge is closed or false if the challenge is ongoing. The
+   *   status of the challenge must be 'archived' (Closed) in order to be
+   *   considered closed.
+   */
+  public function isChallengeClosed(): bool;
+
 }
