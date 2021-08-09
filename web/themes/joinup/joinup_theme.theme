@@ -532,7 +532,7 @@ function joinup_theme_preprocess_menu(&$variables) {
   $user = User::load($account->id(), TRUE);
   $photo = $user->get('field_user_photo');
 
-  $url_subpath = $variables['url_subpath'] ?? '';
+  $url_subpath = $variables['url_subpath'] ?? Settings::get('url_subpath', '/');
 
   $variables['profile_icon'] = $url_subpath . '/themes/joinup/images/user-profile-icon.png';
   if (!$photo->isEmpty()) {
