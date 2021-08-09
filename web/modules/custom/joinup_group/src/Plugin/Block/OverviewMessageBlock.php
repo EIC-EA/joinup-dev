@@ -65,13 +65,13 @@ class OverviewMessageBlock extends BlockBase implements ContainerFactoryPluginIn
     if ($route_name === 'view.solutions.page_1') {
       $build['header_description'] = [
         '#type' => 'inline_template',
-        '#template' => '<p>A solution is a framework, tool, or service that is offered as a solution to one of the COVID-19 challenges.</p>',
+        '#template' => "<p>Submit your proposed solution for a specific challenge. By default, only the Challenge Platform and the challenger can view your solution. In some cases, the Challenge Solver may be asked to submit the solution directly on the external platform of the Challenge Owner.</p><p>Thinking about submitting your solution? We've got you covered, read more <a href='/challenges/why-create-solution'>here</a>. </p> ",
       ];
     }
     elseif ($route_name === 'view.collections.page_1') {
       $build['header_description'] = [
         '#type' => 'inline_template',
-        '#template' => '<p>Challenges are the main collaborative space where the content items are organised around a common topic or domain and where the users can share their content and engage their community.</p><p>For the challenges and solutions regarding COVID-19, you can find them <a href="/covid-19">here</a>.</p>',
+        '#template' => "<p>Discover all the challenges: take a look below and participate in the challenge that interests you most!<br/>How can you contribute? Think big and submit your solution!</p> <p>Thinking about submitting your solution? We've got you covered, read more <a href='/challenges/why-create-solution'>here</a>. </p> <p>For the challenges and solutions regarding COVID-19, you can find them <a href='/challenges/covid-19'>here</a>. </p>",
       ];
     }
 
