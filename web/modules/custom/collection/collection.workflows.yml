@@ -25,7 +25,7 @@ collection_workflow:
     archival_request:
       label: Request archival
     archived:
-      label: Archived
+      label: Closed
   transitions:
     draft:
       label: Save as draft
@@ -44,6 +44,6 @@ collection_workflow:
       from: [validated]
       to: archival_request
     archive:
-      label: Archive
-      from: [archival_request]
+      label: Close
+      from: [validated, archival_request]
       to: archived

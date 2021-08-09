@@ -16,7 +16,6 @@ dependencies:
     - field.field.rdf_entity.collection.field_ar_moderation
     - field.field.rdf_entity.collection.field_ar_owner
     - field.field.rdf_entity.collection.field_ar_state
-    - field.field.rdf_entity.collection.field_challenge_status
     - field.field.rdf_entity.collection.field_collection_content
     - field.field.rdf_entity.collection.field_keywords
     - field.field.rdf_entity.collection.field_newsletter
@@ -194,12 +193,6 @@ content:
     settings:
       use_transition_label: 1
     third_party_settings: {  }
-    region: content
-  field_challenge_status:
-    weight: 16
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
   field_collection_content:
     weight: 1

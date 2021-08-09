@@ -53,4 +53,11 @@ class Collection extends Rdf implements CollectionInterface {
     return 'field_ar_state';
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function isChallengeClosed(): bool {
+    return $this->get($this->getWorkflowStateFieldName())->value === 'archived';
+  }
+
 }

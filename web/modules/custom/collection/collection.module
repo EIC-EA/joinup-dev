@@ -202,6 +202,7 @@ function collection_rdf_entity_presave(RdfInterface $entity) {
   if (in_array($state, ['draft', 'proposed'])) {
     $entity->set('graph', 'draft');
   }
+  // These are mainly the states that the challenge is considered published.
   elseif (in_array($state, [
     'validated',
     'archival_request',
