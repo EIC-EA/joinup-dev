@@ -89,12 +89,17 @@ content:
     third_party_settings: {  }
     region: content
   members:
-    weight: 6
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  pledge:
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   solutions:
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }

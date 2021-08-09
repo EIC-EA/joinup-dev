@@ -387,11 +387,14 @@ hidden:
   field_is_affiliations_requests: true
   field_is_content: true
   field_is_distribution: true
+  field_is_eif_category: true
+  field_is_eif_recommendation: true
   field_is_has_version: true
   field_is_included_asset: true
   field_is_issue_tracker: true
   field_is_pinned_in: true
   field_is_shared_in: true
+  field_is_show_eira_related: true
   field_is_source_code_repository: true
   field_is_translation: true
   field_is_version: true
