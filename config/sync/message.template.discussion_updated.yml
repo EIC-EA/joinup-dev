@@ -17,6 +17,6 @@ text:
 settings:
   'token options':
     clear: false
-    'token replace': false
+    'token replace': true
   purge_override: false
   purge_methods: {  }
