@@ -324,14 +324,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-  field_short_id:
-    weight: 2
-    settings:
-      size: 60
-      placeholder: 'Minimum 4 characters required.'
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_solution_private_file:
     weight: 23
     settings:
