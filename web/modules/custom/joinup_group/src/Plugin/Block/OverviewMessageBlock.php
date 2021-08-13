@@ -71,7 +71,7 @@ class OverviewMessageBlock extends BlockBase implements ContainerFactoryPluginIn
     elseif ($route_name === 'view.collections.page_1') {
       $build['header_description'] = [
         '#type' => 'inline_template',
-        '#template' => "<p>Discover all the challenges: take a look below and participate in the challenge that interests you most!<br/>How can you contribute? Think big and submit your solution!</p> <p>Thinking about submitting your solution? We've got you covered, read more <a href='/challenges/why-create-solution'>here</a>. </p> <p>For the challenges and solutions regarding COVID-19, you can find them <a href='/challenges/covid-19'>here</a>. </p>",
+        '#template' => "<p>Discover all the challenges: take a look below and participate in the challenge that interests you most!<br/>How can you contribute? Think big and submit your solution!</p> <p>Thinking about submitting your solution? We've got you covered, read more <a href='/challenges/why-create-solution'>here</a>. </p>",
       ];
     }
 
