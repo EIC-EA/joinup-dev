@@ -15,6 +15,7 @@ dependencies:
     - field.field.rdf_entity.collection.field_ar_moderation
     - field.field.rdf_entity.collection.field_ar_owner
     - field.field.rdf_entity.collection.field_ar_state
+    - field.field.rdf_entity.collection.field_ch_criteria_requirements
     - field.field.rdf_entity.collection.field_collection_content
     - field.field.rdf_entity.collection.field_keywords
     - field.field.rdf_entity.collection.field_newsletter
@@ -30,6 +31,7 @@ dependencies:
     - search_api_field
     - smart_trim
     - template_suggestion
+    - text
     - user
 third_party_settings:
   field_group:
@@ -100,6 +102,13 @@ content:
     third_party_settings:
       template_suggestion:
         template_suggestion: p_wrapper
+  field_ch_criteria_requirements:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   field_collection_content:
     weight: 4
     label: above
