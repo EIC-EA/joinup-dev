@@ -57,6 +57,7 @@ third_party_settings:
         - label
         - field_challenge_status
         - field_ar_description
+        - field_ch_criteria_requirements
         - field_ar_logo
         - field_ar_owner
         - field_ar_banner
@@ -136,18 +137,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_ar_description:
-    weight: 2
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings:
-      allowed_formats:
-        hide_help: '0'
-        hide_guidelines: '1'
-    type: text_textarea
-    region: content
-  field_ch_criteria_requirements:
-    weight: 2
+    weight: 1
     settings:
       rows: 5
       placeholder: ''
@@ -195,6 +185,17 @@ content:
     settings:
       use_transition_label: 1
     third_party_settings: {  }
+    region: content
+  field_ch_criteria_requirements:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings:
+      allowed_formats:
+        hide_help: '0'
+        hide_guidelines: '1'
+    type: text_textarea
     region: content
   field_keywords:
     type: string_textfield
