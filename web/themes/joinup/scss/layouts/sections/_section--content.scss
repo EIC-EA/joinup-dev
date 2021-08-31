@@ -10,9 +10,43 @@
 
 // Elements
 // --------------------------------------------------
-
+.canonical-entity-page--rdf-entity--collection {
+  .block-group-menu-blocknavigation div.sidebar-menu.navigation-menu ul.menu li.sidebar-menu__item.mdl-menu__item:last-child{
+    display:none;
+  }
+}
 // Modifiers
 // --------------------------------------------------
+#block-primaryadminactions, #block-navigation, #block-support, #block-joinup-theme-main-menu {
+  .contextual {
+    button.trigger {
+      width: 20px !important;
+      height: 20px !important;
+      &::before {
+        color: $color-grey-input;
+        width: 10px;
+        height: 10px;
+        line-height: 10px;
+        font-size: 10px;
+      }
+    }
+  }
+}
 
+#block-joinup-theme-local-tasks , #block-groupheader {
+  .contextual {
+    button.trigger {
+      width: 20px !important;
+      height: 20px !important;
+      &::before {
+        color: $color-blue-default;
+        width: 10px;
+        height: 10px;
+        line-height: 10px;
+        font-size: 10px;
+      }
+    }
+  }
+}
 // Dependencies
 // --------------------------------------------------
