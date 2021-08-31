@@ -2,6 +2,28 @@
 //
 // Content section
 
+.canonical-entity-page--rdf-entity--collection {
+  .keywords_topics {
+    margin-top:0;
+    margin-bottom:0;
+    .keywords, .topics, .geographical_coverage {
+      margin-top:0;
+      margin-bottom:0;
+      padding-top: 0;
+      clear: left;
+    }
+    .keywords div, .topics div, .geographical_coverage div {
+      float: left;
+      margin-bottom:0;
+      :not(:last-child):after {
+        content: ",";
+        padding-left:2px;
+        padding-right:5px;
+      }
+    }
+  }
+
+}
 // Component
 // --------------------------------------------------
 .section--content {
