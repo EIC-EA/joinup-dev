@@ -19,7 +19,7 @@ id: rdf_entity.collection.field_ch_criteria_requirements
 field_name: field_ch_criteria_requirements
 entity_type: rdf_entity
 bundle: collection
-label: Criteria / Requirements
+label: 'Criteria / Requirements'
 description: 'Please write down the (minimal) criteria , requirements , restrictions to the match the challenge ...'
 required: false
 translatable: false
