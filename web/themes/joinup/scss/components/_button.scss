@@ -30,6 +30,10 @@
 
   @include hidden-print;
   @include border-radius(4px);
+
+  @include breakpoint(desktop) {
+    padding: 10px 20px;
+  }
 }
 
 // Elements

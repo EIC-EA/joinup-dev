@@ -59,6 +59,7 @@ third_party_settings:
         - field_ar_logo
         - field_ar_banner
         - field_ar_description
+        - field_ch_criteria_requirements
         - field_policy_domain
         - field_topic
         - field_ar_owner
@@ -70,7 +71,6 @@ third_party_settings:
         - field_keywords
         - field_ar_closed
         - field_ar_content_creation
-        - field_challenge_status
         - field_ar_moderation
         - field_newsletter
       parent_name: group_general
@@ -92,7 +92,7 @@ mode: default
 content:
   current_workflow_state:
     type: current_workflow_state_widget
-    weight: 9
+    weight: 10
     region: content
     settings:
       title: 'Current workflow state'
@@ -100,7 +100,7 @@ content:
       show_for_new_entities: false
     third_party_settings: {  }
   field_ar_access_url:
-    weight: 11
+    weight: 12
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -117,13 +117,13 @@ content:
     region: content
   field_ar_closed:
     type: boolean_checkbox
-    weight: 14
+    weight: 15
     region: content
     settings:
       display_label: false
     third_party_settings: {  }
   field_ar_contact_information:
-    weight: 8
+    weight: 9
     settings:
       form_mode: inline
       override_labels: true
@@ -140,7 +140,7 @@ content:
     type: inline_entity_form_complex
     region: content
   field_ar_content_creation:
-    weight: 15
+    weight: 16
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -172,7 +172,7 @@ content:
     type: boolean_checkbox
     region: content
   field_ar_owner:
-    weight: 7
+    weight: 8
     settings:
       form_mode: inline
       override_labels: true
@@ -196,7 +196,7 @@ content:
     third_party_settings: {  }
     region: content
   field_ch_criteria_requirements:
-    weight: 19
+    weight: 5
     settings:
       rows: 5
       placeholder: ''
@@ -214,7 +214,7 @@ content:
     type: search_api_field_default
     region: content
   field_keywords:
-    weight: 13
+    weight: 14
     settings:
       size: 60
       placeholder: ''
@@ -228,13 +228,13 @@ content:
     type: oe_newsroom_newsletter_default
     region: content
   field_policy_domain:
-    weight: 5
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_spatial_coverage:
-    weight: 12
+    weight: 13
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -244,7 +244,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_topic:
-    weight: 6
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -258,7 +258,7 @@ content:
     third_party_settings: {  }
     region: content
   transition_motivation:
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }

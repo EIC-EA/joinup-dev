@@ -36,18 +36,27 @@ function easme_helper_form_user_form_alter(&$form, FormStateInterface $form_stat
   /** @var \Drupal\joinup_user\Entity\JoinupUser $account */
   $account = $form_state->getFormObject()->getEntity();
 
-  // Check if user has a SMED ID.
-  if (empty($account->field_smed_id->value)) {
-    return;
-  }
-
   // Check if the current user has the 'administer users' permission.
   if (\Drupal::currentUser()->hasPermission('administer users')) {
     return;
   }
 
-  // Deny access to the form and warn user that they will be redirected.
+  // Check if user has a SMED ID.
   $config = \Drupal::config('easme_helper.settings');
+
+  if (empty($account->field_smed_id->value)) {
+    $form['#disabled'] = TRUE;
+    $link =  $config->get('urls.community_site');
+    $message = t("Your profile is managed on the community website, if you see this message please us, using the contact form  <a href=\"@link\">here</a>", [
+      '@link' => $link . '/contact',
+    ]);
+    \Drupal::messenger()->addMessage($message);
+
+    return;
+  }
+
+
+  // Deny access to the form and warn user that they will be redirected.
   // @todo: make sure we don't have a double slash when appending the route to
   // the url.
   $link = $config->get('urls.community_site') . '/user/edit/smed/' . $account->field_smed_id->value;

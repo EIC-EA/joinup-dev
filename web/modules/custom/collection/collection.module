@@ -16,6 +16,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
 use Drupal\collection\Entity\Collection;
 use Drupal\collection\Entity\GlossaryTerm;
 use Drupal\collection\Plugin\Field\FieldType\LastUpdatedFieldItemList;
@@ -270,6 +271,11 @@ function collection_entity_extra_field_info() {
     'description' => t('Shows the join/leave collection form'),
     'visible' => FALSE,
   ];
+  $display['add_solution'] = [
+    'label' => t('Add solution button'),
+    'description' => t('Shows button to add a solution'),
+    'visible' => FALSE,
+  ];
 
   $display['members'] = [
     'label' => t('Amount of members'),
@@ -313,6 +319,22 @@ function collection_rdf_entity_view(array &$build, EntityInterface $entity, Enti
       // This form varies by the role a user has inside the collection. Set the
       // applicable cache context.
       '#cache' => ['contexts' => ['og_role']],
+    ];
+  }
+  if ($display->getComponent('add_solution')) {
+    $current_user = \Drupal::getContainer()->get('current_user')->getAccount();
+    $membership = Og::getMembership($entity, $current_user);
+    $access_to_add_solution = !empty($membership) && $membership->hasPermission('create solution rdf_entity');
+    // $current_user->hasPermission('create solution rdf_entity')
+    $tags = [];
+    $build['add_solution'] = [
+      '#type' => 'link',
+      '#title' => t('Add Solution'),
+      '#url' => Url::fromRoute('solution.collection_solution.tca', [
+        'rdf_entity' => $entity->id()
+      ]),
+      '#access' => $access_to_add_solution,
+
     ];
   }
 

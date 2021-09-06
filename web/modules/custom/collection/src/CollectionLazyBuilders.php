@@ -64,4 +64,19 @@ class CollectionLazyBuilders {
     return $this->formBuilder->getForm('\Drupal\collection\Form\JoinCollectionForm', $this->currentUser, $collection);
   }
 
+  /**
+   * Lazy builder callback; builds the add a solution.
+   *
+   * @param string $collection_id
+   *   The collection ID.
+   *
+   * @return array
+   *   A renderable array containing the comment form.
+   */
+  public function renderJoinSolutionForm($collection_id) {
+    $collection = $this->entityTypeManager->getStorage('rdf_entity')->load($collection_id);
+    return $this->formBuilder->getForm('rdf_entity/{rdf_entity}/solution/add', $this->currentUser, $collection);
+  }
+
+
 }
