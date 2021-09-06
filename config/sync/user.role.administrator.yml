@@ -12,6 +12,7 @@ permissions:
   - 'access distribution reports'
   - 'administer account settings'
   - 'administer redirects'
+  - 'administer users'
   - 'create field_ar_owner'
   - 'create field_is_owner'
   - 'create field_message_from_service'
