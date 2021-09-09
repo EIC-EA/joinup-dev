@@ -136,6 +136,7 @@ class EuLoginMenuLink extends MenuLinkDefault {
       $route_parameters = $route_match->getRawParameters()->all();
       $route_options = ['query' => $query_arguments];
       $return_to = (new Url($route_name, $route_parameters, $route_options))->setAbsolute()->toString();
+      $return_to = preg_replace("/^http:/i", "https:", $return_to);
     }
 
     $options = parent::getOptions();
