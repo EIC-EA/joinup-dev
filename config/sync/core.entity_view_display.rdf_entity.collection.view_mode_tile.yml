@@ -30,6 +30,7 @@ dependencies:
     - rdf_entity.rdfentity.collection
   module:
     - image
+    - options
     - smart_trim
     - template_suggestion
     - user
@@ -40,7 +41,7 @@ mode: view_mode_tile
 content:
   field_ar_abstract:
     type: smart_trim
-    weight: 3
+    weight: 4
     region: content
     label: hidden
     settings:
@@ -67,6 +68,13 @@ content:
     third_party_settings: {  }
     type: image
     region: content
+  field_ar_state:
+    type: list_default
+    weight: 2
+    region: content
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
   label:
     label: hidden
     type: string

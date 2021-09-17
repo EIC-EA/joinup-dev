@@ -32,6 +32,7 @@ dependencies:
   module:
     - image
     - joinup_core
+    - options
     - smart_trim
     - template_suggestion
     - user
@@ -41,13 +42,13 @@ bundle: collection
 mode: group_header
 content:
   add_solution:
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   created:
     type: timestamp
-    weight: 9
+    weight: 10
     region: content
     label: above
     settings:
@@ -74,9 +75,16 @@ content:
       template_suggestion:
         template_suggestion: ''
     region: content
+  field_ar_state:
+    type: list_default
+    weight: 6
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
   field_keywords:
     type: smart_trim
-    weight: 10
+    weight: 11
     region: content
     label: above
     settings:
@@ -92,7 +100,7 @@ content:
       trim_options: {  }
     third_party_settings: {  }
   join_collection:
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -127,17 +135,17 @@ content:
     settings: {  }
     third_party_settings: {  }
   pledge:
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   rdf_entity_field_collection_content_top:
-    weight: 11
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   read_more:
-    weight: 12
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -157,7 +165,6 @@ hidden:
   field_ar_description: true
   field_ar_moderation: true
   field_ar_owner: true
-  field_ar_state: true
   field_ch_criteria_requirements: true
   field_collection_content: true
   field_newsletter: true
