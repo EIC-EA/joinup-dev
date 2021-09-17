@@ -1,0 +1,23 @@
+uuid: 2991ef2c-2d3b-4afd-a39e-ac7d3cf17571
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.challenge_state
+  module:
+    - facets
+  theme:
+    - joinup_theme
+id: challenge_state
+theme: joinup_theme
+region: sidebar_left
+weight: 0
+provider: null
+plugin: 'facet_block:challenge_state'
+settings:
+  id: 'facet_block:challenge_state'
+  label: challenge_State
+  provider: facets
+  label_display: visible
+  block_id: challenge_state
+visibility: {  }
