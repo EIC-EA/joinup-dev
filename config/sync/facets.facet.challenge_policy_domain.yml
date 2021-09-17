@@ -10,7 +10,7 @@ dependencies:
 id: challenge_policy_domain
 name: Domains
 url_alias: challenge_policy_domain
-weight: 0
+weight: -2
 min_count: 1
 show_only_one_result: true
 field_identifier: policy_domain

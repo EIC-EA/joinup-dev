@@ -5,7 +5,7 @@ dependencies: {  }
 id: field_cp_content_listing_content_type
 name: 'Content type'
 url_alias: field_cp_content_listing_content_type
-weight: 0
+weight: -1
 min_count: 1
 show_only_one_result: true
 field_identifier: entity_bundle
