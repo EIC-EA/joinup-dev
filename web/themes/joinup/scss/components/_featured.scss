@@ -129,7 +129,7 @@
   @include breakpoint(mobile) {
     margin-bottom: 20px;
   }
-
+.closed_challenge {}
 
   h1 {
     margin: 0;
@@ -351,7 +351,7 @@
         @include border-radius(50%);
       }
     }
-      
+
     .featured__text--double {
       margin: -8px 0 10px 0;
       text-align: center;
@@ -367,12 +367,12 @@
         }
       }
     }
-      
+
     .inline-social-media {
       text-align: center;
       margin: 20px 0 0 0;
     }
-      
+
     .stats__wrapper {
       color: white;
       margin-bottom: 10px;
