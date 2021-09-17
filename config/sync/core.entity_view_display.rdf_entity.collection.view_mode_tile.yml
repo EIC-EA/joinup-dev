@@ -84,11 +84,12 @@ content:
     third_party_settings: {  }
     region: content
   members:
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  add_solution: true
   changed: true
   created: true
   field_ar_access_url: true
@@ -100,7 +101,6 @@ hidden:
   field_ar_description: true
   field_ar_moderation: true
   field_ar_owner: true
-  field_ar_state: true
   field_ch_criteria_requirements: true
   field_collection_content: true
   field_keywords: true
