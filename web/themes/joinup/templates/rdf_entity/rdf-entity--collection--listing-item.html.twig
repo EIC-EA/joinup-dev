@@ -24,6 +24,11 @@
         <p class="listing__teaser">{{ content.field_ar_abstract|render|striptags|raw }}</p>
       </div>
     {% endif %}
+    {% if 'Closed' in content.field_ar_state.0 %}
+      <div class="listing__state">
+        <span>{{ content.field_ar_state.0}}</span>
+      </div>
+    {% endif %}
     <div class="listing__field listing__stats mdl-card__actions">
       <div class="listing__stat">
         <span class="listing__text">{{ content.members }}</span>
