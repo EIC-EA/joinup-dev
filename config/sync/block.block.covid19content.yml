@@ -12,7 +12,7 @@ _core:
 id: covid19content
 theme: joinup_theme
 region: content
-weight: -24
+weight: -25
 provider: null
 plugin: covid19_content
 settings:

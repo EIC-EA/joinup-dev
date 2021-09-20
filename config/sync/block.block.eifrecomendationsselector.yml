@@ -9,7 +9,7 @@ dependencies:
 id: eifrecomendationsselector
 theme: joinup_theme
 region: content
-weight: -14
+weight: -15
 provider: null
 plugin: eif_recommendation_selector
 settings:
