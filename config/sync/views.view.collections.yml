@@ -8,6 +8,7 @@ dependencies:
   module:
     - joinup_material_design
     - search_api
+    - views_autosubmit
 id: collections
 label: Challenges
 module: views
@@ -34,15 +35,16 @@ display:
           bypass_access: false
           skip_access: false
       exposed_form:
-        type: basic
+        type: autosubmit
         options:
           submit_button: Apply
-          reset_button: false
+          reset_button: 0
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
+          expose_sort_order: 0
           sort_asc_label: Asc
           sort_desc_label: Desc
+          autosubmit_hide: 1
       pager:
         type: full
         options:
@@ -532,6 +534,19 @@ display:
             label: ''
             identifier: site_pinned
           plugin_id: search_api
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_published
+          field: search_api_relevance
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: true
+          expose:
+            label: Relevance
+            identifier: relevance
+          plugin_id: search_api
         entity_created:
           id: entity_created
           table: search_api_index_published
@@ -540,10 +555,23 @@ display:
           group_type: group
           admin_label: ''
           order: DESC
-          exposed: false
+          exposed: true
           expose:
-            label: ''
-            identifier: entity_created
+            label: 'Creation Date'
+            identifier: creation-date
+          plugin_id: search_api
+        entity_changed:
+          id: entity_changed
+          table: search_api_index_published
+          field: entity_changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: true
+          expose:
+            label: 'Last updated'
+            identifier: last-updated-date
           plugin_id: search_api
       title: Challenges
       header: {  }
@@ -560,6 +588,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'url.query_args:sort_by'
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.published'
@@ -585,6 +614,7 @@ display:
         type: none
       defaults:
         cache: false
+      exposed_block: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -592,6 +622,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'url.query_args:sort_by'
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.published'
