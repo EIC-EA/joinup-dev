@@ -35,6 +35,11 @@
     padding: 10px 20px;
   }
 }
+.button-closed_challenge {
+  @extend .button;
+  border-color: $color-orange;
+  background-color: $color-orange !important;
+}
 
 // Elements
 // --------------------------------------------------
