@@ -16,8 +16,8 @@ provider: null
 plugin: 'facet_block:challenge_state'
 settings:
   id: 'facet_block:challenge_state'
-  label: challenge_State
+  label: 'Challenge state'
   provider: facets
-  label_display: visible
+  label_display: ''
   block_id: challenge_state
 visibility: {  }

@@ -8,7 +8,7 @@ dependencies:
   module:
     - search_api
 id: challenge_state
-name: challenge_State
+name: 'Challenge state'
 url_alias: challenge_state
 weight: 0
 min_count: 1
