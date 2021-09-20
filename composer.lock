@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fddbc1b024f5844cbef10973ff6da19a",
+    "content-hash": "5c0d38474d743995dd5ac1cdb62f4be3",
     "packages": [
         {
             "name": "SEMICeu/adms-ap_validator",
@@ -3754,6 +3754,56 @@
             }
         },
         {
+            "name": "drupal/facets_custom_label",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/facets_custom_label.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/facets_custom_label-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "f4bbc419bfc0fffc8a79d6090fc6b0945c6dfbf1"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/facets": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1585910236",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Dakwamine",
+                    "homepage": "https://www.drupal.org/user/3517785",
+                    "email": "dakwamine@gmail.com"
+                },
+                {
+                    "name": "eme",
+                    "homepage": "https://www.drupal.org/user/542492"
+                }
+            ],
+            "description": "Provides tre ability to customize facets labels by mapping original values to desired display value.",
+            "homepage": "https://www.drupal.org/project/facets_custom_label",
+            "support": {
+                "source": "https://git.drupalcode.org/project/facets_custom_label"
+            }
+        },
+        {
             "name": "drupal/field_group",
             "version": "1.0.0",
             "source": {
@@ -4288,6 +4338,74 @@
             }
         },
         {
+            "name": "drupal/improved_multi_select",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/improved_multi_select.git",
+                "reference": "8.x-1.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/improved_multi_select-8.x-1.7.zip",
+                "reference": "8.x-1.7",
+                "shasum": "bfaa5bf6e50039d476d8a805e6ba61270239221e"
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.7",
+                    "datestamp": "1579708087",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Spleshka",
+                    "homepage": "https://www.drupal.org/user/810676"
+                },
+                {
+                    "name": "Stanislav Mixnovich",
+                    "homepage": "https://www.drupal.org/user/2859977"
+                },
+                {
+                    "name": "WorldFallz",
+                    "homepage": "https://www.drupal.org/user/155304"
+                },
+                {
+                    "name": "chilic",
+                    "homepage": "https://www.drupal.org/user/651738"
+                },
+                {
+                    "name": "dmitrii",
+                    "homepage": "https://www.drupal.org/user/411965"
+                },
+                {
+                    "name": "rooby",
+                    "homepage": "https://www.drupal.org/user/350381"
+                },
+                {
+                    "name": "tatarbj",
+                    "homepage": "https://www.drupal.org/user/649590"
+                }
+            ],
+            "description": "The Improved Multi Select module improve UX by replacing default multi-select boxes with two panel list and search box.",
+            "homepage": "https://www.drupal.org/project/improved_multi_select",
+            "support": {
+                "source": "https://git.drupalcode.org/project/improved_multi_select"
+            }
+        },
+        {
             "name": "drupal/inline_entity_form",
             "version": "1.0.0-rc7",
             "source": {
@@ -4372,6 +4490,56 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/inline_entity_form"
             }
+        },
+        {
+            "name": "drupal/jquery_ui_multiselect_widget",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jquery_ui_multiselect_widget.git",
+                "reference": "978c35276ea64a2fa485c89cf3a111c90c3db308"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1590402316",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Anybody",
+                    "homepage": "https://www.drupal.org/user/291091"
+                },
+                {
+                    "name": "joshi.rohit100",
+                    "homepage": "https://www.drupal.org/user/2504832"
+                },
+                {
+                    "name": "thomas.frobieter",
+                    "homepage": "https://www.drupal.org/user/409335"
+                }
+            ],
+            "description": "Adds Eric Hynds jQuery UI MultiSelect Widget to select fields (multiselect only) in Drupal.",
+            "homepage": "https://www.drupal.org/project/jquery_ui_multiselect_widget",
+            "support": {
+                "source": "https://git.drupalcode.org/project/jquery_ui_multiselect_widget"
+            },
+            "time": "2020-05-25T10:24:34+00:00"
         },
         {
             "name": "drupal/json_field",
@@ -5052,6 +5220,67 @@
                 "source": "https://git.drupalcode.org/project/metatag",
                 "issues": "https://www.drupal.org/project/issues/metatag",
                 "docs": "https://www.drupal.org/docs/8/modules/metatag"
+            }
+        },
+        {
+            "name": "drupal/multiselect",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/multiselect.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/multiselect-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "df85001da83a446807d67bf332d8454bd8f5c123"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1609852430",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Bergstein",
+                    "homepage": "https://www.drupal.org/user/850856",
+                    "email": "nerdstein@gmail.com"
+                },
+                {
+                    "name": "attheshow",
+                    "homepage": "https://www.drupal.org/user/249768"
+                },
+                {
+                    "name": "mandclu",
+                    "homepage": "https://www.drupal.org/user/52136"
+                },
+                {
+                    "name": "mparker17",
+                    "homepage": "https://www.drupal.org/user/536298"
+                },
+                {
+                    "name": "nerdstein",
+                    "homepage": "https://www.drupal.org/user/1557710"
+                }
+            ],
+            "description": "D8 Port of multiselect",
+            "homepage": "https://www.drupal.org/project/multiselect",
+            "support": {
+                "source": "https://git.drupalcode.org/project/multiselect"
             }
         },
         {
@@ -18326,6 +18555,7 @@
         "dkarv/mdl-chip-input": 20,
         "drupal/cas_attributes": 20,
         "drupal/config_ignore": 20,
+        "drupal/jquery_ui_multiselect_widget": 20,
         "drupal/matomo_reporting_api": 20,
         "drupal/og": 20,
         "drupal/swiftmailer": 20,
