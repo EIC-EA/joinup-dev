@@ -34,13 +34,12 @@
     </div>
     {% if 'Closed' in content.field_ar_state.0 %}
     <div class="featured__state">
-      <div class="closed_challenge">This challenge is closed</div>
+      <span class="featured__form-button button-closed_challenge mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent closed_challenge">This challenge is closed</span>
     </div>
     {% else %}
       {{ content.join_collection }}
       {{ content.add_solution }}
 {#    {{ content.pledge }}#}
     {% endif %}
-
   </div>
 </div>
