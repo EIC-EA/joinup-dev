@@ -11,15 +11,21 @@ id: challenge_topics
 name: Topics
 url_alias: challenge_topics
 weight: 0
-min_count: 1
+min_count: 0
 show_only_one_result: true
 field_identifier: field_topic
 facet_source_id: 'search_api:views_page__collections__page_1'
 widget:
-  type: dropdown
+  type: checkbox
   config:
     show_numbers: true
-    default_option_label: 'Any topic'
+    soft_limit: 0
+    soft_limit_settings:
+      show_less_label: 'Show less'
+      show_more_label: 'Show more'
+    show_reset_link: false
+    reset_text: 'Show all'
+    hide_reset_when_no_selection: false
     arbitrary_facet_plugin: _none
 query_operator: or
 use_hierarchy: false
