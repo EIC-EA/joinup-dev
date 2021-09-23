@@ -118,15 +118,16 @@
 
   .stats__icon {
     position: absolute;
-    top: 6px;
+    top: 15px;
     left: 10px;
 
     @include icon-size(45px);
   }
 
   .stats__text {
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     padding-left: 90px;
+    padding-top: 5px;
   }
 
   .stats__description {
