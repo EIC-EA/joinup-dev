@@ -9,10 +9,10 @@ label: 'Collection archive/delete reject - Owner'
 description: 'Template id 10'
 text:
   -
-    value: '<p>Your request to @transition:request_action @entity:bundle @entity:title has been rejected</p>'
+    value: '<p>Your @entity:bundle @entity:title was reviewed by the EIC Challenge Platform</p>'
     format: full_html
   -
-    value: "<p>@actor:field_user_first_name @actor:field_user_family_name has rejected your request to @transition:request_action the @entity:bundle \"@entity:title\".</p>\n\n<p>The reason for rejection is: @transition:motivation.</p>"
+    value: '<p>We regret to inform you that your @entity:bundle proposal "@entity:title" has not been accepted. If you need additional information, please visit our FAQ area or refer to our <a href="https://eic.eismea.eu/community/contact">Helpdesk</a> (please choose "EIC Challenge Platform" as the subject)..</p>\n\n<p>We kindly invite you to keep following the challenges and solutions promoted on the EIC Challenge Platform.  If you need additional information, please refer to our <a href="https://eic.eismea.eu/community/contact">Helpdesk</a> (please choose “EIC Challenge Platform” as the subject).</p>'
     format: full_html
 settings:
   'token options':
