@@ -5,7 +5,7 @@ dependencies:
   module:
     - joinup_front_page
 id: joinup_homepage
-label: 'COVID-19 Challenge homepage tour.'
+label: 'EIC Challenge homepage tour.'
 module: joinup_front_page
 routes:
   -
@@ -108,4 +108,3 @@ tips:
     location: top
     attributes:
       data-class: 'section--footer .vertical-menu:nth-child(3) .vertical-menu__item:nth-child(3)'
-

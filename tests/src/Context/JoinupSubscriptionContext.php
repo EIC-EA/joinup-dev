@@ -647,7 +647,7 @@ class JoinupSubscriptionContext extends RawDrupalContext {
     $emails = [];
 
     foreach (self::MESSAGE_INTERVALS as $interval) {
-      $emails = array_merge($emails, $this->getEmailsBySubjectAndMail("COVID-19 Challenge: $interval digest message", $email_address, FALSE));
+      $emails = array_merge($emails, $this->getEmailsBySubjectAndMail("EIC Challenge: $interval digest message", $email_address, FALSE));
     }
 
     return $emails;
