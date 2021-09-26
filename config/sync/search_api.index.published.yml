@@ -563,7 +563,6 @@ datasource_settings:
         - event
         - news
         - newsletter
-        - tallinn_report
         - video
     languages:
       default: true

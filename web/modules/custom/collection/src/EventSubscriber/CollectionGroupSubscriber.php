@@ -28,7 +28,7 @@ class CollectionGroupSubscriber extends AddGroupContentEventSubscriberBase {
   protected function getBundles(): array {
     return [
       'node' => [
-        'glossary',
+        // 'glossary',
       ],
     ];
   }
