@@ -17,6 +17,7 @@ dependencies:
     - field.field.rdf_entity.collection.field_ar_state
     - field.field.rdf_entity.collection.field_ch_criteria_requirements
     - field.field.rdf_entity.collection.field_collection_content
+    - field.field.rdf_entity.collection.field_external_solution_url
     - field.field.rdf_entity.collection.field_keywords
     - field.field.rdf_entity.collection.field_newsletter
     - field.field.rdf_entity.collection.field_policy_domain
@@ -28,6 +29,7 @@ dependencies:
     - rdf_entity.rdfentity.collection
   module:
     - field_group
+    - link
     - search_api_field
     - template_suggestion
     - text
@@ -182,6 +184,18 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: search_api_field
+    region: content
+  field_external_solution_url:
+    weight: 24
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
     region: content
   field_keywords:
     weight: 6
