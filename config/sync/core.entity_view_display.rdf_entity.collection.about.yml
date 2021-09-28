@@ -165,6 +165,7 @@ content:
     type: entity_reference_entity_view
     region: content
 hidden:
+  add_solution: true
   changed: true
   created: true
   field_ar_affiliates: true

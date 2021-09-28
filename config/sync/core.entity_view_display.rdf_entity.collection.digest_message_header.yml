@@ -47,6 +47,7 @@ content:
         template_suggestion: ''
     region: content
 hidden:
+  add_solution: true
   changed: true
   created: true
   field_ar_abstract: true

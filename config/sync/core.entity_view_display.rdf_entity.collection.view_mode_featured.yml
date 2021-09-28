@@ -82,6 +82,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  add_solution: true
   changed: true
   created: true
   field_ar_access_url: true

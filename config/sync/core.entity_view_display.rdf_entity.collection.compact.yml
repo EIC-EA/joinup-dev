@@ -60,6 +60,7 @@ content:
       template_suggestion:
         template_suggestion: no_wrappers
 hidden:
+  add_solution: true
   changed: true
   created: true
   field_ar_abstract: true
