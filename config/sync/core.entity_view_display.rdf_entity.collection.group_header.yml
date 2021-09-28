@@ -33,6 +33,7 @@ dependencies:
   module:
     - image
     - joinup_core
+    - link
     - options
     - smart_trim
     - template_suggestion
@@ -83,6 +84,20 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
+  field_external_solution_url:
+    type: link
+    weight: 13
+    region: content
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: true
+      url_plain: true
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      template_suggestion:
+        template_suggestion: ''
   field_keywords:
     type: smart_trim
     weight: 11
@@ -146,7 +161,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   read_more:
-    weight: 13
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -168,7 +183,6 @@ hidden:
   field_ar_owner: true
   field_ch_criteria_requirements: true
   field_collection_content: true
-  field_external_solution_url: true
   field_newsletter: true
   field_policy_domain: true
   field_short_id: true

@@ -29,7 +29,6 @@ dependencies:
     - rdf_entity.rdfentity.collection
   module:
     - field_group
-    - link
     - search_api_field
     - template_suggestion
     - text
@@ -185,18 +184,6 @@ content:
     third_party_settings: {  }
     type: search_api_field
     region: content
-  field_external_solution_url:
-    weight: 24
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-    region: content
   field_keywords:
     weight: 6
     label: hidden
@@ -256,6 +243,7 @@ hidden:
   field_ar_moderation: true
   field_ar_owner: true
   field_ar_state: true
+  field_external_solution_url: true
   field_newsletter: true
   field_policy_domain: true
   field_short_id: true
