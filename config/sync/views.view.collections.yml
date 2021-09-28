@@ -521,31 +521,18 @@ display:
             group_items: {  }
           plugin_id: search_api_text
       sorts:
-        site_pinned:
-          id: site_pinned
+        entity_changed:
+          id: entity_changed
           table: search_api_index_published
-          field: site_pinned
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-            identifier: site_pinned
-          plugin_id: search_api
-        search_api_relevance:
-          id: search_api_relevance
-          table: search_api_index_published
-          field: search_api_relevance
+          field: entity_changed
           relationship: none
           group_type: group
           admin_label: ''
           order: DESC
           exposed: true
           expose:
-            label: Relevance
-            identifier: relevance
+            label: 'Last updated'
+            identifier: last-updated-date
           plugin_id: search_api
         entity_created:
           id: entity_created
@@ -560,18 +547,31 @@ display:
             label: 'Creation Date'
             identifier: creation-date
           plugin_id: search_api
-        entity_changed:
-          id: entity_changed
+        search_api_relevance:
+          id: search_api_relevance
           table: search_api_index_published
-          field: entity_changed
+          field: search_api_relevance
           relationship: none
           group_type: group
           admin_label: ''
           order: DESC
           exposed: true
           expose:
-            label: 'Last updated'
-            identifier: last-updated-date
+            label: Relevance
+            identifier: relevance
+          plugin_id: search_api
+        site_pinned:
+          id: site_pinned
+          table: search_api_index_published
+          field: site_pinned
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+            identifier: site_pinned
           plugin_id: search_api
       title: Challenges
       header: {  }
