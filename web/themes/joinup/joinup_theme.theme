@@ -1860,7 +1860,12 @@ function joinup_theme_preprocess_rdf_entity__collection__group_header(&$variable
       ],
     ];
   }
-  $variables['login_path'] = Url::fromRoute('cas.login')->toString();
+
+  $options = [
+      'returnto' => Url::fromRoute('<current>',array(),array('absolute'=>'true'))->toString(),
+  ];
+
+  $variables['login_path'] = Url::fromRoute('cas.login',$options)->toString();
 }
 
 /**
