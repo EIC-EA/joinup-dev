@@ -325,14 +325,21 @@ function collection_rdf_entity_view(array &$build, EntityInterface $entity, Enti
     $current_user = \Drupal::getContainer()->get('current_user')->getAccount();
     $membership = Og::getMembership($entity, $current_user);
     $access_to_add_solution = !empty($membership) && $membership->hasPermission('create solution rdf_entity');
+    
+    if (isset($build["field_external_solution_url"][0]["#plain_text"])
+      && filter_var($build["field_external_solution_url"][0]["#plain_text"] , FILTER_VALIDATE_URL) !== FALSE) {
+      $options = ['attributes' => ['target' => '_blank']];
+      $url = Url::fromUri($build["field_external_solution_url"][0]["#plain_text"], $options);
+    }
+    else {
+      $url = Url::fromRoute('solution.collection_solution.tca', ['rdf_entity' => $entity->id()]);
+    }
     // $current_user->hasPermission('create solution rdf_entity')
     $tags = [];
     $build['add_solution'] = [
       '#type' => 'link',
       '#title' => t('Add Solution'),
-      '#url' => Url::fromRoute('solution.collection_solution.tca', [
-        'rdf_entity' => $entity->id()
-      ]),
+      '#url' => $url,
       '#access' => $access_to_add_solution,
 
     ];
