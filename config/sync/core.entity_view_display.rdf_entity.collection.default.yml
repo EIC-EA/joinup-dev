@@ -35,7 +35,7 @@ dependencies:
     - user
 third_party_settings:
   field_group:
-    group_abstract_wrapper:
+    group_description_wrapper:
       children:
         - field_ar_description
       parent_name: ''
