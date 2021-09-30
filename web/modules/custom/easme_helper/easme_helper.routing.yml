@@ -6,3 +6,4 @@ easme_helper.redirect_from_community_site:
     _controller: '\Drupal\easme_helper\Controller\GeneralController::redirectFromCommunitySite'
   requirements:
     _role: 'authenticated'
+

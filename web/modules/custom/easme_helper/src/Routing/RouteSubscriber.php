@@ -20,6 +20,11 @@ class RouteSubscriber extends RouteSubscriberBase {
     if ($route = $collection->get('contact_form.contact_page')) {
       $route->setDefault('_controller', '\Drupal\easme_helper\Controller\GeneralController::contactPage');
     }
+
+    // For closed challenges add security on members section .
+    if ($route = $collection->get('entity.rdf_entity.member_overview')) {
+      $route->setRequirement('_closed_collection', 'TRUE');
+    }
   }
 
 }

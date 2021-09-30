@@ -11,3 +11,7 @@ services:
     arguments: ['@config.factory']
     tags:
       - { name: 'event_subscriber' }
+  easme_helper.closed_collection.access_check:
+    class: Drupal\easme_helper\Access\ClosedCollectionAccessCheck
+    tags:
+      - { name: access_check, applies_to: _closed_collection }
