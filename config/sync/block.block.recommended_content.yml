@@ -18,7 +18,7 @@ settings:
   label: 'Recommended content'
   provider: joinup_front_page
   label_display: '0'
-  count: 12
+  count: 4
 visibility:
   request_path:
     id: request_path
