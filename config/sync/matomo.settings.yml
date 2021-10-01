@@ -1,6 +1,6 @@
-site_id: '177'
-url_http: 'http://joinup.acc.ne-dev.eu/'
-url_https: 'https://joinup.acc.ne-dev.eu/'
+site_id: ''
+url_http: ''
+url_https: ''
 domain_mode: 0
 visibility:
   request_path_mode: 2
