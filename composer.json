@@ -44,7 +44,7 @@
         "drupal/jquery_ui_multiselect_widget": "1.x-dev@dev",
         "drupal/json_field": "^1.0",
         "drupal/linkit": "^5.0-beta10",
-        "drupal/matomo": "^1.9",
+        "drupal/matomo": "^1.11",
         "drupal/matomo_reporting_api": "dev-8.x-2.x",
         "drupal/menu_admin_per_menu": "^1.0",
         "drupal/menu_export": "^1.3",
