@@ -1,12 +1,14 @@
-site_id: ''
+site_id: '1'
 url_http: ''
 url_https: ''
 domain_mode: 0
 visibility:
-  request_path_mode: 2
-  request_path_pages: "/admin\n/admin/*\n/batch\n/node/add*\n/node/*/*\n/rdf_entity/add/*\n/user/*/*"
+  request_path_mode: 0
+  request_path_pages: "/admin\r\n/admin/*\r\n/batch\r\n/node/add*\r\n/node/*/*\r\n/rdf_entity/add/*\r\n/user/*/*"
   user_role_mode: 0
-  user_role_roles: {  }
+  user_role_roles:
+    anonymous: anonymous
+    authenticated: authenticated
   user_account_mode: 0
 track:
   mailto: false
