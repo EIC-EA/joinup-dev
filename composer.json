@@ -363,7 +363,7 @@
                 "name": "spdx/license-list-data",
                 "version": "master",
                 "source": {
-                    "url": "https://github.com/spdx/license-list-data",
+                    "url": "https://github.com/spdx/license-list-data.git",
                     "type": "git",
                     "reference": "master"
                 }
