@@ -1391,7 +1391,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:dkarv/mdl-chip-input.git",
+                "url": "https://github.com/dkarv/mdl-chip-input.git",
                 "reference": "master"
             },
             "type": "drupal-theme-library",
@@ -7478,7 +7478,7 @@
             "version": "dev-joinup",
             "source": {
                 "type": "git",
-                "url": "git@github.com:ec-europa/material-design-lite.git",
+                "url": "https://github.com/ec-europa/material-design-lite.git",
                 "reference": "joinup"
             },
             "type": "drupal-theme-library",
@@ -8069,7 +8069,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jackmoore/autosize.git",
+                "url": "https://github.com/jackmoore/autosize.git",
                 "reference": "master"
             },
             "type": "drupal-theme-library",
