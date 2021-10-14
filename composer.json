@@ -451,7 +451,7 @@
                 "name": "SEMICeu/adms-ap_validator",
                 "version": "dev-master",
                 "source": {
-                    "url": "git@github.com:SEMICeu/adms-ap_validator.git",
+                    "url": "https://github.com/SEMICeu/adms-ap_validator.git",
                     "type": "git",
                     "reference": "master"
                 }
