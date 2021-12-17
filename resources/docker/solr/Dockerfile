@@ -3,6 +3,7 @@ MAINTAINER Joinup
 
 ARG search_api_solr_version="8.x-2.x-dev"
 ENV SAPI_VERSION=${search_api_solr_version}
+ENV SOLR_VERSION=7.7.3
 
 RUN wget -qO- "https://ftp.drupal.org/files/projects/search_api_solr-${SAPI_VERSION}.tar.gz" | tar xz -C /opt/docker-solr/scripts/
 RUN mkdir -p /opt/docker-solr/configsets/drupal
