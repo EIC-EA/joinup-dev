@@ -1,4 +1,4 @@
-FROM solr:7.7.1
+FROM solr:7.7.3
 MAINTAINER Joinup
 
 ARG search_api_solr_version="8.x-2.x-dev"
