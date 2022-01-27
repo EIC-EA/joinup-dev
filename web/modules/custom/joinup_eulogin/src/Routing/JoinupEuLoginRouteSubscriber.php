@@ -33,6 +33,11 @@ class JoinupEuLoginRouteSubscriber extends RouteSubscriberBase {
         $route->setRequirements(['_access' => 'FALSE']);
       }
     }
+
+    // Password reset should not be available anymore.
+    if ($route = $collection->get('user.login')) {
+      $route->setRequirements(['_access' => 'FALSE']);
+    }
   }
 
 }

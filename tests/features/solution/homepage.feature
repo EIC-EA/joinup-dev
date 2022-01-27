@@ -90,7 +90,7 @@ Feature: Solution homepage
       | email | geronimo@example.com |
     And the following solutions:
       | title             | description     | logo     | banner     | state     | owner                 | contact information | solution type | policy domain |
-      | Chiricahua Server | Serving the web | logo.png | banner.jpg | validated | Chiricahua Foundation | Geronimo            | Product       | E-inclusion   |
+      | Chiricahua Server | Serving the web | logo.png | banner.jpg | validated | Chiricahua Foundation | Geronimo            | Business      | E-inclusion   |
     # There should not be a pager when the solution is empty.
     When I go to the homepage of the "Chiricahua Server" solution
     Then I should not see the "Pager" region
@@ -156,3 +156,25 @@ Feature: Solution homepage
       | Solr distribution 1 | Description 1 | Chiricahua Solr |
     When I go to the homepage of the "Chiricahua Solr" solution
     Then I should not see the "Pager" region
+
+  @terms @javascript
+  Scenario: Test that up to 7 policy terms are visible in the solution overview header.
+    Given the following solutions:
+      | title              | description        | logo     | banner     | state     | policy domain                                                                                                                      |
+      | All policy domains | Bring in EVERYONE! | logo.png | banner.jpg | validated | Finance in EU, Supplier exchange, E-health, HR, Employment and Support Allowance, Statistics and Analysis, E-inclusion, Demography |
+
+    When I go to the "All policy domains" solution
+    Then I should see the text "Policy domain" in the "Header"
+    And I should see the following links:
+      | Demography                       |
+      | E-health                         |
+      | E-inclusion                      |
+      | Employment and Support Allowance |
+      | Finance in EU                    |
+      | HR                               |
+      | Statistics and Analysis          |
+    And I should not see the link "Supplier exchange"
+    When I click "HR"
+    Then the url should match "/search"
+    Then the option with text "HR   (1)" from select facet "policy domain" is selected
+    Then the "Solution" content checkbox item should be selected

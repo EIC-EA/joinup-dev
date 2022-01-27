@@ -57,7 +57,8 @@ Feature: Proposing a collection
       # Contact information data.
       | Name                  | Contact person                                                                                       |
       | E-mail                | contact_person@example.com                                                                           |
-    When I select "HR" from "Domains"
+      | Keywords              | Some keyword                                                                                         |
+    When I select "HR" from "Policy domain"
     And I select the radio button "Only members can create content."
     And I check "Moderated"
     # The owner field should have a help text.
@@ -73,6 +74,9 @@ Feature: Proposing a collection
       | Field Logo is required   |
       | Field Banner is required |
     And I should see the heading "Ancient and Classical Mythology"
+    # Regression test for the keywords field in the about page.
+    And I should not see the text "Keywords" in the "Content" region
+    And I should not see the text "Some keyword" in the "Content" region
     And I should see a logo on the header
     And I should see a banner on the header
     And I should see "Thank you for proposing a challenge. Your request is currently pending approval by the site administrator."

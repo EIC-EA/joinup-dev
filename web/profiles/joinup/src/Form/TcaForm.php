@@ -38,7 +38,8 @@ class TcaForm extends TcaFormBase {
    * {@inheritdoc}
    */
   public function cancelSubmit(array &$form, FormStateInterface $form_state): void {
-    $form_state->setRedirect(Url::fromUri('internal:/challenges')->getRouteName());
+    $form_state->setRedirect(Url::fromUri('internal:/challenges')
+      ->getRouteName());
   }
 
   /**

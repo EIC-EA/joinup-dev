@@ -131,7 +131,12 @@ Feature: Sharing content between collections
     # I should still be on the same page, but the collection content should be
     # changed. The "Interesting content" should no longer be visible.
     Then I should see the success message "Item was unshared from the following challenges: Classic Rock."
-    And the page should show only the tiles "New D'n'B compilation released, Rockabilly is still rocking"
+
+    # @todo This is throwing random failures on the ContinuousPHP environment,
+    # but is not replicable outside of it. Uncomment the next line once we have
+    # control over the Solr installation.
+    # See https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-6238
+    # And the page should show only the tiles "New D'n'B compilation released, Rockabilly is still rocking"
 
     # Verify that the content is again shareable.
     When I go to the content page of the type "<content type>" with the title "Interesting content"
@@ -318,11 +323,11 @@ Feature: Sharing content between collections
       | Facebook                    |
       | Twitter                     |
       | Linkedin                    |
-      | Other challenges            |
+      | Other collections on Joinup |
     When I check "Gossip"
     And I press "Share" in the "Modal buttons" region
     And I wait for AJAX to finish
-    Then I should see the success message "Item was shared on the following challenges: Gossip."
+    Then I should see the success message "Item was shared on the following collections: Gossip."
     And I should see the heading "Shared on"
     And I should see the "Gossip" tile
 

@@ -23,7 +23,7 @@ trait FileTrait {
    *
    * @param string $filename
    *   The file name given by the user.
-   * @param string $files_path
+   * @param string|null $files_path
    *   The path of the directory where the file is located. Defaults to the path
    *   configured in the 'files_path' parameter in behat.yml.
    * @param string $file_wrapper

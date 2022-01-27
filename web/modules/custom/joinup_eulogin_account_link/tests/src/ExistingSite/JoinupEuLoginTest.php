@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\joinup_eulogin_account_link\ExistingSite;
+namespace Drupal\Tests\joinup_eulogin\ExistingSite;
 
 use Drupal\Tests\cas\Traits\CasTestTrait;
 use Drupal\Tests\joinup_test\ExistingSite\JoinupExistingSiteTestBase;
@@ -12,7 +12,7 @@ use weitzman\LoginTrait\LoginTrait;
 /**
  * Tests the EU Login.
  *
- * @dependencies joinup_eulogin_account_link
+ * @group joinup_eulogin
  */
 class JoinupEuLoginTest extends JoinupExistingSiteTestBase {
 
@@ -74,7 +74,7 @@ class JoinupEuLoginTest extends JoinupExistingSiteTestBase {
     $state = \Drupal::state();
 
     // This test needs the limited access functionality enabled.
-    $state->delete('joinup_eulogin.disable_limited_access');
+    $this->state->delete('joinup_eulogin.disable_limited_access');
 
     $assert = $this->assertSession();
     $page = $this->getSession()->getPage();
@@ -230,7 +230,7 @@ class JoinupEuLoginTest extends JoinupExistingSiteTestBase {
     $assert->statusCodeEquals(403);
     $assert->pageTextContains("Dear {$this->account->getDisplayName()}");
     $assert->pageTextContains('Your account access is limited.');
-    $assert->pageTextContains('Starting from 02/03/2020, signing in to COVID-19 Challenge is handled by EU Login, the European Commission Authentication Service. After you sign-in using EU Login, you will be able to synchronise your existing COVID-19 Challenge account to restore your access.');
+    $assert->pageTextContains('Starting from 02/03/2020, signing in to EIC Challenge Platform is handled by EU Login, the European Commission Authentication Service. After you sign-in using EU Login, you will be able to synchronise your existing COVID-19 Challenge account to restore your access.');
     $assert->linkExists('EU Login');
     $assert->linkByHrefExists('/user/logout?destination=/caslogin');
   }

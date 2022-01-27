@@ -57,3 +57,7 @@ docker-compose.*.local.yml
 
 *.sql
 *.deb
+
+# Ignore project specific temporary generated files.
+/latest.sh1
+/temporary_inputfile.txt

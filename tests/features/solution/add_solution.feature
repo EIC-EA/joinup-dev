@@ -81,7 +81,7 @@ Feature: "Add solution" visibility options.
     # Regression test for ensuring that obsolete content creation value is removed.
     # @see: https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-3567
     And I should not see the text "Only members can create content"
-    And I should see the text "Only facilitators can create content"
+    And I should see the text "Only facilitators and authors can create content"
     # Regression test to endure that the language terms "Multilingual Code" are not present.
     And the available options in the "Language" select should not include the "Multilingual Code"
     And I should see the description "For best result the image must be larger than 2400x345 pixels." for the "Banner" field
@@ -131,9 +131,9 @@ Feature: "Add solution" visibility options.
     And I should see the text "This is a test text"
     # Most solution fields are not shown in the overview but in the "about" page.
     # @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-3224
-    And I should not see the link "Demography"
     And I should not see the link "Belgium"
     And I should not see the link "Flemish"
+    But I should see the link "Demography"
     And the following email should have been sent:
       | recipient | Wendell Silva                                                                                               |
       | subject   | COVID-19 Challenge: Your solution has been accepted                                                         |
@@ -189,6 +189,8 @@ Feature: "Add solution" visibility options.
     When I am logged in as a facilitator of the "Language parsers" collection
     And I go to the homepage of the "Language parsers" collection
     And I click "Add solution"
+    And I check "I have read and accept the legal notice and I commit to manage my solution on a regular basis."
+    And I press "Yes"
     And I fill in the following:
       | Title       | PHP comments parser                             |
       | Description | A simple parser that goes through PHP comments. |
@@ -234,6 +236,8 @@ Feature: "Add solution" visibility options.
     Given I am logged in as a member of the "Ocean studies" collection
     When I go to the homepage of the "Ocean studies" collection
     And I click "Add solution" in the plus button menu
+    And I check "I have read and accept the legal notice and I commit to manage my solution on a regular basis."
+    And I press "Yes"
     And I fill in "Title" with "Climate change tracker"
     And I press "Propose"
     Then I should see the error message "A solution titled Climate change tracker already exists in this challenge. Please choose a different title."

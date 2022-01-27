@@ -4,7 +4,7 @@ Feature: Notification test for the event transitions on a post moderated parent.
   As an owner of the collection
   I want to receive a notification when an entity is proposed.
 
-  Scenario: Notifications should be sent whenever a event is going through a relevant transition.
+  Scenario Outline: Notifications should be sent whenever a event is going through a relevant transition.
     Given users:
       | Username         | Roles     | E-mail                      | First name | Family name |
       | Notify moderator | moderator | notify_moderator@test.com   | Notify     | Moderator   |
@@ -12,8 +12,8 @@ Feature: Notification test for the event transitions on a post moderated parent.
       | CC facilitator   |           | notify_facilitator@test.com | CC         | Facilitator |
       | CC member        |           | notify_member@test.com      | CC         | Member      |
     And collections:
-      | title              | state     | content creation | moderation |
-      | CC post collection | validated | members          | no         |
+      | title              | state     | content creation | moderation   |
+      | CC post collection | validated | members          | <moderation> |
     And the following collection user memberships:
       | collection         | user           | roles       |
       | CC post collection | CC owner       | owner       |
@@ -39,7 +39,7 @@ Feature: Notification test for the event transitions on a post moderated parent.
     And I press "Publish"
     Then the following email should have been sent:
       | recipient | CC owner                                                                                                                                                              |
-      | subject   | COVID-19 Challenge: Content has been published                                                                                                                                    |
+      | subject   | EIC Challenge: Content has been published                                                                                                                                    |
       | body      | CC Member has published the new event - "CC notify create publish" in the challenge: "CC post collection".You can access the new content at the following link: http |
 
     # Test 'update' operation.
@@ -50,7 +50,7 @@ Feature: Notification test for the event transitions on a post moderated parent.
     And I press "Publish"
     Then the following email should have been sent:
       | recipient | CC owner                                                                                                  |
-      | subject   | COVID-19 Challenge: Content has been published                                                                        |
+      | subject   | Joinup: Content has been published                                                                        |
       | body      | CC Member has published the new event - "CC notify post publish" in the challenge: "CC post collection". |
 
     When all e-mails have been sent
@@ -63,7 +63,7 @@ Feature: Notification test for the event transitions on a post moderated parent.
     And I press "Request changes"
     Then the following email should have been sent:
       | recipient | CC member                                                                                                                                                                                                    |
-      | subject   | COVID-19 Challenge: Content has been updated                                                                                                                                                                             |
+      | subject   | Joinup: Content has been updated                                                                                                                                                                             |
       | body      | the Facilitator, CC Facilitator has requested you to modify the event - "CC notify post request changes" in the challenge: "CC post collection", with the following motivation: "Can you do some changes?". |
 
     When all e-mails have been sent
@@ -76,7 +76,7 @@ Feature: Notification test for the event transitions on a post moderated parent.
     And I press "Request changes"
     Then the following email should have been sent:
       | recipient | CC member                                                                                                                                                                                           |
-      | subject   | COVID-19 Challenge: Content has been updated                                                                                                                                                                    |
+      | subject   | Joinup: Content has been updated                                                                                                                                                                    |
       | body      | the Facilitator, CC Facilitator has requested you to modify the event - "CC notify post report" in the challenge: "CC post collection", with the following motivation: "Your content is reported". |
 
     When all e-mails have been sent
@@ -86,8 +86,8 @@ Feature: Notification test for the event transitions on a post moderated parent.
     And I press "Publish"
     Then the following email should have been sent:
       | recipient | CC member                                                                                                                                                          |
-      | subject   | COVID-19 Challenge: Content has been updated                                                                                                                                   |
-      | body      | the Facilitator, CC Facilitator has approved your request of publication of the event - "CC notify post approve proposed" in the challenge: "CC post collection". |
+      | subject   | Joinup: Content has been updated                                                                                                                                   |
+      | body      | the Facilitator, CC Facilitator has approved your request of publication of the event - "CC notify post approve proposed" in the challenge: "CC post challenge". |
 
     # Test 'delete' operation.
     When all e-mails have been sent
@@ -98,5 +98,10 @@ Feature: Notification test for the event transitions on a post moderated parent.
     And I press "Delete"
     Then the following email should have been sent:
       | recipient | CC member                                                                                                           |
-      | subject   | COVID-19 Challenge: Content has been deleted                                                                                    |
+      | subject   | Joinup: Content has been deleted                                                                                    |
       | body      | Facilitator CC Facilitator has deleted the event - "CC notify post delete" in the challenge: "CC post collection". |
+
+    Examples:
+      | moderation | roles  |
+      | no         |        |
+      | yes        | author |

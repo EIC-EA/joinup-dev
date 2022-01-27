@@ -604,7 +604,7 @@ display:
       menu:
         type: normal
         title: Challenges
-        description: ''
+        description: 'Challenge are the ... .'
         expanded: false
         parent: ''
         weight: -49

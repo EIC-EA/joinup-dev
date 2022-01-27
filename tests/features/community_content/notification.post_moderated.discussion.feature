@@ -4,7 +4,7 @@ Feature: Notification test for the discussion transitions on a post moderated pa
   As an owner of the collection
   I want to receive a notification when an entity is proposed.
 
-  Scenario: Notifications should be sent whenever a discussion is going through a relevant transition.
+  Scenario Outline: Notifications should be sent whenever a discussion is going through a relevant transition.
     Given users:
       | Username         | Roles     | E-mail                      | First name | Family name | Notification frequency |
       | Notify moderator | moderator | notify_moderator@test.com   | Notify     | Moderator   | immediate              |
@@ -12,13 +12,13 @@ Feature: Notification test for the discussion transitions on a post moderated pa
       | CC facilitator   |           | notify_facilitator@test.com | CC         | Facilitator | immediate              |
       | CC member        |           | notify_member@test.com      | CC         | Member      | immediate              |
     And collections:
-      | title              | state     | content creation | moderation |
-      | CC post collection | validated | members          | no         |
+      | title              | state     | content creation | moderation   |
+      | CC post collection | validated | members          | <moderation> |
     And the following collection user memberships:
       | collection         | user           | roles       |
       | CC post collection | CC owner       | owner       |
       | CC post collection | CC facilitator | facilitator |
-      | CC post collection | CC member      |             |
+      | CC post collection | CC member      | <roles>     |
     And discussion content:
       | title                                | author    | body | collection         | field_state  |
       | CC notify post publish               | CC member | body | CC post collection | draft        |
@@ -37,12 +37,12 @@ Feature: Notification test for the discussion transitions on a post moderated pa
     And I fill in "Content" with "CC notify create publish"
     And I press "Publish"
     Then the following email should have been sent:
-      | recipient | CC owner                                                                                                                                                                  |
-      | subject   | COVID-19 Challenge: Content has been published                                                                                                                            |
+      | recipient | CC owner                                                                                                                                                                   |
+      | subject   | EIC challenge platform: Content has been published                                                                                                                            |
       | body      | CC Member has published the new discussion - "CC notify create publish" in the challenge: "CC post collection".You can access the new content at the following link: http |
     And the following email should have been sent:
-      | recipient | Notify moderator                                                                                                                                                          |
-      | subject   | COVID-19 Challenge: Content has been published                                                                                                                            |
+      | recipient | Notify moderator                                                                                                                                                           |
+      | subject   | EIC challenge platform: Content has been published                                                                                                                            |
       | body      | CC Member has published the new discussion - "CC notify create publish" in the challenge: "CC post collection".You can access the new content at the following link: http |
 
     # Test 'update' operation.
@@ -52,8 +52,8 @@ Feature: Notification test for the discussion transitions on a post moderated pa
     And I click "Edit" in the "Entity actions" region
     And I press "Publish"
     Then the following email should have been sent:
-      | recipient | CC owner                                                                                                      |
-      | subject   | COVID-19 Challenge: Content has been published                                                                |
+      | recipient | CC owner                                                                                                       |
+      | subject   | EIC hallenge platform: Content has been published                                                                |
       | body      | CC Member has published the new discussion - "CC notify post publish" in the challenge: "CC post collection". |
 
     When all e-mails have been sent
@@ -65,8 +65,8 @@ Feature: Notification test for the discussion transitions on a post moderated pa
     When I fill in "Motivation" with "Can you do some changes?"
     And I press "Request changes"
     Then the following email should have been sent:
-      | recipient | CC member                                                                                                                                                                                                        |
-      | subject   | COVID-19 Challenge: Content has been updated                                                                                                                                                                     |
+      | recipient | CC member                                                                                                                                                                                                         |
+      | subject   | EIC challenge platform: Content has been updated                                                                                                                                                                     |
       | body      | the Facilitator, CC Facilitator has requested you to modify the discussion - "CC notify post request changes" in the challenge: "CC post collection", with the following motivation: "Can you do some changes?". |
 
     When all e-mails have been sent
@@ -78,8 +78,8 @@ Feature: Notification test for the discussion transitions on a post moderated pa
     When I fill in "Motivation" with "Your content is reported"
     And I press "Request changes"
     Then the following email should have been sent:
-      | recipient | CC member                                                                                                                                                                                               |
-      | subject   | COVID-19 Challenge: Content has been updated                                                                                                                                                            |
+      | recipient | CC member                                                                                                                                                                                                |
+      | subject   | EIC challenge platform: Content has been updated                                                                                                                                                            |
       | body      | the Facilitator, CC Facilitator has requested you to modify the discussion - "CC notify post report" in the challenge: "CC post collection", with the following motivation: "Your content is reported". |
 
     When all e-mails have been sent
@@ -88,9 +88,9 @@ Feature: Notification test for the discussion transitions on a post moderated pa
     And I click "Edit" in the "Entity actions" region
     And I press "Publish"
     Then the following email should have been sent:
-      | recipient | CC member                                                                                                                                                              |
-      | subject   | COVID-19 Challenge: Content has been updated                                                                                                                           |
-      | body      | the Facilitator, CC Facilitator has approved your request of publication of the discussion - "CC notify post approve proposed" in the challenge: "CC post collection". |
+      | recipient | CC member                                                                                                                                                               |
+      | subject   | EIC challenge platform: Content has been updated                                                                                                                           |
+      | body      | the Facilitator, CC Facilitator has approved your request of publication of the discussion - "CC notify post approve proposed" in the collection: "CC post collection". |
 
     # Test 'delete' operation.
     When all e-mails have been sent
@@ -101,9 +101,14 @@ Feature: Notification test for the discussion transitions on a post moderated pa
     And I press "Delete"
     Then the following email should not have been sent:
       | recipient | CC member                                                                                                               |
-      | subject   | COVID-19 Challenge: Content has been deleted                                                                            |
+      | subject   | EIC challenge platform: Content has been deleted                                                                         |
       | body      | Facilitator CC Facilitator has deleted the discussion - "CC notify post delete" in the challenge: "CC post collection". |
     But the following email should have been sent:
-      | recipient | CC member                                                                                                         |
-      | subject   | COVID-19 Challenge: The discussion "CC notify post delete" was deleted in the space of "CC post collection"       |
-      | body      | for your information, the discussion "CC notify post delete" was deleted from the "CC post collection" challenge. |
+      | recipient | CC member                                                                                                              |
+      | subject   | EIC challenge platform: The discussion "CC notify post delete" was deleted in the space of "CC post collection"         |
+      | body      | for your information, the discussion "CC notify post delete" was deleted from the "CC post collection" challenge.      |
+
+    Examples:
+      | moderation | roles  |
+      | no         |        |
+      | yes        | author |

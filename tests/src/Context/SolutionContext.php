@@ -24,6 +24,7 @@ use Drupal\joinup\Traits\UserTrait;
 use Drupal\joinup\Traits\UtilityTrait;
 use Drupal\joinup\Traits\WorkflowTrait;
 use Drupal\joinup_group\ContentCreationOptions;
+use Drupal\joinup_group\Entity\GroupInterface;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\og\OgGroupAudienceHelperInterface;
 use Drupal\og\OgRoleInterface;
@@ -338,7 +339,8 @@ class SolutionContext extends RawDrupalContext {
    *   A new solution entity.
    *
    * @throws \Exception
-   *   Thrown when a given image is not found.
+   *   Thrown when a given image is not found, or when a solution is being
+   *   pinned in a non-existing group.
    */
   protected function createSolution(array $values) {
     $file_fields = [
@@ -377,8 +379,19 @@ class SolutionContext extends RawDrupalContext {
       }
     }
 
+    /** @var \Drupal\solution\Entity\SolutionInterface $solution */
     $solution = $this->createRdfEntity('solution', $values);
     $this->rdfEntities[$solution->id()] = $solution;
+
+    if (!empty($values['pinned_in_collection'])) {
+      foreach (explode(',', $values['pinned_in_collection']) as $group_label) {
+        $group = self::getRdfEntityByLabel(trim($group_label));
+        if (!$group instanceof GroupInterface) {
+          throw new \Exception("Cannot pin solution {$solution->label()} in $group_label since it does not exist or is not a group.");
+        }
+        $solution->pin($group);
+      }
+    }
 
     return $solution;
   }
@@ -533,11 +546,12 @@ class SolutionContext extends RawDrupalContext {
   protected static function solutionFieldAliases() {
     // Mapping alias - field name.
     return [
-      'affiliations requests' => 'field_is_affiliations_requests',
       'author' => 'uid',
+      'uri' => 'id',
+      'title' => 'label',
+      'short ID' => 'field_short_id',
+      'affiliations requests' => 'field_is_affiliations_requests',
       'banner' => 'field_is_banner',
-      'collection' => 'collection',
-      'collections' => 'collection',
       'contact information' => 'field_is_contact_information',
       'content creation' => 'field_is_content_creation',
       'creation date' => 'created',
@@ -545,7 +559,6 @@ class SolutionContext extends RawDrupalContext {
       'documentation' => 'field_is_documentation',
       'eif category' => 'field_is_eif_category',
       'eif reference' => 'field_is_eif_recommendation',
-      'featured' => 'field_site_featured',
       'keywords' => 'field_keywords',
       'landing page' => 'field_is_landing_page',
       'language' => 'field_is_language',
@@ -555,27 +568,26 @@ class SolutionContext extends RawDrupalContext {
       'moderation' => 'field_is_moderation',
       'modification date' => 'changed',
       'owner' => 'field_is_owner',
-      'pinned in' => 'field_is_pinned_in',
-      'pinned to front page' => 'field_site_pinned',
       'policy domain' => 'field_policy_domain',
-      'private notes' => 'field_solution_private_notes',
-      'private file' => 'field_solution_private_file',
       'related by type' => 'field_is_show_eira_related',
       'related solutions' => 'field_is_related_solutions',
-      'shared on' => 'field_is_shared_in',
-      'short ID' => 'field_short_id',
       'solution type' => 'field_is_solution_type',
       'source code repository' => 'field_is_source_code_repository',
       'spatial coverage' => 'field_spatial_coverage',
-      'state' => 'field_is_state',
       'status' => 'field_status',
       'title' => 'label',
       'topic' => 'field_topic',
       'translation' => 'field_is_translation',
-      'uri' => 'id',
       'webdav creation' => 'field_is_webdav_creation',
       'webdav url' => 'field_is_webdav_url',
       'wiki' => 'field_is_wiki',
+      'state' => 'field_is_state',
+      'collection' => 'collection',
+      'collections' => 'collection',
+      'featured' => 'field_site_featured',
+      'pinned to front page' => 'field_site_pinned',
+      'pinned in' => 'pinned_in_collection',
+      'shared on' => 'field_is_shared_in',
     ];
   }
 
@@ -595,8 +607,7 @@ class SolutionContext extends RawDrupalContext {
     $mapped_values = [
       'field_is_moderation' => ['no' => 0, 'yes' => 1],
       'field_is_content_creation' => [
-        'facilitators' => ContentCreationOptions::FACILITATORS,
-        'members' => ContentCreationOptions::MEMBERS,
+        'facilitators and authors' => ContentCreationOptions::FACILITATORS_AND_AUTHORS,
         'registered users' => ContentCreationOptions::REGISTERED_USERS,
       ],
       'field_is_webdav_creation' => ['no' => 0, 'yes' => 1],

@@ -43,7 +43,7 @@ Feature: Collection membership administration
     And I go to the "Medical diagnosis" collection
     And I press the "Join this challenge" button
     Then I should see the success message "Your membership to the Medical diagnosis collection is under approval."
-    And the email sent to "Lisa Cuddy" with subject "COVID-19 Challenge: A user has requested to join your challenge" contains the following lines of text:
+    And the email sent to "Lisa Cuddy" with subject " Challenge: A user has requested to join your challenge" contains the following lines of text:
       | text                                                                                        |
       | Donald Duck has requested to join your challenge "Medical diagnosis" as a member.           |
       | To approve or reject this request, click on                                                 |
@@ -51,7 +51,7 @@ Feature: Collection membership administration
       | /challenge/medical-diagnosis/members                                                        |
     And the following email should have been sent:
       | recipient | Turkey Ham                                                                        |
-      | subject   | COVID-19 Challenge: A user has requested to join your challenge                   |
+      | subject   | Challenge: A user has requested to join your challenge                   |
       | body      | Donald Duck has requested to join your challenge "Medical diagnosis" as a member. |
 
   Scenario: Approve a membership
@@ -73,13 +73,15 @@ Feature: Collection membership administration
     And I go to the "Medical diagnosis" collection
     And I click "Members" in the "Left sidebar"
     Then the "Action" select should contain the following options:
-      | Approve the pending membership(s)                              |
-      | Block the selected membership(s)                               |
-      | Unblock the selected membership(s)                             |
-      | Delete the selected membership(s)                              |
-      | Add the facilitator role to the selected members               |
+      | Approve the pending membership(s)                               |
+      | Block the selected membership(s)                                |
+      | Unblock the selected membership(s)                              |
+      | Delete the selected membership(s)                               |
+      | Add the author role to the selected members                     |
+      | Add the facilitator role to the selected members                |
       | Transfer the ownership of the challenge to the selected member |
-      | Remove the facilitator role from the selected members          |
+      | Remove the facilitator role from the selected members           |
+      | Remove the author role from the selected members                |
     # Assert that the user does not see the default OG tab.
     Then I should not see the link "Group"
     And I check the box "Update the member Kathie Cumbershot"
@@ -88,13 +90,13 @@ Feature: Collection membership administration
     Then I should see the following success messages:
       | success messages                                         |
       | Approve the pending membership(s) was applied to 1 item. |
-    And the email sent to "Kathie Cumbershot" with subject "COVID-19 Challenge: Your request to join the challenge Medical diagnosis was approved" contains the following lines of text:
-      | text                                                                           |
-      | Lisa Cuddy has approved your request to join the "Medical diagnosis" challenge |
-    But the email sent to "Kathie Cumbershot" with subject "COVID-19 Challenge: Your request to join the challenge Medical diagnosis was approved" should not contain the following lines of text:
-      | text                                                                                        |
-      | You will receive weekly notifications for newly created content on this challenge.          |
-      | To manage your notifications go to "My subscriptions" in the user menu.                     |
+    And the email sent to "Kathie Cumbershot" with subject "EIC Challenge Platform: Your request to join the challenge Medical diagnosis was approved" contains the following lines of text:
+      | text                                                                            |
+      | Lisa Cuddy has approved your request to join the "Medical diagnosis" Challenge |
+    But the email sent to "Kathie Cumbershot" with subject "EIC Challenge Platform: Your request to join the challenge Medical diagnosis was approved" should not contain the following lines of text:
+      | text                                                                                |
+      | You will receive weekly notifications for newly created content on this challenge. |
+      | To manage your notifications go to "My subscriptions" in the user menu.             |
       | If you think this action is not clear or not due, please contact us at |
 
     # Check new privileges.
@@ -360,3 +362,100 @@ Feature: Collection membership administration
       | Gregory House     |
       | Eric Foreman      |
       | Eric Drexler      |
+
+  @email
+  Scenario: Privileged members should be allowed to invite users to a collection.
+    Given users:
+      | Username  | E-mail                 | First name | Family name |
+      | jbelanger | j.belanger@example.com | Jeannette  | Belanger    |
+      | dwightone | dwight1@example.com    | Christian  | Dwight      |
+
+    When I am not logged in
+    And I go to the "Medical diagnosis" challenge
+    And I click "Members" in the "Left sidebar"
+    Then I should not see the link "Invite members"
+
+    When I am logged in as an authenticated
+    And I go to the "Medical diagnosis" challenge
+    And I click "Members" in the "Left sidebar"
+    Then I should not see the link "Invite members"
+
+    When I am logged in as "dwightone"
+    And I go to the "Medical diagnosis" challenge
+    And I click "Members" in the "Left sidebar"
+    Then I should not see the link "Invite members"
+
+    When I am logged in as "Lisa Cuddy"
+    And I go to the "Medical diagnosis" challenge
+    And I click "Members" in the "Left sidebar"
+    Then I should see the link "Invite members"
+    When I click "Invite members"
+    Then I should see the heading "Invite members"
+
+    # Add a facilitator.
+    When I fill in "E-mail" with "dwight1@example.com"
+    And I press "Add"
+    And I fill in "E-mail" with "j.belanger@example.com"
+    And I press "Add"
+    Then the page should show the following chips in the Content region:
+      | Christian Dwight   |
+      | Jeannette Belanger |
+    When I select "Facilitator" from "Role"
+    And the mail collector cache is empty
+    And I press "Invite members"
+    Then I should see the success message "2 users have been invited to this group."
+    And the following email should have been sent:
+      | recipient | dwightone                                                                                                 |
+      | subject   | Invitation from Lisa Cuddy to join collection Medical diagnosis.                                          |
+      | body      | You have been invited by Lisa Cuddy to join the collection Medical diagnosis as a collection facilitator. |
+
+    # Accept the invitation directly.
+    When I am logged in as "dwightone"
+    And I accept the invitation for the "Medical diagnosis" collection group
+    Then I should see the text "You have been promoted to challenge facilitator"
+    And I go to the "Medical diagnosis" challenge
+    And I click "Members" in the "Left sidebar"
+    Then I should see the link "Add members"
+    And I should see the link "Invite members"
+    When I click "Invite members"
+    Then I should see the heading "Invite members"
+
+    # Trying to take action again on the invitation again informs the user about it.
+    When I accept the invitation for the "Medical diagnosis" challenge group
+    Then I should see the message "You have already accepted the invitation."
+    When I reject the invitation for the "Medical diagnosis" challenge group
+    Then I should see the message "You have already accepted the invitation."
+
+    # Join the collection manually and trigger the invitation.
+    When I am logged in as "jbelanger"
+    And I go to the "Medical diagnosis" challenge
+    And I press the "Join this collection" button
+    And I go to the "Medical diagnosis" challenge
+    And I click "Members" in the "Left sidebar"
+    # The Medical diagnosis collection is closed so normally the membership should be pending.
+    # However, since there is an active invitation, both the status and the initial roles are overridden.
+    # Being able to view the links below mean that the membership is active and the user is a facilitator.
+    Then I should see the link "Add members"
+    And I should see the link "Invite members"
+
+  @terms
+  Scenario: Invitations can not be sent for pending users.
+    Given users:
+      | Username       | E-mail                     | First name | Family name |
+      | pending_member | pending_member@example.com | Pending    | Member      |
+    And the following collection user membership:
+      | challenge        | user           | state   |
+      | Medical diagnosis | pending_member | pending |
+
+    When I am logged in as "Lisa Cuddy"
+    And I go to the "Medical diagnosis" challenge
+    And I click "Members" in the "Left sidebar"
+    When I click "Invite members"
+
+    When I fill in "E-mail" with "pending_member@example.com"
+    And I press "Add"
+    Then the page should show the following chips in the Content region:
+      | Pending Member   |
+    And I press "Invite members"
+    Then I should not see the success message "Successfully invited the selected users."
+    And I should see the error message "1 user has a pending membership. Please, approve their membership request and assign the roles."

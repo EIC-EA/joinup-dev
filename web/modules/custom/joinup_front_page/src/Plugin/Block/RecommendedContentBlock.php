@@ -290,7 +290,6 @@ class RecommendedContentBlock extends BlockBase implements ContainerFactoryPlugi
    */
   protected function getResultEntities(ResultSetInterface $result): array {
     $results = [];
-    /* @var $item \Drupal\search_api\Item\ItemInterface */
     foreach ($result->getResultItems() as $item) {
       try {
         /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
@@ -402,7 +401,10 @@ class RecommendedContentBlock extends BlockBase implements ContainerFactoryPlugi
    */
   public function getCacheTags() {
     $menu = $this->entityTypeManager->getStorage('menu')->load('front-page');
-    $cache_tags = Cache::mergeTags(parent::getCacheTags(), ['node_list', 'rdf_entity_list']);
+    $cache_tags = Cache::mergeTags(
+      parent::getCacheTags(),
+      ['node_list', 'rdf_entity_list']
+    );
     // The block should be invalidated whenever any node changes.
     return Cache::mergeTags($cache_tags, $menu->getCacheTags());
   }

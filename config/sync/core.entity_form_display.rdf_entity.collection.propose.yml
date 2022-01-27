@@ -161,8 +161,6 @@ content:
     settings:
       display_label: false
     third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   field_ar_owner:
     weight: 4
     settings:

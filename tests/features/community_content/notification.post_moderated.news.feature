@@ -4,7 +4,7 @@ Feature: Notification test for the news transitions on a post moderated parent.
   As an owner of the collection
   I want to receive a notification when an entity is proposed.
 
-  Scenario: Notifications should be sent whenever a news is going through a relevant transition.
+  Scenario Outline: Notifications should be sent whenever a news is going through a relevant transition.
     Given users:
       | Username         | Roles     | E-mail                      | First name | Family name |
       | Notify moderator | moderator | notify_moderator@test.com   | Notify     | Moderator   |
@@ -12,13 +12,13 @@ Feature: Notification test for the news transitions on a post moderated parent.
       | CC facilitator   |           | notify_facilitator@test.com | CC         | Facilitator |
       | CC member        |           | notify_member@test.com      | CC         | Member      |
     And collections:
-      | title              | state     | content creation | moderation |
-      | CC post collection | validated | members          | no         |
+      | title              | state     | content creation | moderation   |
+      | CC post collection | validated | members          | <moderation> |
     And the following collection user memberships:
       | collection         | user           | roles       |
       | CC post collection | CC owner       | owner       |
       | CC post collection | CC facilitator | facilitator |
-      | CC post collection | CC member      |             |
+      | CC post collection | CC member      | <roles>     |
     And news content:
       | title                          | author    | body | headline                       | collection         | field_state  |
       | CCN post publish               | CC member | body | CCN post publish               | CC post collection | draft        |
@@ -39,7 +39,7 @@ Feature: Notification test for the news transitions on a post moderated parent.
     And I press "Publish"
     Then the following email should have been sent:
       | recipient | CC owner                                                                                                                                                       |
-      | subject   | COVID-19 Challenge: Content has been published                                                                                                                             |
+      | subject   | EIC Challenge: Content has been published                                                                                                                             |
       | body      | CC Member has published the new news - "CCN create publish" in the challenge: "CC post collection".You can access the new content at the following link: http |
 
     # Test 'update' operation.
@@ -50,7 +50,7 @@ Feature: Notification test for the news transitions on a post moderated parent.
     And I press "Publish"
     Then the following email should have been sent:
       | recipient | CC owner                                                                                           |
-      | subject   | COVID-19 Challenge: Content has been published                                                                 |
+      | subject   | EIC Challenge Challenge: Content has been published                                                                 |
       | body      | CC Member has published the new news - "CCN post publish" in the challenge: "CC post collection". |
 
     When all e-mails have been sent
@@ -61,7 +61,7 @@ Feature: Notification test for the news transitions on a post moderated parent.
     Then I should see the error message "This action requires you to fill in the motivation field"
     When I fill in "Motivation" with "Can you do some changes?"
     And I press "Request changes"
-    Then the email sent to "CC member" with subject "COVID-19 Challenge: Content has been updated" contains the following lines of text:
+    Then the email sent to "CC member" with subject "EIC Challenge: Content has been updated" contains the following lines of text:
       | text                                                                                                                                                                                                  |
       | the Facilitator, CC Facilitator has requested you to modify the news - "CCN post request changes" in the challenge: "CC post collection", with the following motivation: "Can you do some changes?". |
       | If you think this action is not clear or not due, please contact us at                                                                                                                    |
@@ -74,7 +74,7 @@ Feature: Notification test for the news transitions on a post moderated parent.
     Then I should see the error message "This action requires you to fill in the motivation field"
     When I fill in "Motivation" with "Your content is reported"
     And I press "Request changes"
-    Then the email sent to "CC member" with subject "COVID-19 Challenge: Content has been updated" contains the following lines of text:
+    Then the email sent to "CC member" with subject "EIC Challenge platform: Content has been updated" contains the following lines of text:
       | text                                                                                                                                                                                         |
       | the Facilitator, CC Facilitator has requested you to modify the news - "CCN post report" in the challenge: "CC post collection", with the following motivation: "Your content is reported". |
       | If you think this action is not clear or not due, please contact us at                                                                                                           |
@@ -86,7 +86,7 @@ Feature: Notification test for the news transitions on a post moderated parent.
     And I press "Publish"
     Then the following email should have been sent:
       | recipient | CC member                                                                                                                                                   |
-      | subject   | COVID-19 Challenge: Content has been updated                                                                                                                            |
+      | subject   | The challenge: Content has been updated                                                                                                                            |
       | body      | the Facilitator, CC Facilitator has approved your request of publication of the news - "CCN post approve proposed" in the challenge: "CC post collection". |
 
     # Test 'delete' operation.
@@ -98,5 +98,10 @@ Feature: Notification test for the news transitions on a post moderated parent.
     And I press "Delete"
     Then the following email should have been sent:
       | recipient | CC member                                                                                                    |
-      | subject   | COVID-19 Challenge: Content has been deleted                                                                             |
+      | subject   | Joinup: Content has been deleted                                                                             |
       | body      | Facilitator CC Facilitator has deleted the news - "CCN post delete" in the challenge: "CC post collection". |
+
+    Examples:
+      | moderation | roles  |
+      | no         |        |
+      | yes        | author |

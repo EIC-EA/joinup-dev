@@ -101,12 +101,16 @@ function joinup_front_page_menu_link_content_update(MenuLinkContentInterface $en
  */
 function joinup_front_page_theme($existing, $type, $theme, $path) {
   $url_subpath = Settings::get('url_subpath', '/');
+  $default = [
+    'count' => 0,
+    'description' => NULL,
+  ];
   return [
     'statistics_block' => [
       'variables' => [
-        'collection_count' => 0,
-        'solution_count' => 0,
-        'content_count' => 0,
+        'collection' => $default,
+        'solution' => $default,
+        'content' => $default,
         'url_subpath' => $url_subpath,
       ],
     ],

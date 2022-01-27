@@ -15,6 +15,6 @@ Feature: Solution TCA agreement
 
     Then I should see the heading "Terms of agreement"
     And I should see the following lines of text:
-      | Licence of agreement                                                                                           |
+      | The eligibility criteria of Joinup's interoperability solutions have been redefined.                           |
       | In order to create the Solution you need first check the field below and then press the Yes button to proceed. |
       | I have read and accept the legal notice and I commit to manage my solution on a regular basis.                 |
