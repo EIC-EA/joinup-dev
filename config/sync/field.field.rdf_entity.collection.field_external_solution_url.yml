@@ -1,0 +1,23 @@
+uuid: 25a1cef1-8733-4101-bc7f-6600d5e4556e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.rdf_entity.field_external_solution_url
+    - rdf_entity.rdfentity.collection
+  module:
+    - link
+id: rdf_entity.collection.field_external_solution_url
+field_name: field_external_solution_url
+entity_type: rdf_entity
+bundle: collection
+label: 'External "Solution provider" URL'
+description: 'If the solutions are managed externally please enter URL here'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

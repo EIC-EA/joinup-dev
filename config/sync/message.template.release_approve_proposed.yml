@@ -1,7 +1,9 @@
 uuid: f9950fb5-4885-4162-9ae0-6ba84b645bb5
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.full_html
 _core:
   default_config_hash: 3-ehatI4H812M_TSJ_fk40pPGuH3vI145hhmfSLoARs
 template: release_approve_proposed
@@ -9,7 +11,7 @@ label: 'Solution release approve proposed'
 description: 'Template 20: The solution release'
 text:
   -
-    value: 'COVID-19 Challenge: Your release was accepted'
+    value: '[easme:notifications-site-name]:  Your release was accepted'
     format: full_html
   -
     value: '<p>Your proposed @entity:title, @entity:field_isr_release_number for the solution "@group:title" has been validated as per your request.</p>'
@@ -17,6 +19,6 @@ text:
 settings:
   'token options':
     clear: false
-    'token replace': false
+    'token replace': true
   purge_override: false
   purge_methods: {  }

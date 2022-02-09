@@ -15,9 +15,6 @@
     <div class="featured__stats">
       <div class="stats__column stats__column--border stats__column--wide">
         <div class="stats__wrapper stats__wrapper--centered">
-          <span class="stats__text">{{ 'Last update'|t }}</span>
-        </div>
-        <div class="stats__wrapper stats__wrapper--centered">
           <span class="stats__text bold">{{ content.last_update }}</span>
         </div>
       </div>
@@ -32,6 +29,21 @@
         </div>
       </div>
     </div>
-    {{ content.join_collection }}
+
+    {% if 'Closed' in content.field_ar_state.0 %}
+      <div class="featured__state">
+        <span class="featured__form-button button-closed_challenge mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent closed_challenge">This challenge is closed</span>
+      </div>
+    {% elseif logged_in %}
+      {{ content.join_collection }}
+      {{ content.add_solution }}
+      {#    {{ content.pledge }}#}
+    {% else %}
+      <div class="featured__state">
+      <span class="featured__form-button">
+        <a class="featured__form-button button button--blue-light mdl-button--raised mdl-js-ripple-effect mdl-button--accent" href="{{ login_path }}">Login to add solution</a>
+      </span>
+      </div>
+    {% endif %}
   </div>
 </div>

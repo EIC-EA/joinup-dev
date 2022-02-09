@@ -16,13 +16,17 @@ dependencies:
     - field.field.rdf_entity.collection.field_ar_moderation
     - field.field.rdf_entity.collection.field_ar_owner
     - field.field.rdf_entity.collection.field_ar_state
+    - field.field.rdf_entity.collection.field_ch_criteria_requirements
     - field.field.rdf_entity.collection.field_collection_content
+    - field.field.rdf_entity.collection.field_external_solution_url
     - field.field.rdf_entity.collection.field_keywords
     - field.field.rdf_entity.collection.field_newsletter
     - field.field.rdf_entity.collection.field_policy_domain
+    - field.field.rdf_entity.collection.field_short_id
     - field.field.rdf_entity.collection.field_site_featured
     - field.field.rdf_entity.collection.field_site_pinned
     - field.field.rdf_entity.collection.field_spatial_coverage
+    - field.field.rdf_entity.collection.field_topic
     - image.style.thumbnail
     - rdf_entity.rdfentity.collection
   module:
@@ -40,7 +44,6 @@ third_party_settings:
     group_general:
       children:
         - group_main
-        - group_description
         - field_ar_state
       parent_name: ''
       weight: 0
@@ -50,15 +53,28 @@ third_party_settings:
         classes: ''
         direction: vertical
       label: General
+      region: content
     group_main:
       children:
         - label
+        - field_ar_logo
+        - field_ar_banner
         - field_ar_description
+        - field_ch_criteria_requirements
+        - field_external_solution_url
         - field_policy_domain
+        - field_topic
         - field_ar_owner
         - field_ar_contact_information
         - current_workflow_state
         - transition_motivation
+        - field_ar_access_url
+        - field_spatial_coverage
+        - field_keywords
+        - field_ar_closed
+        - field_ar_content_creation
+        - field_ar_moderation
+        - field_newsletter
       parent_name: group_general
       weight: 6
       format_type: tab
@@ -70,29 +86,7 @@ third_party_settings:
         id: ''
         classes: ''
       label: 'Main fields'
-    group_description:
-      children:
-        - field_ar_abstract
-        - field_ar_access_url
-        - field_ar_logo
-        - field_ar_banner
-        - field_spatial_coverage
-        - field_keywords
-        - field_ar_closed
-        - field_ar_content_creation
-        - field_ar_moderation
-        - field_newsletter
-      parent_name: group_general
-      weight: 7
-      format_type: tab
-      format_settings:
-        label: 'Additional fields'
-        formatter: open
-        description: 'Contains all optional fields providing additional information on the challenge'
-        required_fields: true
-        id: ''
-        classes: ''
-      label: 'Additional fields'
+      region: content
 id: rdf_entity.collection.default
 targetEntityType: rdf_entity
 bundle: collection
@@ -100,26 +94,15 @@ mode: default
 content:
   current_workflow_state:
     type: current_workflow_state_widget
-    weight: 6
+    weight: 11
     region: content
     settings:
       title: 'Current workflow state'
       title_display: before
       show_for_new_entities: false
     third_party_settings: {  }
-  field_ar_abstract:
-    weight: 10
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings:
-      allowed_formats:
-        hide_help: '0'
-        hide_guidelines: '1'
-    type: text_textarea
-    region: content
   field_ar_access_url:
-    weight: 11
+    weight: 13
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -127,7 +110,7 @@ content:
     type: link_default
     region: content
   field_ar_banner:
-    weight: 13
+    weight: 3
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
@@ -142,7 +125,7 @@ content:
       display_label: false
     third_party_settings: {  }
   field_ar_contact_information:
-    weight: 5
+    weight: 10
     settings:
       form_mode: inline
       override_labels: true
@@ -165,7 +148,7 @@ content:
     type: options_buttons
     region: content
   field_ar_description:
-    weight: 2
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
@@ -176,7 +159,7 @@ content:
     type: text_textarea
     region: content
   field_ar_logo:
-    weight: 12
+    weight: 2
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
@@ -191,7 +174,7 @@ content:
     type: boolean_checkbox
     region: content
   field_ar_owner:
-    weight: 4
+    weight: 9
     settings:
       form_mode: inline
       override_labels: true
@@ -214,12 +197,31 @@ content:
       use_transition_label: 1
     third_party_settings: {  }
     region: content
+  field_ch_criteria_requirements:
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings:
+      allowed_formats:
+        hide_help: '0'
+        hide_guidelines: '1'
+    type: text_textarea
+    region: content
   field_collection_content:
     weight: 1
     settings:
       query_builder: false
     third_party_settings: {  }
     type: search_api_field_default
+    region: content
+  field_external_solution_url:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   field_keywords:
     weight: 15
@@ -236,7 +238,7 @@ content:
     type: oe_newsroom_newsletter_default
     region: content
   field_policy_domain:
-    weight: 3
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -245,11 +247,17 @@ content:
     weight: 14
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_topic:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   label:
     type: string_textfield
@@ -260,13 +268,15 @@ content:
     third_party_settings: {  }
     region: content
   transition_motivation:
-    weight: 7
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   created: true
+  field_ar_abstract: true
   field_ar_affiliates: true
+  field_short_id: true
   field_site_featured: true
   field_site_pinned: true
   langcode: true

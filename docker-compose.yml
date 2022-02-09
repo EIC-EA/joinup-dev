@@ -7,21 +7,16 @@ services:
       - "8080:80"
     volumes:
       - .:/var/www/html
-      - ./build.docker.main.xml:/var/www/html/build.xml
+    env_file:
+      - .env.dist
     environment:
       DOCUMENT_ROOT: "/var/www/html/web"
-      PHP_XDEBUG_ENABLED: "1"
+      PHP_XDEBUG_ENABLED: "0"
+      XDEBUG_MODE: "debug"
+      XDEBUG_KEY: "PHPSTORM"
+      XDEBUG_LOG: "/tmp/xdebug.log"
       PHP_IDE_CONFIG: "serverName=Docker"
       PHP_SENDMAIL_PATH: "/usr/sbin/sendmail -t -i -S mail:1025"
-
-  gulp:
-    image: huli/gulp
-    volumes:
-      - $PWD/web/themes/joinup:/srv
-    working_dir: /srv/prototype
-    entrypoint:
-      - /entrypoint.sh
-      - default
 
   mysql:
     image: mysql:5.6
@@ -30,6 +25,14 @@ services:
       MYSQL_USER: 'db_user'
       MYSQL_PASSWORD: 'db_pass'
       MYSQL_DATABASE: 'db_name'
+
+  redis:
+    image: "redis:alpine"
+    command: redis-server --requirepass sOmE_sEcUrE_pAsS
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_REPLICATION_MODE=master
 
   virtuoso:
     image: tenforce/virtuoso
@@ -62,23 +65,23 @@ services:
     build:
       context: ./resources/docker/solr
     ports:
-     - "8982:8983"
+      - "8982:8983"
     entrypoint:
-     - docker-entrypoint.sh
-     - solr-precreate
-     - drupal_published
-     - "/opt/docker-solr/configsets/drupal"
+      - docker-entrypoint.sh
+      - solr-precreate
+      - drupal_published
+      - "/opt/docker-solr/configsets/drupal"
 
   solr_unpublished:
     build:
       context: ./resources/docker/solr
     ports:
-     - "8983:8983"
+      - "8983:8983"
     entrypoint:
-     - docker-entrypoint.sh
-     - solr-precreate
-     - drupal_unpublished
-     - "/opt/docker-solr/configsets/drupal"
+      - docker-entrypoint.sh
+      - solr-precreate
+      - drupal_unpublished
+      - "/opt/docker-solr/configsets/drupal"
 
 volumes:
   virtuoso:

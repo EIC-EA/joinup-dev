@@ -10,7 +10,7 @@ Feature: Solutions Overview
     Then I should see the link "Solutions"
     When I click "Solutions"
     Then I should see the heading "Solutions"
-    And I should see the text "A solution is a framework, tool, or service that is offered as a solution to one of the COVID-19 challenges."
+    And I should see the text "A solution is a framework, tool, or service that is offered as a solution to one of the challenges."
     # Check that all logged in users can see and access the link as well.
     Given I am logged in as a user with the "authenticated user" role
     Then I should see the link "Solutions"
@@ -91,7 +91,7 @@ Feature: Solutions Overview
     And I am on the homepage
     Then I should see the link "Solutions"
     And I click "Solutions"
-    Then I should see the text "A solution is a framework, tool, or service that is offered as a solution to one of the COVID-19 challenges."
+    Then I should see the text "A solution is a framework, tool, or service that is offered as a solution to one of the challenges."
     And the page should be cacheable
 
     # Access the page as a moderator to ensure proper caching.
@@ -140,8 +140,8 @@ Feature: Solutions Overview
       | Language              | http://publications.europa.eu/resource/authority/language/VLS          |
       | Name                  | Ambrosio Morison                                                       |
       | E-mail address        | ambrosio.morison@example.com                                           |
-    Then I select "http://data.europa.eu/dr8/DataExchangeService" from "Solution type"
-    And I select "Demography" from "Policy domain"
+    Then I select "Service" from "Solution type"
+    And I select "Demography" from "Domains"
     And I attach the file "logo.png" to "Logo"
     And I attach the file "banner.jpg" to "Banner"
     And I upload the file "text.pdf" to "Upload a new file or enter a URL"
@@ -195,51 +195,66 @@ Feature: Solutions Overview
 
     When I am logged in as "Joann Womack"
     And I click "Solutions"
-    Then the "My solutions content" inline facet should allow selecting the following values "My solutions (3), Featured solutions (2)"
+    Then the "My solutions content" inline facet should allow selecting the following values:
+      | My solutions (3)       |
+      | Featured solutions (2) |
     And the page should be cacheable
     When I click "My solutions" in the "My solutions content" inline facet
     Then I should see the following tiles in the correct order:
       | Lost Yard           |
       | Lost Scattered Fish |
       | Silver Gravel       |
-    And the "My solutions content" inline facet should allow selecting the following values "Featured solutions (2), All solutions"
+    And the "My solutions content" inline facet should allow selecting the following values:
+      | Featured solutions (2) |
+      | All solutions          |
     And the page should be cacheable
     # Regression test to ensure that the facets are cached by user.
     # Subsequent page loads of the collections page would lead to cached facets
     # to be leaked to other users.
-    # @see https://webgate.ec.europa.eu/CITnet/jira/browse/ISAICP-3777
+    # @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-3777
     When I click "All solutions" in the "My solutions content" inline facet
-    Then the "My solutions content" inline facet should allow selecting the following values "My solutions (3), Featured solutions (2)"
+    Then the "My solutions content" inline facet should allow selecting the following values:
+      | My solutions (3)       |
+      | Featured solutions (2) |
     And the page should be cacheable
 
     When I am logged in as "Ryker Brandon"
     When I click "Solutions"
-    Then the "My solutions content" inline facet should allow selecting the following values "Featured solutions (2), My solutions (1)"
+    Then the "My solutions content" inline facet should allow selecting the following values:
+      | Featured solutions (2) |
+      | My solutions (1)       |
     And the page should be cacheable
     When I click "My solutions" in the "My solutions content" inline facet
     Then I should see the following tiles in the correct order:
       | Long Tungsten |
-    And the "My solutions content" inline facet should allow selecting the following values "Featured solutions (2), All solutions"
+    And the "My solutions content" inline facet should allow selecting the following values:
+      | Featured solutions (2) |
+      | All solutions          |
     And the page should be cacheable
     # Verify that the facets are cached for the correct user by visiting again
     # the collections page without any facet filter.
     When I click "All solutions" in the "My solutions content" inline facet
-    Then the "My solutions content" inline facet should allow selecting the following values "Featured solutions (2), My solutions (1)"
+    Then the "My solutions content" inline facet should allow selecting the following values:
+      | Featured solutions (2) |
+      | My solutions (1)       |
     And the page should be cacheable
 
     When I am an anonymous user
     And I click "Solutions"
     # The anonymous user has no access to the "My solutions" facet entry.
-    Then the "My solutions content" inline facet should allow selecting the following values "Featured solutions (2)"
+    Then the "My solutions content" inline facet should allow selecting the following values:
+      | Featured solutions (2) |
     And the page should be cacheable
     When I click "Featured solutions" in the "My solutions content" inline facet
     Then I should see the following tiles in the correct order:
       | Subdivision Morbid           |
       | Hungry Disappointed Tungsten |
-    And the "My solutions content" inline facet should allow selecting the following values "All solutions"
+    And the "My solutions content" inline facet should allow selecting the following values:
+      | All solutions |
     And the page should be cacheable
     When I click "All solutions" in the "My solutions content" inline facet
-    Then the "My solutions content" inline facet should allow selecting the following values "Featured solutions (2)"
+    Then the "My solutions content" inline facet should allow selecting the following values:
+      | Featured solutions (2) |
     And the page should be cacheable
 
     When I am logged in as "Ryker Brandon"

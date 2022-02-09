@@ -126,7 +126,9 @@ class RecommendedContentBlock extends BlockBase implements ContainerFactoryPlugi
         '#type' => 'inline_template',
         // Warning: when changing this text, also update the metatags to match.
         // See `metatag.metatag_defaults.front.yml`.
-        '#template' => '<p>{% trans %}EIC Covid19 is a collaborative platform created by the European Commission as a follow up mechanism to the Covid19 challenges presented at the EUvsVIRUS Hackathon, but also able to include other challenges in the future. Funded by the European Union via <a href="https://ec.europa.eu/isa2/">Interoperability solutions for public administrations, businesses and citizens</a> (ISA<sup>2</sup>) Programme. It offers several services that aim at helping all relevant actors from the hackathon to continue and expand their collaboration with each other, reaching innovative and fast solutions to all relevant challenges. {% endtrans %}</p>',
+        '#template' => '<p>{% trans %}Are you an EIC thinker who likes to dig into science, research or technology to address new challenges? Do you believe your company has the right expertise to solve some of the biggest challenges from corporates, procurers or market leaders alike? Then our Challenge Platform is the right place for you.{% endtrans %}</p>
+                        <p>{% trans %}We gather in this virtual stage challengers from a diverse set of organisations with EIC-funded problem-solvers, eager to develop and implement innovations in different sorts of fields.{% endtrans %}</p>
+                        <p>{% trans %}If you think you can be our next challenge solver, don’t miss the opportunity to connect with this creative group and help solve pressing challenges with your innovative approaches. {% endtrans %}</p>',
       ],
     ];
 
@@ -134,7 +136,7 @@ class RecommendedContentBlock extends BlockBase implements ContainerFactoryPlugi
 
     // @todo Provide tailored content for authenticated users that are not a
     //   member of any group, according to their past browsing behaviour.
-    // @see https://webgate.ec.europa.eu/CITnet/jira/browse/ISAICP-3427
+    // @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-3427
     $this->entities = $this->getPinnedEntities($count);
 
     // If the user is a member of one or more collections or solutions, show

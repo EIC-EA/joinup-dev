@@ -1,4 +1,4 @@
-FROM php:7.1.24-apache-jessie
+FROM php:7.3.28-apache-stretch
 
 ARG composer_version="1.7.2"
 ARG drush_version="8.1.17"
@@ -15,13 +15,14 @@ RUN sed -ri -e 's!/var/www/!${DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/a
 # install the PHP extensions we need
 RUN set -ex; \
 	apt-get update; \
-    apt-get install -y --no-install-recommends ssh libjpeg-dev libpng-dev libpq-dev mysql-client gnupg \
-    wget curl nano unzip patch git rsync make ssmtp; \
+    apt-get install -y --no-install-recommends iproute2 ssh libzip-dev libjpeg-dev libpng-dev libpq-dev mysql-client \
+    net-tools gnupg wget curl nano unzip patch git rsync make ssmtp telnet lsof iputils-ping; \
 	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
 	docker-php-ext-install -j "$(nproc)" gd opcache pdo_mysql pdo_pgsql zip
 
-RUN pecl install xdebug; \
-    docker-php-ext-enable xdebug;
+RUN pecl install xdebug-3.0.4;
+ # enabling in the docker-compose.yml file
+ # && docker-php-ext-enable xdebug
 
 RUN wget https://github.com/composer/composer/releases/download/${composer_version}/composer.phar -O /usr/bin/composer
 RUN wget https://github.com/drush-ops/drush/releases/download/${drush_version}/drush.phar -O /usr/bin/drush
@@ -38,12 +39,6 @@ RUN apt-get clean; \
 
 ADD php_settings.ini /usr/local/etc/php/conf.d/95-php_settings.ini
 ADD ssmtp.conf /etc/ssmtp/ssmtp.conf
-
-RUN echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/95-xdebug.ini
-RUN echo "xdebug.remote_autostart=0" >> /usr/local/etc/php/conf.d/95-xdebug.ini
-RUN echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/95-xdebug.ini
-RUN echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/95-xdebug.ini
-RUN echo "xdebug.idekey=PHPSTORM" >> /usr/local/etc/php/conf.d/95-xdebug.ini
 
 WORKDIR /var/www/html
 

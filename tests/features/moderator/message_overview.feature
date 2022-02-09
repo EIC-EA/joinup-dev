@@ -1,5 +1,5 @@
 # The test is marked as @wip as there is a failure in our current CI that needs to be debugged.
-# @see: https://webgate.ec.europa.eu/CITnet/jira/browse/ISAICP-5665
+# @see: https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-5665
 @api @wip
 Feature: Solutions message overview
   As a moderator of the site
@@ -61,7 +61,7 @@ Feature: Solutions message overview
       | Title                 | Message overview proposal |
       | Description           | Doesn't matter.           |
       | Geographical coverage | Belgium                   |
-    When I select "HR" from "Policy domain"
+    When I select "HR" from "Domains"
     And I press "Add existing" at the "Owner" field
     And I fill in "Owner" with "Organisation example"
     And I press "Propose"
@@ -77,7 +77,7 @@ Feature: Solutions message overview
       | To approve or reject this proposal, please go to                                   |
       | You'll be able to provide feedback.                                                |
       | The requestor will be notified of your decision and feedback.                      |
-      | If you think this action is not clear or not due, please contact Covid Challenge Support at |
+      | If you think this action is not clear or not due, please contact us at |
 
     # Clean up the collection that was created.
     Then I delete the "Message overview proposal" collection

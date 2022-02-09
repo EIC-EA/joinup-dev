@@ -1,7 +1,9 @@
 uuid: 09fd61b1-58f7-41fb-aab9-a056b3f70d12
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.full_html
 _core:
   default_config_hash: vg_iOC73tv7UQsL4L5oks14UOU9jcSxjbhSsWudZFPY
 template: cc_transition_propose
@@ -9,14 +11,14 @@ label: 'Community content on Propose'
 description: 'Template id 3'
 text:
   -
-    value: '<p>COVID-19 Challenge: Content has been proposed</p>'
+    value: '<p>[easme:notifications-site-name]: Content has been proposed</p>'
     format: full_html
   -
-    value: '<p>@actor:full_name has submitted @entity:hasPublished:status @entity:bundle - "@entity:title" for publication in the @group:bundle: "@group:title".</p><p>You can access the proposed new content at the following link: <a href="@entity:url">@entity:url</a>.</p><p>If you think this action is not clear or not due, please contact Covid Challenge Support at <a href="@site:contact_url">@site:contact_url</a>.</p>'
+    value: '<p>@actor:full_name has submitted @entity:hasPublished:status @entity:bundle - "@entity:title" for publication in the @group:bundle: "@group:title".</p><p>You can access the proposed new content at the following link: <a href="@entity:url">@entity:url</a>.</p><p>If you think this action is not clear or not due, please contact the [easme:notifications-site-name] team at <a href="@site:contact_url">@site:contact_url</a>.</p>'
     format: full_html
 settings:
   'token options':
     clear: false
-    'token replace': false
+    'token replace': true
   purge_override: false
   purge_methods: {  }

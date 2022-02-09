@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies: {  }
 id: collection_policy_domain
-name: 'Policy Domain'
+name: Domains
 url_alias: collection_policy_domain
-weight: -1
+weight: 0
 min_count: 1
 show_only_one_result: true
 field_identifier: policy_domain
@@ -14,7 +14,7 @@ widget:
   type: links_inline
   config:
     show_numbers: true
-    all_text: 'all policy domains'
+    all_text: 'all domains'
     prefix_text: 'About:'
     suffix_text: ''
 query_operator: or

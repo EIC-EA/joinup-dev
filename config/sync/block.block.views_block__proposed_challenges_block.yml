@@ -1,0 +1,30 @@
+uuid: 0ac591ec-7665-449d-bd80-cd437c6122eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.proposed_challenges
+  module:
+    - joinup_core
+    - views
+  theme:
+    - joinup_theme
+id: views_block__proposed_challenges_block
+theme: joinup_theme
+region: content
+weight: -14
+provider: null
+plugin: 'views_block:proposed_challenges-block'
+settings:
+  id: 'views_block:proposed_challenges-block'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_route:
+    id: request_route
+    routes: dashboard.page
+    negate: false
+    context_mapping: {  }

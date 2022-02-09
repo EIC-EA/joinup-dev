@@ -1,0 +1,29 @@
+uuid: 27675457-4bd9-4a56-8084-e088e483ff8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.covid_19_type
+  module:
+    - facets
+    - joinup_core
+  theme:
+    - joinup_theme
+id: type
+theme: joinup_theme
+region: sidebar_left
+weight: -15
+provider: null
+plugin: 'facet_block:covid_19_type'
+settings:
+  id: 'facet_block:covid_19_type'
+  label: 'Covid 19 - Type'
+  provider: facets
+  label_display: '0'
+  block_id: type
+visibility:
+  request_route:
+    id: request_route
+    routes: view.search.page_2
+    negate: false
+    context_mapping: {  }

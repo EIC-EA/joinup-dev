@@ -2,6 +2,16 @@ uuid: 65b311ba-c63c-4f45-951e-11c101e528fc
 langcode: en
 status: true
 dependencies:
+  module:
+    - search_api_solr
+    - node
+    - rdf_entity
+    - paragraphs
+    - user
+    - search_api
+    - asset_distribution
+    - custom_page
+    - joinup_search
   config:
     - field.storage.node.body
     - field.storage.rdf_entity.field_ad_description
@@ -10,6 +20,7 @@ dependencies:
     - field.storage.node.field_event_agenda
     - field.storage.node.field_event_date
     - field.storage.rdf_entity.field_is_description
+    - field.storage.rdf_entity.field_is_eif_recommendation
     - field.storage.rdf_entity.field_is_pinned_in
     - field.storage.rdf_entity.field_is_solution_type
     - field.storage.rdf_entity.field_isr_description
@@ -30,16 +41,14 @@ dependencies:
     - field.storage.rdf_entity.field_owner_name
     - field.storage.rdf_entity.field_isr_contact_information
     - field.storage.rdf_entity.field_isr_owner
+    - field.storage.node.field_paragraphs_body
+    - field.storage.paragraph.field_body
     - search_api.server.solr_unpublished
-  module:
-    - node
-    - rdf_entity
-    - user
-    - search_api
-    - asset_distribution
-    - joinup_search
-    - search_api_solr
-    - custom_page
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
 id: unpublished
 name: 'Unpublished entities index'
 description: ''
@@ -99,6 +108,18 @@ field_settings:
         - 'entity:rdf_entity/collection'
         - 'entity:rdf_entity/field_isr_is_version_of'
         - 'entity:rdf_entity/og_audience'
+  entity_state:
+    label: State
+    property_path: aggregated_field
+    type: string
+    configuration:
+      type: union
+      fields:
+        - 'entity:node/field_state'
+        - 'entity:rdf_entity/field_ar_state'
+        - 'entity:rdf_entity/field_is_state'
+        - 'entity:rdf_entity/field_isr_state'
+        - 'entity:rdf_entity/field_status'
   field_ad_description:
     label: 'Description » Processed text'
     datasource_id: 'entity:rdf_entity'
@@ -147,6 +168,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.rdf_entity.field_is_description
+  field_is_eif_recommendation:
+    label: 'EIF reference'
+    datasource_id: 'entity:rdf_entity'
+    property_path: field_is_eif_recommendation
+    type: string
+    dependencies:
+      config:
+        - field.storage.rdf_entity.field_is_eif_recommendation
   field_is_pinned_in:
     label: 'Pinned in'
     datasource_id: 'entity:rdf_entity'
@@ -339,7 +368,7 @@ field_settings:
       module:
         - node
   policy_domain:
-    label: 'Policy domain'
+    label: Domains
     property_path: aggregated_field
     type: string
     configuration:
@@ -347,6 +376,17 @@ field_settings:
       fields:
         - 'entity:node/field_policy_domain'
         - 'entity:rdf_entity/field_policy_domain'
+  processed:
+    label: 'Body » Paragraph » Body » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_paragraphs_body:entity:field_body:processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_paragraphs_body
+        - field.storage.paragraph.field_body
+      module:
+        - paragraphs
   rdf_changed:
     label: Changed
     datasource_id: 'entity:rdf_entity'
@@ -427,18 +467,30 @@ field_settings:
 datasource_settings:
   'entity:node':
     bundles:
-      default: true
-      selected: {  }
+      default: false
+      selected:
+        - custom_page
+        - discussion
+        - document
+        - event
+        - glossary
+        - news
+        - newsletter
+        - pledge
+        - video
     languages:
       default: true
       selected: {  }
   'entity:rdf_entity':
     bundles:
-      default: true
+      default: false
       selected:
-        - contact_information
-        - owner
-        - provenance_activity
+        - asset_distribution
+        - asset_release
+        - collection
+        - licence
+        - solution
+        - spdx_licence
     languages:
       default: true
       selected: {  }

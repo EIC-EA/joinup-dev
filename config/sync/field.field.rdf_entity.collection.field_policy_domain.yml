@@ -12,9 +12,9 @@ id: rdf_entity.collection.field_policy_domain
 field_name: field_policy_domain
 entity_type: rdf_entity
 bundle: collection
-label: 'Policy domain'
+label: Domains
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''

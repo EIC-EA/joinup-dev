@@ -1,0 +1,28 @@
+uuid: 6bd00b90-6351-461c-b549-4488098bd35f
+langcode: en
+status: true
+dependencies:
+  module:
+    - easme_covid19
+    - joinup_core
+  theme:
+    - joinup_theme
+_core:
+  default_config_hash: 5RA-tsszRNxHnswCRXiks8fuRJyTj7c71KTIM0EG46Q
+id: covid19content
+theme: joinup_theme
+region: content
+weight: -25
+provider: null
+plugin: covid19_content
+settings:
+  id: covid19_content
+  label: 'Covid 19 content'
+  provider: easme_covid19
+  label_display: '0'
+visibility:
+  request_route:
+    id: request_route
+    routes: view.search.page_2
+    negate: false
+    context_mapping: {  }

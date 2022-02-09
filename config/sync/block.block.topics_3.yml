@@ -1,0 +1,29 @@
+uuid: 5097098a-09d0-41a0-bd57-ba50e8af03ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.topics
+  module:
+    - facets
+    - joinup_core
+  theme:
+    - joinup_theme
+id: topics_3
+theme: joinup_theme
+region: sidebar_left
+weight: -19
+provider: null
+plugin: 'facet_block:topics'
+settings:
+  id: 'facet_block:topics'
+  label: 'Search page - Topics'
+  provider: facets
+  label_display: '0'
+  block_id: topics_3
+visibility:
+  request_route:
+    id: request_route
+    routes: view.search.page_1
+    negate: false
+    context_mapping: {  }

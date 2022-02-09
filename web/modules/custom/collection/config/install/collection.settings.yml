@@ -65,14 +65,9 @@ transitions:
       - rdf_entity-collection-facilitator
     archival_request:
       - moderator
-    deletion_request:
-      - moderator
-  archival_request:
-    validated:
-      - rdf_entity-collection-administrator
-  deletion_request:
-    validated:
-      - rdf_entity-collection-administrator
   archived:
     archival_request:
       - moderator
+    validated:
+      - moderator
+      - rdf_entity-collection-administrator

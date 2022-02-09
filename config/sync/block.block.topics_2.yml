@@ -1,0 +1,29 @@
+uuid: 9fff74f7-cfa9-41ed-a843-eae534f4bff8
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.challenge_topics
+  module:
+    - facets
+    - joinup_core
+  theme:
+    - joinup_theme
+id: topics_2
+theme: joinup_theme
+region: sidebar_left
+weight: -17
+provider: null
+plugin: 'facet_block:challenge_topics'
+settings:
+  id: 'facet_block:challenge_topics'
+  label: 'Challenges - Topics'
+  provider: facets
+  label_display: '0'
+  block_id: topics_2
+visibility:
+  request_route:
+    id: request_route
+    routes: view.collections.page_1
+    negate: false
+    context_mapping: {  }

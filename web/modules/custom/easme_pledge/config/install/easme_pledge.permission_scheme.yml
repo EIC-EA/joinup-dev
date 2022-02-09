@@ -1,0 +1,106 @@
+view:
+  easme_pledge_workflow:
+    draft:
+      own:
+        roles:
+          - authenticated
+      any:
+        roles:
+          - moderator
+    proposed:
+      own:
+        roles:
+          - authenticated
+      any:
+        roles:
+          - moderator
+    under_validation:
+      own:
+        roles:
+          - authenticated
+      any:
+        roles:
+          - moderator
+    validated:
+      any:
+        roles:
+          - anonymous
+          - authenticated
+create: {  }
+update:
+  easme_pledge_workflow:
+    draft:
+      __new__:
+        own:
+          roles:
+            - authenticated
+      draft:
+        own:
+          roles:
+            - authenticated
+        any:
+          roles:
+            - moderator
+    proposed:
+      __new__:
+        own:
+          roles:
+            - authenticated
+      draft:
+        own:
+          roles:
+            - authenticated
+        any:
+          roles:
+            - moderator
+      proposed:
+        any:
+          roles:
+            - moderator
+    under_validation:
+      __new__:
+        any:
+          roles:
+            - moderator
+      draft:
+        any:
+          roles:
+            - moderator
+      proposed:
+        any:
+          roles:
+            - moderator
+      under_validation:
+        any:
+          roles:
+            - moderator
+    validated:
+      under_validation:
+        any:
+          roles:
+            - moderator
+      validated:
+        any:
+          roles:
+            - moderator
+delete:
+  easme_pledge_workflow:
+    draft:
+      own:
+        roles:
+          - authenticated
+      any:
+        roles:
+          - moderator
+    proposed:
+      any:
+        roles:
+          - moderator
+    under_validation:
+      any:
+        roles:
+          - moderator
+    validated:
+      any:
+        roles:
+          - moderator

@@ -77,6 +77,8 @@ Feature: Solution API
     # And I click on element ".mdl-button__ripple-container"
     Then I should see the link "Add solution"
     And I click "Add solution"
+    And I check "I have read and accept the legal notice and I commit to manage my solution on a regular basis."
+    And I press "Yes"
     When I fill in the following:
       | Title          | Solution API example                         |
       | Description    | We do not care that much about descriptions. |
@@ -88,8 +90,8 @@ Feature: Solution API
     # Then I wait for AJAX to finish
     And I fill in "Owner" with "Leechidna"
     And I fill in "Language" with "http://publications.europa.eu/resource/authority/language/VLS"
-    And I select "EU and European Policies" from "Policy domain"
-    And I select "Citizen" from "Solution type"
+    And I select "EU and European Policies" from "Domains"
+    And I select "Service" from "Solution type"
     And I press "Add owner"
     And I press "Save"
     Then I should see the heading "Solution API example"

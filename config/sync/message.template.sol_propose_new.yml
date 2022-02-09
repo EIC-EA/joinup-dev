@@ -1,7 +1,9 @@
 uuid: 5d944652-ee56-4bc7-8e62-a8e6e1b126dc
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.full_html
 _core:
   default_config_hash: PDTK5gloYLKYe525BWUGUSbKf70iRnyJ4z_WjsqtpsY
 template: sol_propose_new
@@ -9,14 +11,14 @@ label: 'Solution propose new'
 description: 'Template 1: Propose new solution'
 text:
   -
-    value: 'COVID-19 Challenge: A new solution has been proposed'
+    value: 'A new solution has been proposed'
     format: full_html
   -
-    value: '<p>@actor:full_name has proposed a new Interoperability solution: "@entity:title" on COVID-19 Challenge.</p><p>The publication of this content requires your validation.</p><p>You can access the new content at the following link: <a href="@entity:url">@entity:url</a> where you can validate or reject the new content.</p><p>If you think this action is not clear or not due, please contact Covid Challenge Support at <a href="@site:contact_url">@site:contact_url</a>.</p>'
+    value: '<p>@actor:full_name has proposed the following solution: "@entity:title".</p> <p>To approve or reject the offer, please visit : <a href="@entity:url">@entity:url</a>.</p> <p>Please notice that the member will be notified of your decision.</p>'
     format: full_html
 settings:
   'token options':
     clear: false
-    'token replace': false
+    'token replace': true
   purge_override: false
   purge_methods: {  }

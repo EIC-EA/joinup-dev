@@ -37,7 +37,7 @@ user_accounts:
   restrict_password_management: true
   restrict_email_management: true
 error_handling:
-  login_failure_page: /
+  login_failure_page: /challenges
   message_validation_failure: 'There was a problem validating your login, please contact a site administrator.'
   message_no_local_account: 'You do not have an account on this website. Please contact a site administrator.'
   message_subscriber_denied_reg: 'You do not have access to log in to this website. Please contact a site administrator if you believe you should have access.'

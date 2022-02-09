@@ -1,4 +1,4 @@
-@api
+@api @wip
 Feature:
   As a user of the website
   When I go to the overview page of an EIRA term
@@ -14,7 +14,6 @@ Feature:
       | Public Service Consumer                   |
       | Public Service Delivery Agent             |
       | Service Delivery Model                    |
-      | Public Service Agent                      |
-      | Technical Interoperability Agreement      |
       | Organisational Interoperability Agreement |
       | Semantic Interoperability Agreement       |
+      | Technical Interoperability Agreement      |

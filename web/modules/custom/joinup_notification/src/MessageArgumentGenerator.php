@@ -39,6 +39,7 @@ class MessageArgumentGenerator {
 
     // Default to the current user.
     if (empty($actor)) {
+      /** @var \Drupal\user\UserInterface $actor */
       $actor = User::load(\Drupal::currentUser()->id());
     }
 
@@ -50,19 +51,19 @@ class MessageArgumentGenerator {
 
     if ($actor->isAnonymous()) {
       // If an anonymous is creating content, set the first name to also be 'the
-      // COVID-19 Challenge moderation team' because some emails use only the
-      // first name instead of the full name.
+      // EIC Challenge moderation team' because some emails use only the first
+      // name instead of the full name.
       $arguments['@actor:role'] = 'moderator';
-      $arguments['@actor:full_name'] = $arguments['@actor:field_user_first_name'] = 'the COVID-19 Challenge moderation team';
+      $arguments['@actor:full_name'] = $arguments['@actor:field_user_first_name'] = 'the EIC Challenge moderation team';
     }
     elseif ($actor->hasRole('moderator')) {
       /** @var \Drupal\user\RoleInterface $role */
       $role = Role::load('moderator');
       $arguments['@actor:role'] = $role->label();
-      $arguments['@actor:full_name'] = 'The COVID-19 Challenge Support Team';
+      $arguments['@actor:full_name'] = 'The EIC Challenge Team';
     }
     elseif (!$actor->isAnonymous()) {
-      $arguments['@actor:full_name'] = empty($actor->get('full_name')->value) ? $actor_first_name . ' ' . $actor_family_name : $actor->get('full_name')->value;
+      $arguments['@actor:full_name'] = $actor->getDisplayName();
     }
 
     return $arguments;

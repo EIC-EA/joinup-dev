@@ -88,7 +88,7 @@ Feature: Document moderation
       | Title       | An amazing document |
       | Short title | Amazing document    |
     And I enter "This is going to be an amazing document." in the "Description" wysiwyg editor
-    And I select "Document" from "Type"
+    And I select "Study" from "Type"
     Then I upload the file "test.zip" to "Upload a new file or enter a URL"
     And I press "Save as draft"
     Then I should see the success message "Document An amazing document has been created"
@@ -106,7 +106,7 @@ Feature: Document moderation
     And I click "A not so amazing document"
 
     # Regression check that the revision page loads properly.
-    # @see: https://webgate.ec.europa.eu/CITnet/jira/browse/ISAICP-4671
+    # @see: https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-4671
     When I click "Revisions" in the "Entity actions" region
     Then I should see the heading "Revisions for A not so amazing document"
 

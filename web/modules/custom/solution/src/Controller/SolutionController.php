@@ -6,6 +6,7 @@ namespace Drupal\solution\Controller;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\collection\Entity\CollectionInterface;
 use Drupal\og\Og;
 use Drupal\rdf_entity\RdfInterface;
 
@@ -51,7 +52,7 @@ class SolutionController extends ControllerBase {
    */
   public function createSolutionAccess(RdfInterface $rdf_entity) {
     // If the collection is archived, content creation is not allowed.
-    if ($rdf_entity->bundle() === 'collection' && $rdf_entity->field_ar_state->first()->value === 'archived') {
+    if ($rdf_entity instanceof CollectionInterface && $rdf_entity->isChallengeClosed()) {
       return AccessResult::forbidden();
     }
 
@@ -60,9 +61,9 @@ class SolutionController extends ControllerBase {
       return AccessResult::neutral();
     }
 
-    // Users with 'administer group' permission should have access since this
-    // page can only be called from within a group.
-    if ($user->hasPermission('administer group')) {
+    // Users with 'administer organic groups' permission should have access
+    // since this page can only be called from within a group.
+    if ($user->hasPermission('administer organic groups')) {
       return AccessResult::allowed();
     }
 

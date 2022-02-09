@@ -125,7 +125,8 @@ class EuLoginMenuLink extends MenuLinkDefault {
     }
     // If we are on the homepage, set the 'returnto' path to '/' alias.
     elseif ($this->pathMatcher->isFrontPage()) {
-      $return_to = '/';
+      $front_path=\Drupal::urlGenerator()->generateFromRoute('<front>', [], ['absolute' => FALSE]);
+      $return_to = $front_path;
     }
     // Return to the current page URL.
     else {
@@ -135,6 +136,7 @@ class EuLoginMenuLink extends MenuLinkDefault {
       $route_parameters = $route_match->getRawParameters()->all();
       $route_options = ['query' => $query_arguments];
       $return_to = (new Url($route_name, $route_parameters, $route_options))->setAbsolute()->toString();
+      $return_to = preg_replace("/^http:/i", "https:", $return_to);
     }
 
     $options = parent::getOptions();

@@ -30,7 +30,7 @@ tips:
   search:
     id: search
     plugin: text
-    body: 'Search through the entire COVID-19 Challenge platform and its supported content items.'
+    body: 'Search through the EIC Challenge platform and its supported content items.'
     weight: 3
     location: left
     attributes:

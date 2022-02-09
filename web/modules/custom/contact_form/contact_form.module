@@ -67,6 +67,8 @@ function contact_form_form_message_contact_form_submission_form_alter(&$form, Fo
   // success message informing the user that their message has been successfully
   // sent.
   $form['actions']['submit']['#submit'][] = 'contact_form_form_message_contact_form_submission_submit';
+
+  $form['actions']['#suffix'] = '<span>' . (string) t('Submissions of this form are processed by a contractor of the European Commission.') . '</span>';
 }
 
 /**
@@ -120,7 +122,7 @@ function contact_form_tokens($type, $tokens, array $data, array $options, Bubble
  *
  * @todo This doesn't belong in the Joinup distribution and should be removed.
  *
- * @see https://webgate.ec.europa.eu/CITnet/jira/browse/ISAICP-3988
+ * @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-3988
  */
 function contact_form_mail_alter(&$message) {
   if ($message['key'] !== 'contact_form_submission') {
@@ -143,14 +145,16 @@ function contact_form_mail($key, &$message, $params) {
     return;
   }
 
+  $site_name = \Drupal::service('easme_helper.notifications_helper')->getSiteName();
+
   /** @var \Drupal\message\MessageInterface $entity */
   $entity = $params['message'];
   $name = "{$entity->field_contact_first_name->value} {$entity->field_contact_last_name->value}";
 
-  $message['subject'] = t('COVID-19 Challenge: Contact form notification');
+  $message['subject'] = t('@site_name: Contact form notification', ['@site_name' => $site_name]);
 
   $message['body'][] = t('Dear @name', ['@name' => $name]);
-  $message['body'][] = t('Thank you for submitting your message to the COVID-19 Challenge Support.');
+  $message['body'][] = t('Thank you for submitting your message to the @site_name team.', ['@site_name' => $site_name]);
 
   if ($entity->field_contact_copy->value) {
     $message['body'][] = t('This is the message you submitted through the online form:');
@@ -168,7 +172,7 @@ function contact_form_mail($key, &$message, $params) {
   }
 
   $message['body'][] = t('Kind regards,');
-  $message['body'][] = t('The COVID-19 Challenge Support Team');
+  $message['body'][] = t('The @site_name Team', ['@site_name' => $site_name]);
 
   // Send as HTML.
   $message['headers']['Content-Type'] = SWIFTMAILER_FORMAT_HTML;

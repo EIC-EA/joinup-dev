@@ -9,15 +9,15 @@ Feature: Related solution
       | name  | Kalikatoura |
     And the following owner:
       | name         | type                         |
-      | Kalikatoures | Company, Industry consortium |
+      | Kalikatoures | Company, Regional authority |
     And solutions:
       | title      | related solutions | description                         | documentation | related by type | moderation | logo     | banner     | policy domain | state     | solution type | owner        | contact information |
       | C          |                   | Blazing fast segmetation faults.    | text.pdf      | yes             | no         | logo.png | banner.jpg | Demography    | validated |               | Kalikatoures | Kalikatoura         |
-      | Java       | C                 | Because inheritance is cool.        | text.pdf      | yes             | no         | logo.png | banner.jpg | Demography    | validated | Citizen       | Kalikatoures | Kalikatoura         |
-      | PHP        |                   | Make a site.                        | text.pdf      | yes             | yes        | logo.png | banner.jpg | Demography    | validated | Citizen       | Kalikatoures | Kalikatoura         |
-      | Golang     |                   | Concurrency for the masses          | text.pdf      | yes             | yes        | logo.png | banner.jpg | Demography    | proposed  | Citizen       | Kalikatoures | Kalikatoura         |
+      | Java       | C                 | Because inheritance is cool.        | text.pdf      | yes             | no         | logo.png | banner.jpg | Demography    | validated | Product       | Kalikatoures | Kalikatoura         |
+      | PHP        |                   | Make a site.                        | text.pdf      | yes             | yes        | logo.png | banner.jpg | Demography    | validated | Product       | Kalikatoures | Kalikatoura         |
+      | Golang     |                   | Concurrency for the masses          | text.pdf      | yes             | yes        | logo.png | banner.jpg | Demography    | proposed  | Product       | Kalikatoures | Kalikatoura         |
       | Python     |                   | Get stuff done.                     | text.pdf      | yes             | no         | logo.png | banner.jpg | Demography    | validated |               | Kalikatoures | Kalikatoura         |
-      | Javascript | Java              | Java is related to javascript. Huh? | text.pdf      | no              | no         | logo.png | banner.jpg | Demography    | validated | Citizen       | Kalikatoures | Kalikatoura         |
+      | Javascript | Java              | Java is related to javascript. Huh? | text.pdf      | no              | no         | logo.png | banner.jpg | Demography    | validated | Product       | Kalikatoures | Kalikatoura         |
 
     # Scenario A. A collection owner manages his own collection.
     When I visit the "Java" solution
@@ -35,7 +35,7 @@ Feature: Related solution
     When I am logged in as a facilitator of the "Java" solution
     And I visit the "Java" solution
     And I click "Edit" in the "Entity actions" region
-    And I fill in "Related Solutions" with values "C, Python"
+    And I fill in "Related solutions" with values "C, Python"
     And I uncheck "Show solutions related by EIRA terms"
     And I press "Propose"
     Then I should see the heading "Java"

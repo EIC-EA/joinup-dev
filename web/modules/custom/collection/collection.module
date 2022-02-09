@@ -16,6 +16,9 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
+use Drupal\collection\Entity\Collection;
+use Drupal\collection\Entity\GlossaryTerm;
 use Drupal\collection\Plugin\Field\FieldType\LastUpdatedFieldItemList;
 use Drupal\node\NodeInterface;
 use Drupal\og\Entity\OgRole;
@@ -48,6 +51,15 @@ function collection_theme($existing, $type, $theme, $path) {
         'confirm' => '',
       ],
     ],
+
+    // The collection glossary navigation.
+    'glossary_navigator' => [
+      'variables' => [
+        'url' => NULL,
+        'letters' => [],
+        'current' => NULL,
+      ],
+    ],
   ];
 }
 
@@ -71,6 +83,18 @@ function collection_form_block_form_alter(&$form, FormStateInterface $form_state
   // Hide the 'negation' option for collection block visibility. There are no
   // good use cases to show a block on all pages, except on collection pages.
   $form['visibility']['collection']['negate']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_entity_bundle_info_alter().
+ */
+function collection_entity_bundle_info_alter(&$bundles) {
+  if (!empty($bundles['rdf_entity']['collection'])) {
+    $bundles['rdf_entity']['collection']['class'] = Collection::class;
+  }
+  if (!empty($bundles['node']['glossary'])) {
+    $bundles['node']['glossary']['class'] = GlossaryTerm::class;
+  }
 }
 
 /**
@@ -179,10 +203,10 @@ function collection_rdf_entity_presave(RdfInterface $entity) {
   if (in_array($state, ['draft', 'proposed'])) {
     $entity->set('graph', 'draft');
   }
+  // These are mainly the states that the challenge is considered published.
   elseif (in_array($state, [
     'validated',
     'archival_request',
-    'deletion_request',
     'archived',
   ])) {
     $entity->set('graph', SparqlGraphInterface::DEFAULT);
@@ -247,6 +271,11 @@ function collection_entity_extra_field_info() {
     'description' => t('Shows the join/leave collection form'),
     'visible' => FALSE,
   ];
+  $display['add_solution'] = [
+    'label' => t('Add solution button'),
+    'description' => t('Shows button to add a solution'),
+    'visible' => FALSE,
+  ];
 
   $display['members'] = [
     'label' => t('Amount of members'),
@@ -292,6 +321,29 @@ function collection_rdf_entity_view(array &$build, EntityInterface $entity, Enti
       '#cache' => ['contexts' => ['og_role']],
     ];
   }
+  if ($display->getComponent('add_solution')) {
+    $current_user = \Drupal::getContainer()->get('current_user')->getAccount();
+    $membership = Og::getMembership($entity, $current_user);
+    $access_to_add_solution = !empty($membership) && $membership->hasPermission('create solution rdf_entity');
+    
+    if (isset($build["field_external_solution_url"][0]["#plain_text"])
+      && filter_var($build["field_external_solution_url"][0]["#plain_text"] , FILTER_VALIDATE_URL) !== FALSE) {
+      $options = ['attributes' => ['target' => '_blank']];
+      $url = Url::fromUri($build["field_external_solution_url"][0]["#plain_text"], $options);
+    }
+    else {
+      $url = Url::fromRoute('solution.collection_solution.tca', ['rdf_entity' => $entity->id()]);
+    }
+    // $current_user->hasPermission('create solution rdf_entity')
+    $tags = [];
+    $build['add_solution'] = [
+      '#type' => 'link',
+      '#title' => t('Add Solution'),
+      '#url' => $url,
+      '#access' => $access_to_add_solution,
+
+    ];
+  }
 
   // Member count.
   if ($display->getComponent('members')) {
@@ -308,6 +360,10 @@ function collection_rdf_entity_view(array &$build, EntityInterface $entity, Enti
   }
 
   // Solution count.
+  // @todo Collections are not depending on solutions so they are not supposed
+  //   to handle functionality related to solutions. This should be moved to the
+  //   solution module.
+  // @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-5985
   if ($display->getComponent('solutions')) {
     $solution_count = collection_solution_count($entity);
     $tags = Cache::buildTags('og-group-content', $entity->getCacheTagsToInvalidate());
@@ -452,29 +508,5 @@ function collection_node_delete(NodeInterface $node) {
     // Touch the parent collection in order to update its changed timestamp.
     $group->skip_notification = TRUE;
     $group->setChangedTime(\Drupal::time()->getRequestTime())->save();
-  }
-}
-
-/**
- * Implements hook_ENTITY_TYPE_delete().
- */
-function collection_rdf_entity_delete(RdfInterface $solution) {
-  if (($solution->bundle() !== 'solution') || ($solution->field_is_state->value !== 'validated')) {
-    return;
-  }
-
-  $storage = \Drupal::entityTypeManager()->getStorage('rdf_entity');
-  $ids = $storage->getQuery()
-    ->condition('rid', 'collection')
-    ->condition('field_ar_affiliates', $solution->id())
-    ->execute();
-  if ($ids) {
-    // Touch the parent collections in order to update their changed timestamp.
-    $request_time = \Drupal::time()->getRequestTime();
-    /** @var \Drupal\rdf_entity\RdfInterface $collection */
-    foreach ($storage->loadMultiple($ids) as $collection) {
-      $collection->skip_notification = TRUE;
-      $collection->setChangedTime($request_time)->save();
-    }
   }
 }

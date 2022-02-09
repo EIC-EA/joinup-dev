@@ -12,7 +12,7 @@ dependencies:
 id: spatial_coverage_facet
 theme: joinup_theme
 region: sidebar_left
-weight: -9
+weight: -18
 provider: null
 plugin: 'facet_block:spatial_coverage'
 settings:
@@ -20,6 +20,7 @@ settings:
   label: 'Search page - Geographical coverage facet'
   provider: facets
   label_display: '0'
+  block_id: spatial_coverage_facet
 visibility:
   request_route:
     id: request_route

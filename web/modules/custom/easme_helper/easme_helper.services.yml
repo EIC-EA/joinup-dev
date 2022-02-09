@@ -1,0 +1,17 @@
+services:
+  easme_helper.notifications_helper:
+    class: Drupal\easme_helper\Utility\NotificationsHelper
+    arguments: ['@config.factory']
+  easme_helper.route_subscriber:
+    class: Drupal\easme_helper\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
+  easme_helper.cas_event_subscriber:
+    class: '\Drupal\easme_helper\EventSubscriber\CasEventSubscriber'
+    arguments: ['@config.factory']
+    tags:
+      - { name: 'event_subscriber' }
+  easme_helper.closed_collection.access_check:
+    class: Drupal\easme_helper\Access\ClosedCollectionAccessCheck
+    tags:
+      - { name: access_check, applies_to: _closed_collection }

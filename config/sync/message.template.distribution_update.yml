@@ -1,7 +1,9 @@
 uuid: 222e74bf-06da-4128-a3ef-481ac41922c1
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.full_html
 _core:
   default_config_hash: qS1vSKZ9WBHLQfsLwcsDxZUaxy3EJym3-rRNBPMwknk
 template: distribution_update
@@ -9,7 +11,7 @@ label: 'Solution distribution update'
 description: 'Template 21: Distribution update'
 text:
   -
-    value: 'COVID-19 Challenge: A distribution has been updated'
+    value: '[easme:notifications-site-name]:  A distribution has been updated'
     format: full_html
   -
     value: 'The distribution @entity:title @release:info:with_version of the solution @group:title was successfully updated.'
@@ -17,6 +19,6 @@ text:
 settings:
   'token options':
     clear: false
-    'token replace': false
+    'token replace': true
   purge_override: false
   purge_methods: {  }

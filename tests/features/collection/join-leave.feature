@@ -86,7 +86,7 @@ Feature: Joining and leaving collections through the web interface
     #   the moment we approve the membership and then leave the collection as a
     #   normal member. When ISAICP-3658 is implemented this should be replaced
     #   with a test for the cancellation of a pending membership.
-    # @see https://webgate.ec.europa.eu/CITnet/jira/browse/ISAICP-3658
+    # @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-3658
     Given my membership state in the "Folk Dance and Song Society" collection changes to "active"
     And I go to the homepage of the "Folk Dance and Song Society" collection
     And I click "Leave this challenge"
@@ -116,7 +116,7 @@ Feature: Joining and leaving collections through the web interface
     And I click "Leave this challenge"
 
     # The collection owner cannot leave the collection before transferring the rights to another owner.
-    Then I should see the text "You are owner of this collection. Before you leave this challenge, you should transfer the ownership to another member."
+    Then I should see the text "You are owner of this challenge. Before you leave this challenge, you should transfer the ownership to another member."
     And I should not see the button "Confirm"
 
     When I go to the homepage of the "Insectarium" collection

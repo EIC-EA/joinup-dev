@@ -4,8 +4,7 @@ dependencies:
   config:
     - og_menu.ogmenu.navigation
   module:
-    - collection
-    - solution
+    - joinup_group
     - og
   theme:
     - joinup_theme
@@ -17,7 +16,7 @@ provider: null
 plugin: 'group_menu_block:navigation'
 settings:
   id: 'group_menu_block:navigation'
-  label: 'Collection | Solution menu'
+  label: 'Challenge | Solution menu'
   provider: joinup_core
   label_display: '0'
   level: 1

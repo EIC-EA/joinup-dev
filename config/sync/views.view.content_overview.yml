@@ -6,7 +6,7 @@ dependencies:
     - search_api.index.published
     - system.menu.main
   module:
-    - joinup_core
+    - joinup_material_design
     - search_api
 id: content_overview
 label: 'Content overview'
@@ -610,6 +610,7 @@ display:
           exposed: false
           expose:
             label: ''
+            identifier: published_at
           plugin_id: search_api
         entity_created:
           id: entity_created
@@ -622,6 +623,7 @@ display:
           exposed: false
           expose:
             label: ''
+            identifier: entity_created
           plugin_id: search_api
       title: Latest
       header: {  }
@@ -644,6 +646,7 @@ display:
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.published'
+        - 'search_api_list:published'
   page_1:
     display_plugin: page
     id: page_1
@@ -658,16 +661,17 @@ display:
         description: ''
         expanded: false
         parent: ''
-        weight: -47
+        weight: -46
         context: '0'
         menu_name: main
+        enabled: false
     cache_metadata:
       max-age: -1
       contexts:
-        - community_content_author
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.published'
+        - 'search_api_list:published'

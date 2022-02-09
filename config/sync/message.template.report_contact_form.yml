@@ -1,13 +1,15 @@
 uuid: 878876c4-7fc9-4bfc-b125-2455f6c70f95
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.content_editor
 template: report_contact_form
 label: 'Report contact form'
 description: 'The message template for reporting content'
 text:
   -
-    value: '<p>COVID-19 Challenge: @message:subject</p>'
+    value: '<p>[easme:notifications-site-name]: @message:subject</p>'
     format: content_editor
   -
     value: "<p>@actor:full_name has reported the item \"@entity:title\" as abusive due to @message:message.</p>\n\n<p>You can access the reported content at the following link: @entity:url</p>"
@@ -15,6 +17,6 @@ text:
 settings:
   'token options':
     clear: false
-    'token replace': false
+    'token replace': true
   purge_override: false
   purge_methods: {  }

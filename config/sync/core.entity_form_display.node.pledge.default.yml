@@ -1,0 +1,127 @@
+uuid: 1ddb2a65-44d2-466b-8cf9-060827ca6ef2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.rdf_entity.inline
+    - field.field.node.pledge.body
+    - field.field.node.pledge.field_pledge_contact
+    - field.field.node.pledge.field_pledge_contribution_type
+    - field.field.node.pledge.field_pledge_owner
+    - field.field.node.pledge.field_state
+    - field.field.node.pledge.og_audience
+    - node.type.pledge
+  module:
+    - inline_entity_form
+    - joinup_workflow
+    - publication_date
+    - text
+id: node.pledge.default
+targetEntityType: node
+bundle: pledge
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 2
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  current_workflow_state:
+    type: current_workflow_state_widget
+    weight: 8
+    region: content
+    settings:
+      title: 'Current workflow state'
+      title_display: before
+      show_for_new_entities: false
+    third_party_settings: {  }
+  field_pledge_contact:
+    weight: 3
+    settings:
+      form_mode: inline
+      override_labels: true
+      label_singular: 'contact information'
+      label_plural: 'contact information'
+      allow_new: true
+      match_operator: CONTAINS
+      revision: false
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+    region: content
+  field_pledge_contribution_type:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_pledge_owner:
+    weight: 4
+    settings:
+      form_mode: inline
+      override_labels: true
+      label_singular: owner
+      label_plural: owners
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      revision: false
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+    region: content
+  field_state:
+    weight: 9
+    settings:
+      use_transition_label: 1
+    third_party_settings: {  }
+    type: state_machine_buttons
+    region: content
+  published_at:
+    type: publication_date_timestamp
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  og_audience: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  url_redirects: true

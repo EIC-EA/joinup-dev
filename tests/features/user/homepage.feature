@@ -23,7 +23,7 @@ Feature: Homepage feature
       | An Explosion in Space     | An Explosion in Space     | E-health          | Legion Constitution | validated | 5064   | 2015-04-07 16:00 |
       # Create a news with the same number of visits but with a more recent creation date.
       # The node needs to be created in this order, so it's placed later in the Solr index.
-      # @see https://webgate.ec.europa.eu/CITnet/jira/browse/ISAICP-3963
+      # @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-3963
       | Magenta Mountain          | Magenta Mountain          | E-health          | Legion Constitution | validated | 5064   | 2017-11-30 16:00 |
       | Lightning Lass' Powers    | Lightning Lass' Powers    | Demography        | Legion Constitution | validated | 2951   | 2016-09-22 16:00 |
     And the following collection user memberships:
@@ -62,7 +62,7 @@ Feature: Homepage feature
       | Title       | The Sacred Future documentation |
       | Short title | The Sacred Future documentation |
     And I enter "The Sacred Future documentation." in the "Description" wysiwyg editor
-    And I select "Document" from "Type"
+    And I select "Study" from "Type"
     Then I upload the file "test.zip" to "Upload a new file or enter a URL"
     And I press "Publish"
     Then I should see the heading "The Sacred Future documentation"

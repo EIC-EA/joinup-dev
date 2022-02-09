@@ -13,6 +13,8 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\collection\Entity\CollectionInterface;
+use Drupal\solution\Entity\SolutionInterface;
 
 /**
  * Implements hook_entity_base_field_info().
@@ -54,9 +56,15 @@ function joinup_workflow_entity_create(EntityInterface $entity) {
     $workflow_helper = \Drupal::service('joinup_workflow.workflow_helper');
     if ($workflow_helper->hasEntityStateField($entity->getEntityTypeId(), $entity->bundle())) {
       $state_field = $workflow_helper->getEntityStateField($entity);
-      $workflow = $state_field->getWorkflow();
+      // When entities are new and default values are not assigned (e.g. when
+      // adding the state field in a new content type or editing an existing
+      // one), the value of ::first() of the StateItem field item will be null.
+      // Return early for this rare case.
+      if (empty($state_field) || !($workflow = $state_field->getWorkflow())) {
+        return;
+      }
       $state_id = $state_field->getValue()['value'];
-      if ($workflow_helper->isWorkflowStatePublished($state_id, $workflow)) {
+      if ($workflow && $workflow_helper->isWorkflowStatePublished($state_id, $workflow)) {
         $entity->setPublished();
       }
       else {
@@ -162,18 +170,17 @@ function joinup_workflow_motivation_form_validate(array &$form, FormStateInterfa
   $required = joinup_workflow_is_motivation_required($entity->getEntityTypeId(), $workflow->getId(), $transition->getId());
   // @todo Remove this when the 'reject_deletion' and 'reject_archival' for
   //   rdf_entities are separate transitions.
-  // @see https://webgate.ec.europa.eu/CITnet/jira/browse/ISAICP-3644
-  if ($entity->getEntityTypeId() === 'rdf_entity' && $entity->bundle() === 'collection' && $transition->getId() === 'validate' && !in_array($from_state, ['archival_request', 'deletion_request'])) {
+  // @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-3644
+  if ($entity instanceof CollectionInterface && $transition->getId() === 'validate' && $from_state !== 'archival_request') {
     $required = FALSE;
   }
   // @todo Remove this when the 'reject_deletion' and 'proposed_from_validated'
   //   for rdf_entities are separate transitions.
-  // @see https://webgate.ec.europa.eu/CITnet/jira/browse/ISAICP-3840
-  if ($entity->getEntityTypeId() === 'rdf_entity' && $entity->bundle() === 'solution') {
+  // @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-3840
+  if ($entity instanceof SolutionInterface) {
     $user_roles = \Drupal::currentUser()->getRoles();
-    $reject_deletion = $transition->getId() === 'validate' && $from_state === 'deletion_request';
     $propose_changes = $transition->getId() === 'propose' && $from_state === 'validated' && in_array('moderator', $user_roles);
-    if ($reject_deletion || $propose_changes) {
+    if ($propose_changes) {
       $required = TRUE;
     }
   }

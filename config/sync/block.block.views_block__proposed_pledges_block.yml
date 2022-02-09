@@ -1,0 +1,30 @@
+uuid: 07387ea2-f282-4e4b-b70f-5f9639d1e4d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.proposed_pledges
+  module:
+    - joinup_core
+    - views
+  theme:
+    - joinup_theme
+id: views_block__proposed_pledges_block
+theme: joinup_theme
+region: content
+weight: -12
+provider: null
+plugin: 'views_block:proposed_pledges-block'
+settings:
+  id: 'views_block:proposed_pledges-block'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_route:
+    id: request_route
+    routes: dashboard.page
+    negate: false
+    context_mapping: {  }

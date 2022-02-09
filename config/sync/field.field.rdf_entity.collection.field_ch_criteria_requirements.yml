@@ -1,0 +1,29 @@
+uuid: 34e90caf-24c6-438b-885d-81f9f0a5f26f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.rdf_entity.field_ch_criteria_requirements
+    - rdf_entity.rdfentity.collection
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    content_editor: content_editor
+    basic_html: '0'
+    simple_html: '0'
+    simple_text: '0'
+    plain_text: '0'
+id: rdf_entity.collection.field_ch_criteria_requirements
+field_name: field_ch_criteria_requirements
+entity_type: rdf_entity
+bundle: collection
+label: 'Criteria / Requirements'
+description: 'Please write down the (minimal) criteria , requirements , restrictions to the match the challenge ...'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,13 +1,15 @@
 uuid: 69fc9f8c-af92-4db0-8064-811f79f583ed
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.full_html
 template: sol_blacklist
 label: 'Solution blacklist'
 description: 'Template 13: Blacklist a solution'
 text:
   -
-    value: 'COVID-19 Challenge: Your interoperability solution is blacklisted'
+    value: '[easme:notifications-site-name]:  Your interoperability solution is blacklisted'
     format: full_html
   -
     value: "<p>the moderator has blacklisted your interoperability solution - @entity:title, you can contact the moderation team to resolve the issue.</p>\n<p>We suggest you to read our guidelines at&nbsp; <a href=\"@site:legal_notice_url\">@site:legal_notice_url</a>.</p>"
@@ -15,6 +17,6 @@ text:
 settings:
   'token options':
     clear: false
-    'token replace': false
+    'token replace': true
   purge_override: false
   purge_methods: {  }

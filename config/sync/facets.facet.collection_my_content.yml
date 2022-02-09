@@ -1,11 +1,16 @@
 uuid: 07aa97d0-8a69-46d6-a41d-16c55b740b29
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - search_api.index.published
+    - views.view.collections
+  module:
+    - search_api
 id: collection_my_content
 name: 'My content (Challenges)'
 url_alias: challenge_my_content
-weight: 0
+weight: 1
 min_count: 1
 show_only_one_result: true
 field_identifier: id

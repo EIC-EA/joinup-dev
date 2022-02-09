@@ -1,0 +1,29 @@
+uuid: 799e1dc6-c87d-4c3a-bcea-4529c7e498e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.covid_19_group
+  module:
+    - facets
+    - joinup_core
+  theme:
+    - joinup_theme
+id: challengesolution
+theme: joinup_theme
+region: sidebar_left
+weight: -14
+provider: null
+plugin: 'facet_block:covid_19_group'
+settings:
+  id: 'facet_block:covid_19_group'
+  label: 'Covid 19 - Group'
+  provider: facets
+  label_display: '0'
+  block_id: challengesolution
+visibility:
+  request_route:
+    id: request_route
+    routes: view.search.page_2
+    negate: false
+    context_mapping: {  }

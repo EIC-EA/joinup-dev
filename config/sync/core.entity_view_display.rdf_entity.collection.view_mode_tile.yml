@@ -16,17 +16,22 @@ dependencies:
     - field.field.rdf_entity.collection.field_ar_moderation
     - field.field.rdf_entity.collection.field_ar_owner
     - field.field.rdf_entity.collection.field_ar_state
+    - field.field.rdf_entity.collection.field_ch_criteria_requirements
     - field.field.rdf_entity.collection.field_collection_content
+    - field.field.rdf_entity.collection.field_external_solution_url
     - field.field.rdf_entity.collection.field_keywords
     - field.field.rdf_entity.collection.field_newsletter
     - field.field.rdf_entity.collection.field_policy_domain
+    - field.field.rdf_entity.collection.field_short_id
     - field.field.rdf_entity.collection.field_site_featured
     - field.field.rdf_entity.collection.field_site_pinned
     - field.field.rdf_entity.collection.field_spatial_coverage
+    - field.field.rdf_entity.collection.field_topic
     - image.style.horizontal_medium_image
     - rdf_entity.rdfentity.collection
   module:
     - image
+    - options
     - smart_trim
     - template_suggestion
     - user
@@ -37,7 +42,7 @@ mode: view_mode_tile
 content:
   field_ar_abstract:
     type: smart_trim
-    weight: 3
+    weight: 4
     region: content
     label: hidden
     settings:
@@ -64,6 +69,13 @@ content:
     third_party_settings: {  }
     type: image
     region: content
+  field_ar_state:
+    type: list_default
+    weight: 2
+    region: content
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
   label:
     label: hidden
     type: string
@@ -73,11 +85,12 @@ content:
     third_party_settings: {  }
     region: content
   members:
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  add_solution: true
   changed: true
   created: true
   field_ar_access_url: true
@@ -89,18 +102,22 @@ hidden:
   field_ar_description: true
   field_ar_moderation: true
   field_ar_owner: true
-  field_ar_state: true
+  field_ch_criteria_requirements: true
   field_collection_content: true
+  field_external_solution_url: true
   field_keywords: true
   field_newsletter: true
   field_policy_domain: true
+  field_short_id: true
   field_site_featured: true
   field_site_pinned: true
   field_spatial_coverage: true
+  field_topic: true
   join_collection: true
   langcode: true
   last_update: true
   og_group: true
+  pledge: true
   rdf_entity_field_collection_content_inline_facets: true
   rdf_entity_field_collection_content_top: true
   read_more: true

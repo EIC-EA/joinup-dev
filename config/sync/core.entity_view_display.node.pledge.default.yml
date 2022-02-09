@@ -1,0 +1,85 @@
+uuid: a712909a-7a5c-43e0-a958-cf9e7fc4482d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.pledge.body
+    - field.field.node.pledge.field_pledge_contact
+    - field.field.node.pledge.field_pledge_contribution_type
+    - field.field.node.pledge.field_pledge_owner
+    - field.field.node.pledge.field_state
+    - field.field.node.pledge.og_audience
+    - node.type.pledge
+  module:
+    - link
+    - options
+    - template_suggestion
+    - text
+    - user
+id: node.pledge.default
+targetEntityType: node
+bundle: pledge
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_pledge_contribution_type:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_pledge_owner:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings:
+      template_suggestion:
+        template_suggestion: ''
+    type: entity_reference_label
+    region: content
+  field_state:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  links:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  published_at:
+    type: timestamp
+    weight: 6
+    region: content
+    label: above
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  report:
+    label: hidden
+    weight: 0
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    region: content
+    third_party_settings: {  }
+    type: link
+hidden:
+  field_pledge_contact: true
+  langcode: true
+  og_audience: true
