@@ -17,3 +17,8 @@ RUN SOLR_MAJOR_VERSION=`echo "${SOLR_VERSION}" | sed -e "{ s/^\(.\).*/\1/ ; q }"
     chown -R $SOLR_USER:$SOLR_GROUP /opt/docker-solr/configsets && \
     rm -rf /opt/docker-solr/scripts/search_api_solr && \
     sed -i '/solr.install.dir=/c\solr.install.dir=/opt/solr' /opt/docker-solr/configsets/drupal/conf/solrcore.properties
+
+USER root
+RUN apt update && apt install -y debsecan && apt-get clean && rm -rf /var/lib/apt/lists/*;
+RUN apt-get install $(debsecan --suite bullseye --format packages --only-fixed);
+USER $SOLR_USER
