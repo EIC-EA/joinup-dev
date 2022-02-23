@@ -19,7 +19,11 @@ RUN SOLR_MAJOR_VERSION=`echo "${SOLR_VERSION}" | sed -e "{ s/^\(.\).*/\1/ ; q }"
     sed -i '/solr.install.dir=/c\solr.install.dir=/opt/solr' /opt/docker-solr/configsets/drupal/conf/solrcore.properties
 
 USER root
+# Apply security updates and delete it again so it's not running in the background (auto-updates)
 RUN apt update && apt install -y unattended-upgrades;
 RUN dpkg-reconfigure unattended-upgrades;
 RUN unattended-upgrade -d;
+RUN apt-get autoremove unattended-upgrades -y --purge; \
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/*;
 USER $SOLR_USER
