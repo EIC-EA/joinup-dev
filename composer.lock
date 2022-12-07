@@ -6636,7 +6636,7 @@
             "require": {
                 "drupal/rdf_entity": "^1.0",
                 "php": ">=7.1",
-                "spdx/license-list-data": "master"
+                "spdx/license-list-data": "main"
             },
             "type": "drupal-module",
             "description": "Allows to federate and manage the SPDX licences.",
@@ -10186,11 +10186,11 @@
         },
         {
             "name": "spdx/license-list-data",
-            "version": "master",
+            "version": "main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spdx/license-list-data.git",
-                "reference": "master"
+                "reference": "main"
             },
             "type": "library",
             "time": "2021-07-23T03:22:02+00:00"
