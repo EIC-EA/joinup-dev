@@ -361,11 +361,11 @@
             "type": "package",
             "package": {
                 "name": "spdx/license-list-data",
-                "version": "master",
+                "version": "main",
                 "source": {
                     "url": "https://github.com/spdx/license-list-data.git",
                     "type": "git",
-                    "reference": "master"
+                    "reference": "main"
                 }
             }
         },
