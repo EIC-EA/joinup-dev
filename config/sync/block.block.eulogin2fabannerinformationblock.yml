@@ -9,7 +9,7 @@ dependencies:
 id: eulogin2fabannerinformationblock
 theme: joinup_theme
 region: header_profile_menu
-weight: 0
+weight: -31
 provider: null
 plugin: eulogin_2fa_banner_block
 settings:
