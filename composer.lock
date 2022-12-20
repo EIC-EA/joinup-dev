@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52015eeb1e32dd2e14b4444a0f7c1e9f",
+    "content-hash": "ebbb84d413b683ec99fded74108c8db2",
     "packages": [
         {
             "name": "SEMICeu/adms-ap_validator",
@@ -2278,6 +2278,9 @@
                     "services": {
                         "drush.services.yml": "^9"
                     }
+                },
+                "patches_applied": {
+                    "https://www.drupal.org/project/cas/issues/3221111": "https://www.drupal.org/files/issues/2021-11-22/3221111-allow-setting-reason-20.diff"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -8842,16 +8845,16 @@
         },
         {
             "name": "openeuropa/oe_authentication",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeuropa/oe_authentication.git",
-                "reference": "ee53b6bf88710fe03aa5df7f70286f9670e28267"
+                "reference": "32948436d99ef43573f318856d96a78ddef7e881"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeuropa/oe_authentication/zipball/ee53b6bf88710fe03aa5df7f70286f9670e28267",
-                "reference": "ee53b6bf88710fe03aa5df7f70286f9670e28267",
+                "url": "https://api.github.com/repos/openeuropa/oe_authentication/zipball/32948436d99ef43573f318856d96a78ddef7e881",
+                "reference": "32948436d99ef43573f318856d96a78ddef7e881",
                 "shasum": ""
             },
             "require": {
@@ -8894,7 +8897,7 @@
                 },
                 "patches": {
                     "drupal/cas": {
-                        "https://www.drupal.org/project/cas/issues/3221111": "https://git.drupalcode.org/project/cas/-/merge_requests/4.patch"
+                        "https://www.drupal.org/project/cas/issues/3221111": "https://www.drupal.org/files/issues/2021-11-22/3221111-allow-setting-reason-20.diff"
                     }
                 },
                 "drupal-scaffold": {
@@ -8913,7 +8916,7 @@
                 "EUPL-1.2"
             ],
             "description": "Authentication against the OpenEuropa Authentication service.",
-            "time": "2021-09-27T11:54:49+00:00"
+            "time": "2021-12-06T16:26:43+00:00"
         },
         {
             "name": "openeuropa/oe_webtools",
@@ -8981,7 +8984,7 @@
                 "patches_applied": {
                     "Allow to pass an optional referer. @see https://github.com/openeuropa/oe_webtools/pull/96": "https://patch-diff.githubusercontent.com/raw/openeuropa/oe_webtools/pull/96.diff",
                     "Place the webtools loader on the head. @see https://github.com/openeuropa/oe_webtools/pull/102": "https://patch-diff.githubusercontent.com/raw/openeuropa/oe_webtools/pull/102.diff",
-                    "Add the possibility to display a marker on the map. @see https://github.com/openeuropa/oe_webtools/pull/111": "https://patch-diff.githubusercontent.com/raw/openeuropa/oe_webtools/pull/111.diff"
+                    "Add the possibility to display a marker on the map. @see https://github.com/openeuropa/oe_webtools/pull/113": "https://patch-diff.githubusercontent.com/raw/openeuropa/oe_webtools/pull/113.diff"
                 }
             },
             "autoload": {
@@ -10268,7 +10271,7 @@
                 "reference": "main"
             },
             "type": "library",
-            "time": "2021-07-23T03:22:02+00:00"
+            "time": "2022-12-15T22:49:17+00:00"
         },
         {
             "name": "stack/builder",
@@ -10371,6 +10374,7 @@
                 "mail",
                 "mailer"
             ],
+            "abandoned": "symfony/mailer",
             "time": "2018-07-31T09:26:32+00:00"
         },
         {
@@ -10615,6 +10619,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
+            "abandoned": "symfony/error-handler",
             "time": "2020-07-23T08:31:43+00:00"
         },
         {
@@ -12432,6 +12437,7 @@
                 }
             ],
             "description": "A robust cross-platform utility for normalizing, comparing and modifying file paths.",
+            "abandoned": "symfony/filesystem",
             "time": "2015-12-17T08:42:14+00:00"
         },
         {
