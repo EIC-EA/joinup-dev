@@ -369,7 +369,7 @@
                 "source": {
                     "url": "https://github.com/spdx/license-list-data.git",
                     "type": "git",
-                    "reference": "main"
+                    "reference": "3.12"
                 }
             }
         },
