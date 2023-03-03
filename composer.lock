@@ -10190,7 +10190,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/spdx/license-list-data.git",
-                "reference": "master"
+                "reference": "main"
             },
             "type": "library",
             "time": "2021-07-23T03:22:02+00:00"
