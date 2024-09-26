@@ -114,6 +114,7 @@ module:
   metatag_open_graph: 0
   moderation: 0
   node: 0
+  oe_authentication: 0
   oe_newsroom_newsletter: 0
   oe_webtools: 0
   oe_webtools_cookie_consent: 0

@@ -1,0 +1,44 @@
+diff --git a/src/Event/EuLoginEventSubscriber.php b/src/Event/EuLoginEventSubscriber.php
+index f17b018..115139d 100644
+--- a/src/Event/EuLoginEventSubscriber.php
++++ b/src/Event/EuLoginEventSubscriber.php
+@@ -5,6 +5,7 @@ declare(strict_types = 1);
+ namespace Drupal\oe_authentication\Event;
+
+ use Drupal\cas\Event\CasPostValidateEvent;
++use Drupal\cas\Event\CasPreRedirectEvent;
+ use Drupal\cas\Event\CasPreRegisterEvent;
+ use Drupal\cas\Event\CasPreValidateEvent;
+ use Drupal\cas\Service\CasHelper;
+@@ -71,11 +72,23 @@ class EuLoginEventSubscriber implements EventSubscriberInterface {
+       ['checkUserMailExists', 1000],
+       ['processUserProperties'],
+     ];
++    $events[CasHelper::EVENT_PRE_REDIRECT] = 'forceTwoFactorAuthentication';
+     $events[CasHelper::EVENT_POST_VALIDATE] = 'processCasAttributes';
+     $events[CasHelper::EVENT_PRE_VALIDATE] = 'alterValidationPath';
+     return $events;
+   }
+
++  /**
++   * Ensures that 2-factor authentication is forced if it is configured.
++   *
++   * @param \Drupal\cas\Event\CasPreRedirectEvent $event
++   *   The triggered event.
++   */
++  public function forceTwoFactorAuthentication(CasPreRedirectEvent $event): void {
++    $data = $event->getCasRedirectData();
++    $data->setParameter('acceptStrengths', 'PASSWORD_MOBILE_APP,PASSWORD_SOFTWARE_TOKEN,PASSWORD_SMS');
++  }
++
+   /**
+    * Checks user email exists previously.
+    *
+@@ -141,6 +154,7 @@ class EuLoginEventSubscriber implements EventSubscriberInterface {
+       'userDetails' => 'true',
+       'groups' => '*',
+     ];
++    $params['acceptStrengths'] = 'PASSWORD_MOBILE_APP,PASSWORD_SOFTWARE_TOKEN,PASSWORD_SMS';
+     $event->addParameters($params);
+   }
+

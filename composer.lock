@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c0d38474d743995dd5ac1cdb62f4be3",
+    "content-hash": "ebbb84d413b683ec99fded74108c8db2",
     "packages": [
         {
             "name": "SEMICeu/adms-ap_validator",
@@ -1233,24 +1233,24 @@
         },
         {
             "name": "cweagans/composer-patches",
-            "version": "1.6.7",
+            "version": "1.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cweagans/composer-patches.git",
-                "reference": "2e6f72a2ad8d59cd7e2b729f218bf42adb14f590"
+                "reference": "e9969cfc0796e6dea9b4e52f77f18e1065212871"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/2e6f72a2ad8d59cd7e2b729f218bf42adb14f590",
-                "reference": "2e6f72a2ad8d59cd7e2b729f218bf42adb14f590",
+                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/e9969cfc0796e6dea9b4e52f77f18e1065212871",
+                "reference": "e9969cfc0796e6dea9b4e52f77f18e1065212871",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0",
+                "composer-plugin-api": "^1.0 || ^2.0",
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "composer/composer": "~1.0",
+                "composer/composer": "~1.0 || ~2.0",
                 "phpunit/phpunit": "~4.6"
             },
             "type": "composer-plugin",
@@ -1273,7 +1273,7 @@
                 }
             ],
             "description": "Provides a way to patch Composer packages.",
-            "time": "2019-08-29T20:11:49+00:00"
+            "time": "2022-01-25T19:21:20+00:00"
         },
         {
             "name": "davedevelopment/stiphle",
@@ -2278,6 +2278,9 @@
                     "services": {
                         "drush.services.yml": "^9"
                     }
+                },
+                "patches_applied": {
+                    "https://www.drupal.org/project/cas/issues/3221111": "https://www.drupal.org/files/issues/2021-11-22/3221111-allow-setting-reason-20.diff"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -8841,6 +8844,81 @@
             "time": "2020-08-09T10:23:20+00:00"
         },
         {
+            "name": "openeuropa/oe_authentication",
+            "version": "1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/openeuropa/oe_authentication.git",
+                "reference": "32948436d99ef43573f318856d96a78ddef7e881"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/openeuropa/oe_authentication/zipball/32948436d99ef43573f318856d96a78ddef7e881",
+                "reference": "32948436d99ef43573f318856d96a78ddef7e881",
+                "shasum": ""
+            },
+            "require": {
+                "cweagans/composer-patches": "^1.7",
+                "drupal/cas": "^1.7",
+                "drupal/core": "^8.9 || ^9.1",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "composer/installers": "^1.11",
+                "drupal/cas_mock_server": "^1.1",
+                "drupal/config_devel": "^1.2",
+                "drupal/core-composer-scaffold": "^8.9 || ^9.1",
+                "drupal/drupal-extension": "^4.0",
+                "drush/drush": "^10.3",
+                "nikic/php-parser": "~3.0",
+                "openeuropa/behat-transformation-context": "^0.1",
+                "openeuropa/code-review": "^1.6",
+                "openeuropa/drupal-core-require-dev": "^8.9 || ^9.1",
+                "openeuropa/task-runner-drupal-project-symlink": "^1.0",
+                "phpspec/prophecy-phpunit": "^1 || ^2"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "composer-exit-on-patch-failure": true,
+                "enable-patching": true,
+                "installer-paths": {
+                    "build/core": [
+                        "type:drupal-core"
+                    ],
+                    "build/profiles/contrib/{$name}": [
+                        "type:drupal-profile"
+                    ],
+                    "build/modules/contrib/{$name}": [
+                        "type:drupal-module"
+                    ],
+                    "build/themes/contrib/{$name}": [
+                        "type:drupal-theme"
+                    ]
+                },
+                "patches": {
+                    "drupal/cas": {
+                        "https://www.drupal.org/project/cas/issues/3221111": "https://www.drupal.org/files/issues/2021-11-22/3221111-allow-setting-reason-20.diff"
+                    }
+                },
+                "drupal-scaffold": {
+                    "locations": {
+                        "web-root": "./build"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\oe_authentication\\": "./src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "EUPL-1.2"
+            ],
+            "description": "Authentication against the OpenEuropa Authentication service.",
+            "time": "2021-12-06T16:26:43+00:00"
+        },
+        {
             "name": "openeuropa/oe_webtools",
             "version": "1.7.0",
             "source": {
@@ -8906,7 +8984,7 @@
                 "patches_applied": {
                     "Allow to pass an optional referer. @see https://github.com/openeuropa/oe_webtools/pull/96": "https://patch-diff.githubusercontent.com/raw/openeuropa/oe_webtools/pull/96.diff",
                     "Place the webtools loader on the head. @see https://github.com/openeuropa/oe_webtools/pull/102": "https://patch-diff.githubusercontent.com/raw/openeuropa/oe_webtools/pull/102.diff",
-                    "Add the possibility to display a marker on the map. @see https://github.com/openeuropa/oe_webtools/pull/111": "https://patch-diff.githubusercontent.com/raw/openeuropa/oe_webtools/pull/111.diff"
+                    "Add the possibility to display a marker on the map. @see https://github.com/openeuropa/oe_webtools/pull/113": "https://patch-diff.githubusercontent.com/raw/openeuropa/oe_webtools/pull/113.diff"
                 }
             },
             "autoload": {
@@ -10193,7 +10271,7 @@
                 "reference": "main"
             },
             "type": "library",
-            "time": "2021-07-23T03:22:02+00:00"
+            "time": "2022-12-15T22:49:17+00:00"
         },
         {
             "name": "stack/builder",
@@ -10296,6 +10374,7 @@
                 "mail",
                 "mailer"
             ],
+            "abandoned": "symfony/mailer",
             "time": "2018-07-31T09:26:32+00:00"
         },
         {
@@ -10540,6 +10619,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
+            "abandoned": "symfony/error-handler",
             "time": "2020-07-23T08:31:43+00:00"
         },
         {
@@ -12357,6 +12437,7 @@
                 }
             ],
             "description": "A robust cross-platform utility for normalizing, comparing and modifying file paths.",
+            "abandoned": "symfony/filesystem",
             "time": "2015-12-17T08:42:14+00:00"
         },
         {
@@ -18583,6 +18664,6 @@
         "ext-libxml": "*"
     },
     "platform-overrides": {
-        "php": "7.1.9"
+        "php": "7.3.28"
     }
 }
